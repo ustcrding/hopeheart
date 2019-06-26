@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/title_activity_style"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_f5f6fa"
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
+
+    <RadioGroup
+        android:id="@+id/rg_focus_group"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/color_white"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/common_margin_left"
+        android:paddingRight="@dimen/common_margin_right"
+        android:visibility="gone">
+
+        <RadioButton
+            android:id="@+id/rb_focus_kb"
+            style="@style/focus_type_style"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="@string/focus_kb" />
+
+        <RadioButton
+            android:id="@+id/rb_focus_voice_navi"
+            style="@style/focus_type_style"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
+            android:text="@string/focus_voice_navi" />
+    </RadioGroup>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/common_bk_gray"
+        android:visibility="gone"></View>
+
+    <com.boc.hopeheatapp.conversation.KbConversationView
+        android:id="@+id/cv_kb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.boc.hopeheatapp.conversation.VoiceNaviView
+        android:id="@+id/cv_voice_navi"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+</LinearLayout>

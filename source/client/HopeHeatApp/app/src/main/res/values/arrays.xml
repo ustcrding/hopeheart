@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="error_tips">
+        <item>抱歉，我走神了</item>
+        <item>哎呀，您的问题太难了，我得要去学习下</item>
+        <item>不好意思，这个问题我不会呀</item>
+        <item>我现在还很小，知道的东西少了点</item>
+        <item>我还在努力学习中</item>
+        <item>我吃的盐少了点，过的桥少了点，所以知识也少了点</item>
+        <item>我是诚实的好孩子，所以老实说我不知道</item>
+        <item>对不起，我也不知道唉</item>
+        <item>啊，还真被你问住了</item>
+        <item>很抱歉，可是我真的不会</item>
+        <item>这个问题，我问了一圈机器还是不知道答案</item>
+        <item>不懂不懂，要不说点我懂的</item>
+    </string-array>
+
+    <string-array name="app_names">
+        <item>智能客服</item>
+        <item>网标系统</item>
+        <item>问答对</item>
+    </string-array>
+
+    <string-array name="app_ids">
+        <item>IJz2Vta8</item>
+        <item>NL7P32Wz</item>
+        <item>NL7P32Wz</item>
+    </string-array>
+</resources>

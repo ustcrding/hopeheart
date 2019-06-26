@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_left"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="3dp"
+        android:src="@drawable/icon_robot" />
+
+    <LinearLayout
+        android:id="@+id/ll_answer_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="56dp"
+        android:layout_toRightOf="@+id/iv_left"
+        android:background="@drawable/baymin_left"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="8dp"
+            android:gravity="left"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textColor="@color/black_35383d"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/tv_open_url"
+            android:layout_width="wrap_content"
+            android:textColor="@color/btn_open_url"
+            android:textSize="14dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:paddingRight="5dp"
+            android:gravity="right"
+            android:text="@string/btn_open_url" />
+
+        <LinearLayout
+            android:id="@+id/ll_satisfaction_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical|left"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_answer_satisfaction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:gravity="left"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="5dp"
+                android:paddingTop="5dp"
+                android:text="此条答案对您是否有帮助？"
+                android:textColor="@color/gray_555555"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/btn_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/sl_btn_like"
+                android:gravity="center"
+                android:paddingBottom="2dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="2dp"
+                android:text="@string/btn_like"
+                android:textColor="@color/common_main_red"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/btn_unlike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/sl_btn_unlike"
+                android:gravity="center"
+                android:paddingBottom="2dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="2dp"
+                android:text="@string/btn_unlike"
+                android:textColor="@color/common_second_red"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/tv_like_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:paddingBottom="2dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="2dp"
+                android:textColor="@color/common_main_red"
+                android:textSize="12dp"
+                android:visibility="gone" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

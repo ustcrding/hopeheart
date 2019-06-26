@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_voice_guide"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="50dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sharp_hot_question_title_bg"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_speak_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:gravity="left"
+            android:text="@string/hot_question"
+            android:textColor="@color/gray_a0a4ae"
+            android:textSize="@dimen/font_size_12" />
+
+        <LinearLayout
+            android:id="@+id/ll_guide_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:duplicateParentState="true"
+            android:gravity="left"
+            android:orientation="vertical"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
+            <!--<TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:lineSpacingExtra="10dp"
+                android:text="@string/voice_assist_speaking_sample"
+                android:textColor="@color/gray_8c9195"
+                android:textSize="16dp" />-->
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_head_icon"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="3dp"
+            android:src="@drawable/icon_robot" />
+
+        <TextView
+            android:id="@+id/tv_introduce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="56dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/baymin_left"
+            android:gravity="left"
+            android:paddingLeft="15dp"
+            android:paddingRight="5dp"
+            android:text="@string/voice_assist_header_msg"
+            android:textColor="@color/black_35383d"
+            android:textSize="14dp" />
+    </LinearLayout>
+
+</LinearLayout>

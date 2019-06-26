@@ -1,0 +1,89 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
+    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
+
+    defaultConfig {
+        applicationId "com.boc.cc.bocvoice"
+        minSdkVersion ANDROID_BUILD_MIN_SDK_VERSION
+        targetSdkVersion ANDROID_BUILD_TARGET_SDK_VERSION
+        versionCode Integer.valueOf(VERSION_CODE)
+        versionName VERSION_NAME
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        debug {
+            //keyAlias ''
+            //keyPassword ''
+            storeFile file('./keystore/debug.keystore')
+            //storePassword ''
+        }
+        release {
+            keyAlias 'bocvoice'
+            keyPassword 'bocvoice_2018_01_23!'
+            storeFile file('./keystore/bocvoice.jks')
+            storePassword 'bocvoice_2018_01_23!'
+        }
+    }
+
+    buildTypes {
+        debug {
+            //不混淆
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+            signingConfig signingConfigs.debug
+            debuggable true
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable false
+
+            //混淆
+            minifyEnabled false
+            zipAlignEnabled false
+            // 移除无用的resource文件
+            shrinkResources false
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:support-v4:23.+'
+    testCompile 'junit:junit:4.12'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'//retrofit
+    compile 'com.google.code.gson:gson:2.8.0'//Gson 库
+    //下面两个是RxJava 和RxAndroid
+    compile 'io.reactivex:rxjava:1.1.0'
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'//转换器，请求结果转换成Model
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'//配合Rxjava 使用
+    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0' //Retrofit的日志拦截功能
+
+    //eventbus
+    compile group: 'de.greenrobot', name: 'eventbus', version: '2.4.1'
+
+    //图片轮播
+    compile 'com.jude:rollviewpager:1.4.6'
+
+    //glide
+    compile 'com.github.bumptech.glide:glide:3.5.2'
+
+    // photoview
+    compile 'com.github.chrisbanes.photoview:library:1.2.4'
+
+    // recyclerview
+    compile ('com.android.support:recyclerview-v7:23.3.0') {
+        exclude module: 'support-v4'
+    }
+}

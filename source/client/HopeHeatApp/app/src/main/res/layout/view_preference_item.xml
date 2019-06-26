@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/sl_btn_default_color">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:duplicateParentState="true">
+
+        <ImageView
+                android:id="@+id/prefernce_picture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/common_margin_left"
+                android:duplicateParentState="true"
+                android:src="@drawable/icon_my_user"/>
+
+        <TextView
+                android:id="@+id/prefernce_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:layout_centerVertical="true"
+                style="@style/preference_item_title"
+                android:layout_toRightOf="@+id/prefernce_picture"/>
+
+        <ImageView
+                android:id="@+id/prefernce_reddot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/icon_home_reddot"
+                android:layout_toLeftOf="@+id/prefernce_more"
+                android:layout_marginRight="10dp"
+                android:duplicateParentState="true"
+                android:visibility="gone"/>
+
+        <ImageView
+                android:id="@+id/prefernce_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/sl_btn_more"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:duplicateParentState="true"/>
+
+
+    </RelativeLayout>
+
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/common_stroke_little_gray"/>
+</LinearLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/title_activity_style"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_f5f5f5"
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
+
+    <LinearLayout
+        android:id="@+id/push_setting_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <com.boc.hopeheatapp.widget.SwitchItemView
+            android:id="@+id/view_tts_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.boc.hopeheatapp.widget.PreferenceItemView
+            android:id="@+id/view_voice_navi_by_aiui"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
+        <com.boc.hopeheatapp.widget.PreferenceItemView
+            android:id="@+id/view_vocal_verify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
+        <com.boc.hopeheatapp.widget.PreferenceItemView
+            android:id="@+id/view_vocal_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.boc.hopeheatapp.widget.PreferenceItemView
+            android:id="@+id/view_about"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content" />
+
+        <com.boc.hopeheatapp.widget.PreferenceItemView
+            android:id="@+id/view_app_switch"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/btn_logout"
+            style="@style/login_button_style"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginLeft="@dimen/common_margin"
+            android:layout_marginRight="@dimen/common_margin"
+            android:layout_marginTop="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/sl_btn_login"
+            android:text="@string/item_setting_logout" />
+
+    </LinearLayout>
+</LinearLayout>

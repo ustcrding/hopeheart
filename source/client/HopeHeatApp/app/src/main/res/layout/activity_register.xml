@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/title_activity_style"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="150dp"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_45"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/common_margin_left"
+            android:paddingRight="@dimen/common_margin_right">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/icon_user_label" />
+
+            <EditText
+                android:id="@+id/register_username"
+                style="@style/register_username_input"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:hint="@string/hint_register_phone" />
+        </LinearLayout>
+
+        <include layout="@layout/line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_45"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/common_margin_left"
+            android:paddingRight="@dimen/common_margin_right">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/icon_password" />
+
+            <EditText
+                android:id="@+id/register_pwd"
+                style="@style/register_pwd_input"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/padding_15"
+                android:layout_weight="1"
+                android:hint="@string/hint_register_passport" />
+        </LinearLayout>
+
+        <include layout="@layout/line" />
+
+        <TextView
+            android:id="@+id/btn_register"
+            style="@style/login_button_style"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginLeft="@dimen/common_margin_left"
+            android:layout_marginRight="@dimen/common_margin_right"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/sl_btn_login"
+            android:text="@string/register" />
+
+    </LinearLayout>
+
+</LinearLayout>

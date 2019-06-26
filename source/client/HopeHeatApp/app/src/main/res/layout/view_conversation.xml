@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        style="@style/common_scrollview_style"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/ll_conversation_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.boc.hopeheatapp.widget.ChannelBarView
+                android:id="@+id/ll_channel_bar_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"></com.boc.hopeheatapp.widget.ChannelBarView>
+
+            <com.boc.hopeheatapp.widget.VoiceGuideView
+                android:id="@+id/ll_voice_guide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></com.boc.hopeheatapp.widget.VoiceGuideView>
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/common_bk_gray"
+        android:visibility="gone"></View>
+
+    <include layout="@layout/view_mic_view_container" />
+</LinearLayout>

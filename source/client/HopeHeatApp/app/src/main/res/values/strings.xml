@@ -1,0 +1,132 @@
+<resources>
+    <string name="app_name">BocVoice</string>
+
+    <!-- 请替换成在语音云官网申请的appid -->
+    <string name="app_id">589bdab6</string>
+
+    <!--public-->
+    <string name="public_tip_login_first">请先登录</string>
+    <string name="public_retry">重新下载</string>
+    <string name="public_tip_please_input_content">请输入内容</string>
+    <string name="public_start_speech">请说话</string>
+    <string name="public_tip_please_input">请输入</string>
+    <string name="public_send">发送</string>
+    <string name="public_speech">说话</string>
+
+    <!-- 听写 -->
+    <string name="text_begin">请开始说话…</string>
+
+    <string formatted="false" name="tts_toast_format">缓冲进度为%d%%，播放进度为%d%%</string>
+
+    <!--语音-->
+    <string name="title_boc">智能问答机器人</string>
+    <string name="voice_assist_header_msg">你好，有什么需要，对我说就可以啦！</string>
+    <string name="voice_assist_header_msg2">有什么可以帮您！</string>
+    <string name="voice_assist_header_msg_format">您好，%s，有什么可以帮您！</string>
+    <string name="voice_assist_speaking_title">你可以这样说</string>
+    <string name="voice_assist_speaking_sample">分期付款如何办理\n如何查询消费情况\n信用卡还款方式\n忘记密码？</string>
+    <string name="vocice_navi_sample">打开设置\n打开排班系统\n打开我的工作台\n</string>
+    <string name="long_press_to_speech">长按说话</string>
+    <string name="hot_question">热门问题</string>
+
+    <string name="change_to_text">文本</string>
+
+    <!--设置页面-->
+    <string name="title_setting">设置</string>
+    <string name="tts_speak_switch">语音播报</string>
+    <string name="item_voice_navi_by_aiui">语音导航（By Aiui）</string>
+    <string name="item_vocal_verify">声纹识别</string>
+    <string name="item_vocal_register">声纹注册</string>
+    <string name="item_app_switch">app切换</string>
+    <string name="item_setting_logout">注销登录</string>
+    <string name="item_setting_about">关于我们</string>
+
+    <!--自动更新-->
+    <string name="update_updating">更新中</string>
+    <string name="update_downloading">下载中</string>
+
+    <string name="default_speak_text">识别失败，请重试！</string>
+    <string name="failure_text">未能理解你在说什么。</string>
+
+    <string name="date_time_format">01月%d日</string>
+
+    <string name="tip_open_setting">正在为您打开设置</string>
+    <string name="open_format_style">正在为您打开%s</string>
+    <string name="tip_unsupport_operator">暂不支持该操作</string>
+
+    <!--排班系统-->
+    <string name="title_schedule_system">排班系统</string>
+
+    <!--我的工作台-->
+    <string name="title_workbench">我的工作台</string>
+
+    <!--语音导航-->
+    <string name="title_voice_navi">语音导航</string>
+
+    <string name="tip_no_result">抱歉，没有找到答案</string>
+    <string name="tip_request_error">抱歉，我走神了</string>
+    <string name="like">喜欢</string>
+    <string name="unlike">不喜欢</string>
+    <string name="voice_error_format">错误信息：%s</string>
+    <string name="btn_like">赞</string>
+    <string name="btn_unlike">踩</string>
+
+    <!--home页-->
+    <string name="tip_exit_program">再按一次退出</string>
+
+    <string name="focus_kb">知识库</string>
+    <string name="focus_voice_navi">语音导航</string>
+
+    <!--声纹识别-->
+    <string name="title_vocal_verify">声纹登录</string>
+    <string name="tip_vocal_verify_success">识别通过</string>
+    <string name="tip_vocal_verify_failed">识别失败</string>
+    <string name="login_by_pwd">密码登录</string>
+    <string name="register_now">立即注册</string>
+    <string name="tip_vocal_login_first">第一次登录，必须先用密码登录</string>
+
+    <!--声纹注册-->
+    <string name="title_vocal_register">声纹注册</string>
+    <string name="tip_left_times_format">训练 第%1$d遍(共%2$d遍)</string>
+    <string name="tip_download_vocal_pwd_failed">下载声纹密码失败</string>
+    <string name="tip_vocal_register_success">声纹注册成功</string>
+    <string name="tip_vocal_registing">声纹注册中...</string>
+    <string name="long_press_speech">长按说话</string>
+    <string name="tip_vocal_pwd_downloading">声纹密码下载中...</string>
+
+    <!--用户注册-->
+    <string name="title_register">用户注册</string>
+    <string name="hint_register_phone">请输入用户名</string>
+    <string name="register">注册</string>
+    <string name="hint_register_passport">请输入密码</string>
+    <string name="tip_username_invalid">用户名不能为空</string>
+    <string name="tip_pwd_invalid">密码不能为空</string>
+    <string name="register_failed">注册失败</string>
+    <string name="register_success">注册成功</string>
+
+    <!--用户登录-->
+    <string name="title_login">用户登录</string>
+    <string name="public_login">登录</string>
+    <string name="login_failed">登录失败</string>
+    <string name="login_success">登录成功</string>
+
+    <!--关于我们-->
+    <string name="copyright">Copyright © 中国银行软件中心 All Rights Reverved</string>
+    <string name="title_about_me">关于我们</string>
+
+
+    <!--图片浏览-->
+    <string name="pager_index_format_str">%1$d/%2$d</string>
+
+    <!--浏览器页面-->
+    <string name="url_invalid">地址解析不正确</string>
+
+    <!--频道列表-->
+    <string name="title_channel_list">频道列表</string>
+
+    <string name="btn_open_url">查看更多</string>
+
+    <string name="mic_init">初始化</string>
+    <string name="mic_listening">&#160;&#160;&#160;倾听中...</string>
+    <string name="mic_recognizing">&#160;&#160;&#160;识别中...</string>
+</resources>

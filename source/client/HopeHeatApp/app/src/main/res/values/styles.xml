@@ -1,0 +1,145 @@
+<resources>
+    <style name="AppBaseTheme" parent="android:style/Theme.Light.NoTitleBar.Fullscreen" type="text/css">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="textColor">@color/day_textColor</item>
+        <item name="lineColor">@color/day_line_color</item>
+        <item name="infoTextColor">@color/day_infoTextColor</item>
+        <item name="layout_item_bg">@drawable/day_list_item_background</item>
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:fadingEdgeLength">0.0dip</item>
+    </style>
+
+    <style name="holo_light_Theme" parent="android:Theme.Holo.Light">
+        <item name="android:screenOrientation">portrait</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:fadingEdgeLength">0.0dip</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:windowSoftInputMode">adjustPan|stateHidden</item>
+    </style>
+
+    <style name="CommonActivityTheme" parent="android:Theme.NoTitleBar">
+        <item name="android:screenOrientation">portrait</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:activityOpenEnterAnimation">@anim/in_from_right</item>
+        <item name="android:windowSoftInputMode">adjustPan|stateHidden</item>
+    </style>
+
+    <style name="msglist_style">
+        <item name="android:scrollbars">none</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:divider">@null</item>
+        <item name="android:cacheColorHint">@android:color/transparent</item>
+        <item name="android:listSelector">@android:color/transparent</item>
+        <item name="android:scrollingCache">true</item>
+    </style>
+
+    <style name="switch_item_view_title">
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:textColor">#333333</item>
+    </style>
+
+    <style name="title_style">
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:textSize">@dimen/font_size_20</item>
+    </style>
+
+    <style name="title_left_content">
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="preference_item_title">
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:textColor">#333333</item>
+    </style>
+
+    <style name="common_scrollview_style">
+        <item name="android:scrollbars">@null</item>
+    </style>
+
+    <style name="focus_type_style">
+        <item name="android:textColor">@color/sl_focus_type_color</item>
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:background">@drawable/sl_focus_item_bg</item>
+        <item name="android:button">@null</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="textStyle">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!--通用activity样式-->
+    <style name="common_activity_style">
+        <item name="android:background">@color/gray_f5f5f5</item>
+    </style>
+
+    <style name="title_activity_style" parent="@style/common_activity_style">
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
+    <style name="base_input_content">
+        <item name="android:textColor">#000000</item>
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">@dimen/padding_5</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <!--注册界面用户名的-->
+    <style name="register_username_input" parent="@style/base_input_content">
+        <item name="android:inputType">text</item>
+    </style>
+
+    <!--注册界面用户名输入-->
+    <style name="register_phone_input" parent="@style/base_input_content">
+        <item name="android:inputType">phone</item>
+    </style>
+
+    <!--注册界面密码输入-->
+    <style name="register_pwd_input" parent="@style/base_input_content">
+        <item name="android:inputType">textPassword</item>
+    </style>
+
+    <style name="login_button_style">
+        <item name="android:textSize">@dimen/font_size_17</item>
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="login_register_btn">
+        <item name="android:textSize">@dimen/font_size_10</item>
+        <item name="android:textColor">@color/common_text_color</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="register_now_btn">
+        <item name="android:textSize">@dimen/font_size_10</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- 加载滚动条样式 -->
+    <style name="loading">
+        <item name="android:indeterminate">true</item>
+        <item name="android:indeterminateDrawable">@drawable/progressloading</item>
+        <item name="android:indeterminateDuration">1000</item>
+        <item name="android:indeterminateOnly">true</item>
+    </style>
+
+
+</resources>
