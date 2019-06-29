@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/title_activity_style"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginLeft="@dimen/common_margin_left"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="@dimen/common_margin_right"
+        android:gravity="center"
+        android:text="作答完毕"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/common_margin_left"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="@dimen/common_margin_right"
+        android:layout_weight="1"
+        android:gravity="top|center_horizontal"
+        android:text="分析"
+        android:textSize="16sp" />
+
+
+    <TextView
+        android:id="@+id/btn_one_Key_consultation"
+        style="@style/login_button_style"
+        android:layout_width="100dp"
+        android:layout_height="44dp"
+        android:layout_gravity="right"
+        android:layout_marginLeft="@dimen/common_margin_left"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="@dimen/common_margin_right"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/sl_btn_login"
+        android:text="一键咨询" />
+
+</LinearLayout>

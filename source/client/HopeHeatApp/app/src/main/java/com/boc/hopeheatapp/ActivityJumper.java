@@ -11,6 +11,7 @@ import com.boc.hopeheatapp.activity.HomeActivity;
 import com.boc.hopeheatapp.activity.LoginActivity;
 import com.boc.hopeheatapp.activity.PictureShowActivity;
 import com.boc.hopeheatapp.activity.PsychologicalTestActivity;
+import com.boc.hopeheatapp.activity.QuestionnaireCompleteActivity;
 import com.boc.hopeheatapp.activity.RegisterActivity;
 import com.boc.hopeheatapp.activity.ScheduleSystemActivity;
 import com.boc.hopeheatapp.activity.SettingActivity;
@@ -334,6 +335,38 @@ public class ActivityJumper {
         }
 
         Intent intent = new Intent(context, PsychologicalTestActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 打开作答结束页面
+     *
+     * @param context
+     */
+    public static void startQuestionnaireCompleteActivity(Context context) {
+        if (context == null) {
+            return;
+        }
+
+        Intent intent = new Intent(context, QuestionnaireCompleteActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 打开作答结束页面
+     *
+     * @param context
+     */
+    public static void startQuestionnaireCompleteActivity(Context context, String url ) {
+        if (context == null) {
+            return;
+        }
+
+        Intent intent = new Intent(context, BrowserActivity.class);
+        intent.putExtra(EXTRA_URL, url);
+        intent.putExtra(EXTRA_OVERRIDE_IN_NEW_ACTICITY, false);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }

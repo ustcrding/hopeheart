@@ -7,6 +7,7 @@ import android.os.Message;
 
 
 import com.boc.hopeheatapp.ActivityJumper;
+import com.boc.hopeheatapp.ApiConfig;
 import com.boc.hopeheatapp.R;
 import com.boc.hopeheatapp.model.UserEntity;
 import com.boc.hopeheatapp.user.UserManager;
@@ -91,7 +92,10 @@ public class SplashActivity extends TitleColorActivity {
         if (user != null) {
             //正常用户，自动登陆
 //            ActivityJumper.startHomeActivity(this);
-            ActivityJumper.startPsychologicalTestActivity(this);
+//            ActivityJumper.startPsychologicalTestActivity(this);
+//            ActivityJumper.startQuestionnaireCompleteActivity(this);
+            String url = "file:////android_asset/test.html";
+            ActivityJumper.startQuestionnaireCompleteActivity(this, url);
         } else {
             //其他状态用户，走登陆逻辑
             //ActivityJumper.startVocalIdentifyActivity(this);

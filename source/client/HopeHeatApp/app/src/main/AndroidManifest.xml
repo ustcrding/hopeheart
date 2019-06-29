@@ -41,9 +41,9 @@
         <!--home activity-->
         <activity
             android:name="com.boc.hopeheatapp.activity.HomeActivity"
-            android:launchMode="singleTop"
             android:configChanges="orientation|keyboardHidden"
             android:exported="true"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/CommonActivityTheme"
             android:windowSoftInputMode="stateAlwaysHidden"></activity>
@@ -172,9 +172,27 @@
             android:theme="@style/CommonActivityTheme"
             android:windowSoftInputMode="stateAlwaysHidden"></activity>
 
-        <!--频道列表页面-->
+        <!--心理问卷页面-->
         <activity
             android:name="com.boc.hopeheatapp.activity.PsychologicalTestActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/CommonActivityTheme"
+            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+
+        <!--问答结束页面-->
+        <activity
+            android:name="com.boc.hopeheatapp.activity.QuestionnaireCompleteActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/CommonActivityTheme"
+            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+
+        <!--问答页面-->
+        <activity
+            android:name="com.boc.hopeheatapp.activity.QuestionnaireActivity"
             android:configChanges="orientation|keyboardHidden"
             android:exported="true"
             android:screenOrientation="portrait"

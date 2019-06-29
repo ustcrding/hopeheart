@@ -18,8 +18,10 @@ import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.boc.hopeheatapp.ActivityJumper;
 import com.boc.hopeheatapp.R;
 import com.boc.hopeheatapp.util.VideoUtils;
+import com.boc.hopeheatapp.util.log.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -77,7 +79,7 @@ public class PsychologicalTestActivity extends TitleColorActivity implements Vie
                     mediaRecorder.reset();
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                Logger.e(TAG, "error" + e.getMessage(), e);
             }
         }
     };
@@ -138,7 +140,6 @@ public class PsychologicalTestActivity extends TitleColorActivity implements Vie
      * @author liuzhongjun
      */
     private void initCamera() {
-
         if (mCamera != null) {
             releaseCamera();
         }
@@ -148,6 +149,7 @@ public class PsychologicalTestActivity extends TitleColorActivity implements Vie
             Toast.makeText(this, "未能获取到相机！", Toast.LENGTH_SHORT).show();
             return;
         }
+
         try {
             //将相机与SurfaceHolder绑定
             mCamera.setPreviewDisplay(mSurfaceHolder);
@@ -157,7 +159,7 @@ public class PsychologicalTestActivity extends TitleColorActivity implements Vie
             mCamera.startPreview();
         } catch (IOException e) {
             //有的手机会因为兼容问题报错，这就需要开发者针对特定机型去做适配了
-            Log.d(TAG, "Error starting camera preview: " + e.getMessage());
+            Logger.d(TAG, "Error starting camera preview: " + e.getMessage());
         }
     }
 
@@ -178,6 +180,7 @@ public class PsychologicalTestActivity extends TitleColorActivity implements Vie
             params.set("orientation", "landscape");
             mCamera.setDisplayOrientation(0);
         }
+
         //设置聚焦模式
         params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO);
         //缩短Recording启动时间
@@ -228,15 +231,17 @@ public class PsychologicalTestActivity extends TitleColorActivity implements Vie
      * 停止录制视频
      */
     public void stopRecord() {
-        // 设置后不会崩
-        mediaRecorder.setOnErrorListener(null);
-        mediaRecorder.setPreviewDisplay(null);
-        //停止录制
-        mediaRecorder.stop();
-        mediaRecorder.reset();
-        //释放资源
-        mediaRecorder.release();
-        mediaRecorder = null;
+        if (mediaRecorder == null) {
+            // 设置后不会崩
+            mediaRecorder.setOnErrorListener(null);
+            mediaRecorder.setPreviewDisplay(null);
+            //停止录制
+            mediaRecorder.stop();
+            mediaRecorder.reset();
+            //释放资源
+            mediaRecorder.release();
+            mediaRecorder = null;
+        }
     }
 
     public void pauseRecord() {
@@ -254,7 +259,7 @@ public class PsychologicalTestActivity extends TitleColorActivity implements Vie
                 try {
                     String[] str = new String[]{saveVideoPath, currentVideoFilePath};
                     //将2个视频文件合并到 append.mp4文件下
-                    VideoUtils.appendVideo(PsychologicalTestActivity.this, getSDPath(PsychologicalTestActivity.this) + "append.mp4", str);
+                    VideoUtils.appendVideo(getApplicationContext(), getSDPath(PsychologicalTestActivity.this) + "append.mp4", str);
                     File reName = new File(saveVideoPath);
                     File f = new File(getSDPath(PsychologicalTestActivity.this) + "append.mp4");
                     //再将合成的append.mp4视频文件 移动到 saveVideoPath 路径下
@@ -264,7 +269,7 @@ public class PsychologicalTestActivity extends TitleColorActivity implements Vie
                         new File(currentVideoFilePath).delete();
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Logger.d(TAG, "mergeRecordVideoFile error " + e.getMessage(), e);
                 }
             }
         }).start();
@@ -290,8 +295,6 @@ public class PsychologicalTestActivity extends TitleColorActivity implements Vie
             }, 1000);
             mPauseRecord.setVisibility(View.VISIBLE);
             mPauseRecord.setEnabled(true);
-
-
         } else if (mRecorderState == STATE_RECORDING) {
             mPauseTime = 0;
             mRecordTime.stop();
@@ -323,6 +326,7 @@ public class PsychologicalTestActivity extends TitleColorActivity implements Vie
             mRecordTime.start();
         }
     }
+
 
     @Override
     public void onClick(View view) {
@@ -357,7 +361,7 @@ public class PsychologicalTestActivity extends TitleColorActivity implements Vie
                     //判断是否进行视频合并
                     if ("".equals(saveVideoPath)) {
                         saveVideoPath = currentVideoFilePath;
-                    }else {
+                    } else {
                         mergeRecordVideoFile();
                     }
                     mRecorderState = STATE_INIT;
@@ -373,7 +377,7 @@ public class PsychologicalTestActivity extends TitleColorActivity implements Vie
 //                            startActivity(intent);
 //                            finish();
                         }
-                    },1000);
+                    }, 1000);
                 } else if (mRecorderState == STATE_PAUSE) {
                     //代表视频暂停录制时，点击中心按钮
 //                    Intent intent = new Intent(PsychologicalTestActivity.this, PlayVideoActivity.class);
@@ -395,7 +399,7 @@ public class PsychologicalTestActivity extends TitleColorActivity implements Vie
                         @Override
                         public void onAutoFocus(boolean success, Camera camera) {
                             if (success) {
-                                PsychologicalTestActivity.this.mCamera.cancelAutoFocus();
+                                mCamera.cancelAutoFocus();
                             }
                         }
                     });
@@ -413,6 +417,8 @@ public class PsychologicalTestActivity extends TitleColorActivity implements Vie
                     }
 
                     mRecorderState = STATE_PAUSE;
+
+                    ActivityJumper.startQuestionnaireCompleteActivity(this);
 
                 } else if (mRecorderState == STATE_PAUSE) {
 
@@ -507,4 +513,10 @@ public class PsychologicalTestActivity extends TitleColorActivity implements Vie
     }
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        stopRecord();
+    }
 }

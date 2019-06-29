@@ -27,7 +27,7 @@ public class ApiConfig {
      */
     public static final String BASE_URL = "http://www.shenshencrown.cn:8080/smartRobot/";
 
-     /**
+    /**
      * 升级服务器地址，应该根据 DEBUG 判断选用哪个环境
      */
     public static final String UPDATE = "http://www.shenshencrown.cn:8080/boc_vol/";
@@ -40,9 +40,14 @@ public class ApiConfig {
     /**
      * 语音识别服务器url
      */
-    public static final String SRP_URL = "";
+    public static final String SRP_URL = "http://95566.boc.cn/srp";
 
     private static String appId = "";
+
+    /**
+     * 心理问卷采集url
+     */
+    public static final String PSYCHOLOGICAL_TEST_URL = "https://boysama.cn/index2.html";
 
     public static void setAppId(String appId) {
         ApiConfig.appId = appId;
