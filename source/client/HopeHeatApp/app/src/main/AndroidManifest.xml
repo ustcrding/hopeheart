@@ -232,7 +232,7 @@
         <!-- Required SDK 核心功能-->
         <!-- 可配置android:process参数将PushService放在其他进程中 -->
         <service
-            android:name="cn.jpush.android.service.PushService"
+            android:name="com.boc.hopeheatapp.activity.PushService"
             android:exported="false"
             android:process=":pushcore">
             <intent-filter>
