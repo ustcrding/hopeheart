@@ -11,14 +11,17 @@ import com.boc.hopeheatapp.activity.HomeActivity;
 import com.boc.hopeheatapp.activity.LoginActivity;
 import com.boc.hopeheatapp.activity.PictureShowActivity;
 import com.boc.hopeheatapp.activity.PsychologicalTestActivity;
+import com.boc.hopeheatapp.activity.QuestionnaireActivity;
 import com.boc.hopeheatapp.activity.QuestionnaireCompleteActivity;
 import com.boc.hopeheatapp.activity.RegisterActivity;
 import com.boc.hopeheatapp.activity.ScheduleSystemActivity;
 import com.boc.hopeheatapp.activity.SettingActivity;
 import com.boc.hopeheatapp.activity.UpdateDialog;
+import com.boc.hopeheatapp.activity.UserInfoActivity;
 import com.boc.hopeheatapp.activity.VocalIdentifyActivity;
 import com.boc.hopeheatapp.activity.VocalRegisterActivity;
 import com.boc.hopeheatapp.activity.VocalVerifyActivity;
+import com.boc.hopeheatapp.activity.WelcomeActivity;
 import com.boc.hopeheatapp.activity.WorkbenchActivity;
 import com.boc.hopeheatapp.model.ChannelEntity;
 import com.boc.hopeheatapp.model.VersionEntity;
@@ -364,9 +367,39 @@ public class ActivityJumper {
             return;
         }
 
-        Intent intent = new Intent(context, BrowserActivity.class);
+        Intent intent = new Intent(context, QuestionnaireActivity.class);
         intent.putExtra(EXTRA_URL, url);
         intent.putExtra(EXTRA_OVERRIDE_IN_NEW_ACTICITY, false);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 打开欢迎界面
+     *
+     * @param context
+     */
+    public static void startWelcomeActivity(Context context) {
+        if (context == null) {
+            return;
+        }
+
+        Intent intent = new Intent(context, WelcomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 打开欢迎界面
+     *
+     * @param context
+     */
+    public static void startUserInfoActivity(Context context) {
+        if (context == null) {
+            return;
+        }
+
+        Intent intent = new Intent(context, UserInfoActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }

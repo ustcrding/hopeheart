@@ -26,4 +26,17 @@
         <item>NL7P32Wz</item>
         <item>NL7P32Wz</item>
     </string-array>
+
+    <string-array name="credentials_type">
+        <item>身份证</item>
+        <item>居住证</item>
+        <item>通行证</item>
+    </string-array>
+
+    <string-array name="city_list">
+        <item>北京市</item>
+        <item>天津市</item>
+        <item>上海市</item>
+        <item>合肥市</item>
+    </string-array>
 </resources>

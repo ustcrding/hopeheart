@@ -129,4 +129,25 @@
     <string name="mic_init">初始化</string>
     <string name="mic_listening">&#160;&#160;&#160;倾听中...</string>
     <string name="mic_recognizing">&#160;&#160;&#160;识别中...</string>
+
+    <string name="welcome_msg">您好，很高兴为您服务，为方便后续（相关）知识获取，请您提供个人信息。</string>
+    <string name="read_from_card">读卡识别</string>
+    <string name="input_personal_info">录入个人信息</string>
+    <string name="ignore">暂不录入</string>
+    <string name="user_info_title">个人信息录入</string>
+    <string name="submit">提交</string>
+    <string name="user_id">ID</string>
+    <string name="user_id_hint">请填写ID号</string>
+    <string name="user_name">姓名</string>
+    <string name="user_name_hint">请填写姓名</string>
+    <string name="user_credentials_type">证件类型</string>
+    <string name="choice_default">请选择</string>
+    <string name="user_credentials_no">证件号码</string>
+    <string name="user_credentials_no_hint">请填写证件号码</string>
+    <string name="current_city">当前城市</string>
+    <string name="city_name_title">城市名称</string>
+    <string name="address_detail">当前详细地址</string>
+    <string name="address_detail_hint">请填写当前详细地址</string>
+    <string name="search_info">查看救援知识</string>
+    <string name="feedback">意见反馈</string>
 </resources>

@@ -199,6 +199,24 @@
             android:theme="@style/CommonActivityTheme"
             android:windowSoftInputMode="stateAlwaysHidden"></activity>
 
+        <!--欢迎界面-->
+        <activity
+            android:name="com.boc.hopeheatapp.activity.WelcomeActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/CommonActivityTheme"
+            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+
+        <!--个人信息界面-->
+        <activity
+            android:name="com.boc.hopeheatapp.activity.UserInfoActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/CommonActivityTheme"
+            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+
         <!-- 移动统计分析 -->
         <meta-data
             android:name="IFLYTEK_APPKEY"

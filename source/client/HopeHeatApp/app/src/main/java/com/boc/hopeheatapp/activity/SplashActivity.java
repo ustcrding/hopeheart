@@ -94,8 +94,9 @@ public class SplashActivity extends TitleColorActivity {
 //            ActivityJumper.startHomeActivity(this);
 //            ActivityJumper.startPsychologicalTestActivity(this);
 //            ActivityJumper.startQuestionnaireCompleteActivity(this);
-            String url = "file:////android_asset/test.html";
-            ActivityJumper.startQuestionnaireCompleteActivity(this, url);
+//            String url = "file:////android_asset/test.html";
+//            ActivityJumper.startQuestionnaireCompleteActivity(this, url);
+            ActivityJumper.startWelcomeActivity(this);
         } else {
             //其他状态用户，走登陆逻辑
             //ActivityJumper.startVocalIdentifyActivity(this);

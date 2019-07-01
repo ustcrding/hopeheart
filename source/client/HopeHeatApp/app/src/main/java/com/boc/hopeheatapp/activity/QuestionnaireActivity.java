@@ -71,7 +71,7 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar_webview);
         mWebView = (WebView) findViewById(R.id.webview_browser);
 
-//        initWebView(mWebView);
+        initWebView(mWebView);
 
     }
 
@@ -98,7 +98,6 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 showProgress(100);
-                mWebView.addJavascriptInterface(new WebAppInterface(QuestionnaireActivity.this), "WebAppInterface");
             }
 
             @Override
@@ -147,6 +146,8 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
         //自适应屏幕
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         settings.setLoadWithOverviewMode(true);
+
+        webView.addJavascriptInterface(new WebAppInterface(QuestionnaireActivity.this), "WebAppInterface");
     }
 
     private void showProgress(int progress) {
