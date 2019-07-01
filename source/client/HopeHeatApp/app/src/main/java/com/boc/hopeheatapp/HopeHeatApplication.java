@@ -13,6 +13,7 @@ import com.iflytek.cloud.Setting;
 import com.iflytek.cloud.SpeechUtility;
 import com.iflytek.sunflower.FlowerCollector;
 import com.iflytek.util.Logs;
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * 语音识别Application
@@ -38,6 +39,8 @@ public class HopeHeatApplication extends Application {
         initSrp();
 
         UserManager.createInstance(getApplicationContext());
+
+        initPush();
     }
 
     /**
@@ -101,4 +104,8 @@ public class HopeHeatApplication extends Application {
 //        });
     }
 
+    private void initPush() {
+        JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
+        JPushInterface.init(this);     		// 初始化 JPush
+    }
 }
