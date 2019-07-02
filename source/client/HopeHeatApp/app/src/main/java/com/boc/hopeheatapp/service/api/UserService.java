@@ -57,7 +57,7 @@ public interface UserService {
      * @return
      */
     @FormUrlEncoded
-    @POST("A04!login")
+    @POST("http://9ee5973a.ngrok.io/login")
     Observable<BaseResponse<UserEntity>> login(@Field("username") String username,
                                                @Field("password") String password,
                                                @Field("authId") String authId,

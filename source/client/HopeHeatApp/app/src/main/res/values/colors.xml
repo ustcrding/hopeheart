@@ -54,7 +54,7 @@
     <color name="day_edit_hit_color">#999999</color>
 
     <color name="common_text_color">#e7083b</color>
-    <color name="common_title_color">#d80636</color>
+    <color name="common_title_color">#FF4EDCED</color>
     <color name="vocal_indentify_color">#b50029</color>
 
     <color name="white">#ffffffff</color>

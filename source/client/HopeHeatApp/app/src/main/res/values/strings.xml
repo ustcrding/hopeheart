@@ -161,4 +161,8 @@
 
 
     <string name="loading">加载中...</string>
+
+    <string name="user_id_type">证件类型</string>
+    <string name="user_card_id">身份证</string>
+    <string name="user_id_no">证件号码</string>
 </resources>

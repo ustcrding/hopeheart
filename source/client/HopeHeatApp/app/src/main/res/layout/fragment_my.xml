@@ -5,6 +5,109 @@
     android:background="@color/common_container_gray"
     android:orientation="vertical">
 
-    <include layout="@layout/title" />
+    <ScrollView
+        style="@style/common_scrollview_style"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@color/common_title_color"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_user_icon"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="30dp"
+                    android:src="@drawable/icon_user_def" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="14dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="44dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_user_name"
+                            style="@style/my_user_name_style"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center_vertical"
+                            android:text="张学友" />
+
+                        <ImageView
+                            android:id="@+id/iv_user_sex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:gravity="center_vertical"
+                            android:src="@drawable/man" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_user_addr"
+                        style="@style/my_user_address_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_10"
+                        android:gravity="center_vertical"
+                        android:text="安徽 合肥" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="10dp"
+                android:background="@color/common_stroke_little_gray" />
+
+            <com.boc.hopeheatapp.widget.PreferenceItemView2
+                android:id="@+id/view_user_id_type"
+                android:layout_width="match_parent"
+                android:layout_height="55dp" />
+
+
+            <com.boc.hopeheatapp.widget.PreferenceItemView2
+                android:id="@+id/view_user_id"
+                android:layout_width="match_parent"
+                android:layout_height="55dp" />
+
+
+            <com.boc.hopeheatapp.widget.PreferenceItemView2
+                android:id="@+id/view_user_phone"
+                android:layout_width="match_parent"
+                android:layout_height="55dp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="8dp"
+                android:background="@color/common_stroke_little_gray" />
+
+            <com.boc.hopeheatapp.widget.PreferenceItemView2
+                android:id="@+id/view_user_reg_date"
+                android:layout_width="match_parent"
+                android:layout_height="55dp" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

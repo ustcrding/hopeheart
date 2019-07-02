@@ -18,7 +18,7 @@ public class MsgFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_my;
+        return R.layout.fragment_msg;
     }
 
     @Override
