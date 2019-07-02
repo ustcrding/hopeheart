@@ -9,6 +9,7 @@ import com.boc.hopeheatapp.activity.ChannelActivity;
 import com.boc.hopeheatapp.activity.ChannelListActivity;
 import com.boc.hopeheatapp.activity.HomeActivity;
 import com.boc.hopeheatapp.activity.LoginActivity;
+import com.boc.hopeheatapp.activity.MainActivity;
 import com.boc.hopeheatapp.activity.PictureShowActivity;
 import com.boc.hopeheatapp.activity.PsychologicalTestActivity;
 import com.boc.hopeheatapp.activity.QuestionnaireActivity;
@@ -362,7 +363,7 @@ public class ActivityJumper {
      *
      * @param context
      */
-    public static void startQuestionnaireCompleteActivity(Context context, String url ) {
+    public static void startQuestionnaireCompleteActivity(Context context, String url) {
         if (context == null) {
             return;
         }
@@ -400,6 +401,21 @@ public class ActivityJumper {
         }
 
         Intent intent = new Intent(context, UserInfoActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 打开主界面
+     *
+     * @param context
+     */
+    public static void startMainActivity(Context context) {
+        if (context == null) {
+            return;
+        }
+
+        Intent intent = new Intent(context, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }

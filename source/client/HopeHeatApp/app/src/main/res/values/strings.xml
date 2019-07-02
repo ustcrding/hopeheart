@@ -158,4 +158,7 @@
 
     <string name="rescue_knowledge">查询救援知识</string>
     <string name="psychology_knowledge">查询心理知识</string>
+
+
+    <string name="loading">加载中...</string>
 </resources>
