@@ -217,6 +217,15 @@
             android:theme="@style/CommonActivityTheme"
             android:windowSoftInputMode="stateAlwaysHidden"></activity>
 
+        <!--首页-->
+        <activity
+            android:name="com.boc.hopeheatapp.activity.MainActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/CommonActivityTheme"
+            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+
         <!-- 移动统计分析 -->
         <meta-data
             android:name="IFLYTEK_APPKEY"

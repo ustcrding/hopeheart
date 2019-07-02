@@ -150,4 +150,7 @@
     <string name="address_detail_hint">请填写当前详细地址</string>
     <string name="search_info">查看救援知识</string>
     <string name="feedback">意见反馈</string>
+
+
+    <string name="loading">加载中...</string>
 </resources>

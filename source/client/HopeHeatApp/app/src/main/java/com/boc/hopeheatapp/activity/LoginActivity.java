@@ -134,20 +134,22 @@ public class LoginActivity extends TitleColorActivity {
     }
 
     private void onClickedLogin() {
-        String username = etUserName.getText().toString();
-        String pwd = etPassword.getText().toString();
+//        String username = etUserName.getText().toString();
+//        String pwd = etPassword.getText().toString();
+//
+//        if (StringUtil.isEmpty(username)) {
+//            ToastUtils.showLong(getApplicationContext(), R.string.tip_username_invalid);
+//            return;
+//        }
+//
+//        if (StringUtil.isEmpty(pwd)) {
+//            ToastUtils.showLong(getApplicationContext(), R.string.tip_pwd_invalid);
+//            return;
+//        }
+//
+//        doLogin(username, pwd);
 
-        if (StringUtil.isEmpty(username)) {
-            ToastUtils.showLong(getApplicationContext(), R.string.tip_username_invalid);
-            return;
-        }
-
-        if (StringUtil.isEmpty(pwd)) {
-            ToastUtils.showLong(getApplicationContext(), R.string.tip_pwd_invalid);
-            return;
-        }
-
-        doLogin(username, pwd);
+        ActivityJumper.startMainActivity(getApplicationContext());
     }
 
     private void doLogin(final String username, final String pwd) {
