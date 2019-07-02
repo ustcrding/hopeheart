@@ -28,9 +28,19 @@
     </string-array>
 
     <string-array name="credentials_type">
-        <item>身份证</item>
-        <item>居住证</item>
-        <item>通行证</item>
+        <item>居民身份证</item>
+        <item>临时身份证</item>
+        <item>护照</item>
+        <item>港澳居民来往内地通行证-香港</item>
+        <item>港澳居民来往内地通行证-澳门</item>
+        <item>台湾居民来往内地通行证</item>
+        <item>外交人员身份证</item>
+        <item>外国人居留许可证</item>
+        <item>边民出入境通行证</item>
+        <item>户口薄</item>
+        <item>军人身份证</item>
+        <item>武装警察身份证</item>
+        <item>其它</item>
     </string-array>
 
     <string-array name="city_list">
