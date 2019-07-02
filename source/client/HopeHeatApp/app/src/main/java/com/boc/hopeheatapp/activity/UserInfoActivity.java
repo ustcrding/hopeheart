@@ -55,10 +55,25 @@ public class UserInfoActivity extends TitleColorActivity {
      * 城市名称
      */
     private TextView tvCityName;
+
+    /**
+     * 性别
+     */
+    private TextView tvSex;
     /**
      * 详细地址
      */
     private EditText etAddress;
+
+    /**
+     * 联系方式
+     */
+    private EditText tvPhone;
+
+    /**
+     * 备注
+     */
+    private EditText tvMemo;
 
     /**
      * 注册按钮
@@ -102,6 +117,12 @@ public class UserInfoActivity extends TitleColorActivity {
         tvCityName = (TextView) findViewById(R.id.city_name);
         etAddress = (EditText) findViewById(R.id.address_detail);
         btnRegister = (LinearLayout) findViewById(R.id.ll_title_right_container);
+
+        tvSex = (TextView) findViewById(R.id.user_sex);
+
+        tvPhone = (EditText) findViewById(R.id.register_user_phone);
+
+        tvMemo = (EditText) findViewById(R.id.et_memo);
     }
 
     private void addListener() {
@@ -140,6 +161,13 @@ public class UserInfoActivity extends TitleColorActivity {
                 showCityList();
             }
         });
+
+        tvSex.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showSexList();
+            }
+        });
     }
 
     private void initData() {
@@ -174,6 +202,19 @@ public class UserInfoActivity extends TitleColorActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 tvCityName.setText(getResources().getTextArray(R.array.city_list)[i]);
+                dialogInterface.dismiss();
+            }
+        }).create();
+        dialog.show();
+    }
+
+    private void showSexList() {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+        alertBuilder.setTitle(R.string.sex_name_title);
+        AlertDialog dialog = alertBuilder.setItems(R.array.sex_list, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                tvSex.setText(getResources().getTextArray(R.array.sex_list)[i]);
                 dialogInterface.dismiss();
             }
         }).create();

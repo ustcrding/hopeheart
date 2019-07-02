@@ -52,14 +52,10 @@ public interface UserService {
      * 用户登录接口
      * @param username 用户名
      * @param password 密码
-     * @param authId 声纹id
-     * @param type 登录方式，1: 用户名+密码登录， 2：声纹登录
      * @return
      */
     @FormUrlEncoded
-    @POST("http://9ee5973a.ngrok.io/login")
+    @POST("http://172.20.10.2/login")
     Observable<BaseResponse<UserEntity>> login(@Field("username") String username,
-                                               @Field("password") String password,
-                                               @Field("authId") String authId,
-                                               @Field("type") int type);
+                                               @Field("password") String password);
 }

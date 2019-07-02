@@ -3,47 +3,92 @@
     style="@style/title_activity_style"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="@string/welcome_msg"
-        android:paddingTop="20dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"/>
+        android:layout_height="400dp"
+        android:background="@drawable/ic_background"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="240dp"
+            android:gravity="center_horizontal"
+            android:text="你好!"
+            android:textColor="#2C9AB0"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="55dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginRight="55dp"
+            android:layout_marginBottom="48dp"
+            android:text="@string/welcome_msg"
+            android:textColor="#2C9AB0"
+            android:textSize="16sp" />
+    </LinearLayout>
 
     <Button
-        android:id="@+id/read_from_card"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:id="@+id/btn_search_rescue"
+        android:layout_width="195dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
-        android:text="@string/read_from_card"
-        android:layout_gravity="center_horizontal"/>
+        android:background="@drawable/button_b"
+        android:text="查询救援知识" />
+
+    <Button
+        android:id="@+id/btn_search_psychology"
+        android:layout_width="195dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/button_b"
+        android:text="查询心理知识" />
 
     <Button
         android:id="@+id/input_personal_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_width="195dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
-        android:text="@string/input_personal_info"
-        android:layout_gravity="center_horizontal"/>
+        android:background="@drawable/button_b"
+        android:text="@string/input_personal_info" />
+
+    <Button
+        android:id="@+id/read_from_card"
+        android:layout_width="195dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/button_a"
+        android:text="@string/read_from_card" />
 
     <Button
         android:id="@+id/ignore"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_width="195dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="30dp"
+        android:background="@drawable/button_b"
         android:text="@string/ignore"
-        android:layout_gravity="center_horizontal"/>
+        android:visibility="gone" />
 
 </LinearLayout>

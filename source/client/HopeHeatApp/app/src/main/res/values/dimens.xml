@@ -39,6 +39,7 @@
     <dimen name="height_50">50dip</dimen>
     <dimen name="height_40">40dip</dimen>
     <dimen name="height_45">45dip</dimen>
+    <dimen name="height_60">60dip</dimen>
     <dimen name="size_15">15dip</dimen>
 
     <dimen name="size_23">23dip</dimen>

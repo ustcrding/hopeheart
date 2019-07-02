@@ -64,7 +64,7 @@ public class UserLoader extends BaseLoader {
      * @return
      */
     public Observable<UserEntity> login(String username, String password) {
-        return observe(service.login(username, StringUtil.MD5(password), null, UserService.LOGIN_BY_PWD)).map(new Func1<BaseResponse<UserEntity>, UserEntity>() {
+        return observe(service.login(username, StringUtil.MD5(password)/*, null, UserService.LOGIN_BY_PWD*/)).map(new Func1<BaseResponse<UserEntity>, UserEntity>() {
             @Override
             public UserEntity call(BaseResponse<UserEntity> userEntityBaseResponse) {
                 userEntityBaseResponse.throwExceptionIfError();
@@ -80,7 +80,7 @@ public class UserLoader extends BaseLoader {
      * @return
      */
     public Observable<UserEntity> loginByVocal(String authId) {
-        return observe(service.login(null, null, authId, UserService.LOGIN_BY_VOCAL)).map(new Func1<BaseResponse<UserEntity>, UserEntity>() {
+        return observe(service.login(null, null/*, authId, UserService.LOGIN_BY_VOCAL*/)).map(new Func1<BaseResponse<UserEntity>, UserEntity>() {
             @Override
             public UserEntity call(BaseResponse<UserEntity> userEntityBaseResponse) {
                 userEntityBaseResponse.throwExceptionIfError();

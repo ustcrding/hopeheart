@@ -12,7 +12,7 @@ import com.google.gson.annotations.SerializedName;
  */
 public class UserEntity {
     @Expose
-    @SerializedName("user_id")
+    @SerializedName("id")
     private int userId;
 
     @Expose
@@ -34,6 +34,59 @@ public class UserEntity {
     @Expose
     @SerializedName("role_id")
     private String roleId;
+
+    @Expose
+    @SerializedName("record_date")
+    private String recordDate;
+
+    @Expose
+    @SerializedName("certificate_code")
+    private String certificateCode;
+
+    @Expose
+    @SerializedName("city")
+    private String city;
+
+    @Expose
+    @SerializedName("sex")
+    private String sex;
+
+    @Expose
+    @SerializedName("avatar")
+    private String avatar;
+
+    @Expose
+    @SerializedName("identity_code")
+    private String identityCode;
+
+    @Expose
+    @SerializedName("password")
+    private String password;
+
+    @Expose
+    @SerializedName("province")
+    private String province;
+
+    @Expose
+    @SerializedName("phone")
+    private String phone;
+
+    @Expose
+    @SerializedName("device_code")
+    private String device_code;
+
+    @Expose
+    @SerializedName("company")
+    private String company;
+
+    @Expose
+    @SerializedName("identity_type")
+    private String identityType;
+
+    // 1:需要晚上个人信息，0：已完善
+    @Expose
+    @SerializedName("preserve")
+    private String preserve;
 
     public UserEntity() {
     }
@@ -100,5 +153,109 @@ public class UserEntity {
 
     public void setRoleId(String roleId) {
         this.roleId = roleId;
+    }
+
+    public String getRecordDate() {
+        return recordDate;
+    }
+
+    public void setRecordDate(String recordDate) {
+        this.recordDate = recordDate;
+    }
+
+    public String getCertificateCode() {
+        return certificateCode;
+    }
+
+    public void setCertificateCode(String certificateCode) {
+        this.certificateCode = certificateCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getIdentityCode() {
+        return identityCode;
+    }
+
+    public void setIdentityCode(String identityCode) {
+        this.identityCode = identityCode;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getDevice_code() {
+        return device_code;
+    }
+
+    public void setDevice_code(String device_code) {
+        this.device_code = device_code;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getIdentityType() {
+        return identityType;
+    }
+
+    public void setIdentityType(String identityType) {
+        this.identityType = identityType;
+    }
+
+    public String getPreserve() {
+        return preserve;
+    }
+
+    public void setPreserve(String preserve) {
+        this.preserve = preserve;
     }
 }
