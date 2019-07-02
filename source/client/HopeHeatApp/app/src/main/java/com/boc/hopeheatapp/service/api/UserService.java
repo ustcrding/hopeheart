@@ -72,4 +72,12 @@ public interface UserService {
                                                     @Field("city") String city,
                                                     @Field("address") String address,
                                                     @Field("memo") String memo);
+    /***
+     * 通过物联网设备绑定用户信息
+     * @param id 用户id
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("http://172.20.10.2/verify")
+    Observable<BaseResponse<UserEntity>> userBind(@Field("userId") String id);
 }
