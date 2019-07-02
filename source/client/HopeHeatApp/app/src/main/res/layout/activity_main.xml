@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/title_activity_style"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_app_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"></android.support.v4.view.ViewPager>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/common_stroke_little_gray" />
+
+        <com.boc.hopeheatapp.widget.bottombar.BottomBarLayout
+            android:id="@+id/bbl"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_gravity="center"
+            android:background="@color/color_white"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.boc.hopeheatapp.widget.bottombar.BottomBarItem
+                android:id="@+id/main_tab_msg"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                app:iconNormal="@drawable/ic_home2"
+                app:iconSelected="@drawable/ic_home"
+                app:itemMarginTop="5dp"
+                app:itemText="消息"
+                app:itemTextSize="12sp"
+                app:openTouchBg="false"
+                app:textColorNormal="@color/bottom_bar_text_color_normal"
+                app:textColorSelected="@color/bottom_bar_text_color_selected"
+                app:touchDrawable="@drawable/selector_bg" />
+
+            <com.boc.hopeheatapp.widget.bottombar.BottomBarItem
+                android:id="@+id/main_tab_my"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                app:iconNormal="@drawable/ic_wode"
+                app:iconSelected="@drawable/ic_wode_2"
+                app:itemMarginTop="5dp"
+                app:itemText="我的"
+                app:itemTextSize="12sp"
+                app:openTouchBg="false"
+                app:textColorNormal="@color/bottom_bar_text_color_normal"
+                app:textColorSelected="@color/bottom_bar_text_color_selected"
+                app:touchDrawable="@drawable/selector_bg" />
+
+        </com.boc.hopeheatapp.widget.bottombar.BottomBarLayout>
+    </LinearLayout>
+</RelativeLayout>
