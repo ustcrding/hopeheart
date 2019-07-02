@@ -164,8 +164,18 @@
     <string name="knowledge_detail">知识详情</string>
 
     <string name="rescue_knowledge">查询救援知识</string>
+    <string name="rescue_knowledge_type">救援知识类型</string>
     <string name="psychology_knowledge">查询心理知识</string>
+    <string name="psychology_knowledge_type">查询心理知识类型</string>
 
+    <string name="rescue_knowledge_category">救援知识大类</string>
+    <string name="rescue_knowledge_subcategory">救援知识小类</string>
+    <string name="psychology_knowledge_category">心理知识大类</string>
+    <string name="psychology_knowledge_subcategory">心理知识小类</string>
+    <string name="psychology_test">心理评测</string>
+
+    <string name="ensure">确定</string>
+    <string name="cancel">取消</string>
 
     <string name="loading">加载中...</string>
 

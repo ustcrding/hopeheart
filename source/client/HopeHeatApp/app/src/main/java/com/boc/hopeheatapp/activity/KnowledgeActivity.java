@@ -4,6 +4,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import com.boc.hopeheatapp.R;
 import com.boc.hopeheatapp.model.CatalogListEntity;
 import com.boc.hopeheatapp.model.ChannelEntity;
 import com.boc.hopeheatapp.service.biz.CatalogLoader;
+import com.boc.hopeheatapp.util.phone.DensityUtils;
 import com.boc.hopeheatapp.util.string.StringUtil;
 import com.boc.hopeheatapp.widget.channel.ChannelAdapter;
 import com.boc.hopeheatapp.widget.channel.GridItemClickListener;
@@ -35,6 +37,8 @@ import rx.Subscriber;
  * @date 2018/5/28.
  */
 public class KnowledgeActivity extends TitleColorActivity {
+    public static final int TYPE_RESCUE = 1;
+    public static final int TYPE_PSYCHOLOGY = 2;
 
     private View btnBack;
     private TextView tvTitle;
@@ -124,7 +128,42 @@ public class KnowledgeActivity extends TitleColorActivity {
     }
 
     private void showMenu() {
-        
+        final View popipWindow_view = getLayoutInflater().inflate(R.layout.popup_menu,null,false);
+        //创建Popupwindow 实例，200，LayoutParams.MATCH_PARENT 分别是宽高
+        final PopupWindow popupWindow = new PopupWindow(popipWindow_view, DensityUtils.dp2px(this,300), ViewGroup.LayoutParams.MATCH_PARENT,true);
+        //popupWindow.setAnimationStyle(R.style.AnimationFade);
+        //点击其他地方消失
+        popipWindow_view.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (popipWindow_view != null && popipWindow_view.isShown()) {
+                    popupWindow.dismiss();
+                }
+                return false;
+            }
+        });
 
+        popupWindow.setBackgroundDrawable(new ColorDrawable(0));
+        Button button1 = (Button) popipWindow_view.findViewById(R.id.bt_ensure);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (popipWindow_view != null && popipWindow_view.isShown()) {
+                    popupWindow.dismiss();
+                }
+            }
+        });
+
+        Button button2 = (Button) popipWindow_view.findViewById(R.id.bt_cancel);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (popipWindow_view != null && popipWindow_view.isShown()) {
+                    popupWindow.dismiss();
+                }
+            }
+        });
+
+        popupWindow.showAtLocation(getWindow().getDecorView(), Gravity.RIGHT | Gravity.TOP, 0, 0);
     }
 }

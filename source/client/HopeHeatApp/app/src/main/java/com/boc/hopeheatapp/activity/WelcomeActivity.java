@@ -46,7 +46,7 @@ public class WelcomeActivity extends TitleColorActivity {
         findViewById(R.id.btn_search_rescue).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ActivityJumper.startKnowledgeActivity(WelcomeActivity.this, KnowledgeActivity.TYPE_RESCUE);
             }
         });
 
@@ -54,7 +54,7 @@ public class WelcomeActivity extends TitleColorActivity {
         findViewById(R.id.btn_search_psychology).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ActivityJumper.startKnowledgeActivity(WelcomeActivity.this, KnowledgeActivity.TYPE_PSYCHOLOGY);
             }
         });
     }

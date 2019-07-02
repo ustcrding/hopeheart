@@ -55,7 +55,21 @@ public interface UserService {
      * @return
      */
     @FormUrlEncoded
-    @POST("http://172.20.10.2/login")
+    @POST("http://e502383f.ngrok.io/login")
     Observable<BaseResponse<UserEntity>> login(@Field("username") String username,
                                                @Field("password") String password);
+
+
+    @FormUrlEncoded
+    @POST("http://e502383f.ngrok.io/victim/collect")
+    Observable<BaseResponse<String>> uploadUserInfo(@Field("id") String userId,
+                                                    @Field("name") String userName,
+                                                    @Field("sex") String sex,
+                                                    @Field("identityType") String identityType,
+                                                    @Field("certificateCode") String certificateCode,
+                                                    @Field("phone") String phone,
+                                                    @Field("province") String province,
+                                                    @Field("city") String city,
+                                                    @Field("address") String address,
+                                                    @Field("memo") String memo);
 }

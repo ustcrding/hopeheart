@@ -11,6 +11,13 @@ import android.widget.TextView;
 
 import com.boc.hopeheatapp.ActivityJumper;
 import com.boc.hopeheatapp.R;
+import com.boc.hopeheatapp.model.UserEntity;
+import com.boc.hopeheatapp.parser.TextUtils;
+import com.boc.hopeheatapp.service.biz.UserLoader;
+import com.boc.hopeheatapp.user.UserManager;
+import com.boc.hopeheatapp.util.log.Logger;
+
+import rx.Subscriber;
 
 /**
  * 用户注册页面
@@ -19,6 +26,8 @@ import com.boc.hopeheatapp.R;
  * @date 2018/2/23.
  */
 public class UserInfoActivity extends TitleColorActivity {
+
+    private static final String TAG = UserInfoActivity.class.getSimpleName();
 
     /**
      * title 左侧返回按钮
@@ -179,7 +188,69 @@ public class UserInfoActivity extends TitleColorActivity {
     }
 
     private void onClickedResiter() {
-        //TODO
+        String userName = etUserName.getText().toString();
+        if (TextUtils.isEmpty(userName)) {
+            return ;
+        }
+        String defChoice = getResources().getString(R.string.choice_default);
+        String sex = tvSex.getText().toString();
+        if (defChoice.equals(sex)) {
+            return ;
+        }
+
+        String credentialsType = tvCredentialsType.getText().toString();
+        if (defChoice.equals(credentialsType)) {
+            return;
+        }
+        int credentialsIndex = -1;
+        CharSequence[] arr = getResources().getTextArray(R.array.credentials_type);
+        for (int i = 0 ; i < arr.length; ++i) {
+            if (credentialsType.equals(arr[i])) {
+                credentialsIndex = i;
+                break;
+            }
+        }
+        String credentialsNo = etCredentialsNo.getText().toString();
+        if (TextUtils.isEmpty(credentialsNo)) {
+            return ;
+        }
+
+        String phone = tvPhone.getText().toString();
+        if (TextUtils.isEmpty(phone)) {
+            return;
+        }
+
+        String city = tvCityName.getText().toString();
+        if (defChoice.equals(city)) {
+            return;
+        }
+
+        String address = etAddress.getText().toString();
+        if (TextUtils.isEmpty(address)) {
+            return;
+        }
+
+        String memo = tvMemo.getText().toString();
+
+
+        UserLoader userLoader = new UserLoader();
+        UserEntity user = UserManager.getInstance().getUser();
+        userLoader.uploadUserInfo(user.getUserId() + "", userName, sex.equals("男") ? "0" : "1", credentialsIndex + "", credentialsNo, phone, "", city, address, memo).subscribe(new Subscriber<String>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+
+            }
+
+            @Override
+            public void onNext(String s) {
+                Logger.d(TAG, s);
+            }
+        });
     }
 
     private void showCredentialsList() {

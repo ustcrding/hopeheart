@@ -88,4 +88,25 @@ public class UserLoader extends BaseLoader {
             }
         });
     }
+
+    public Observable<String> uploadUserInfo(String userId,
+                                             String userName,
+                                             String sex,
+                                             String identityType,
+                                             String certificateCode,
+                                             String phone,
+                                             String province,
+                                             String city,
+                                             String address,
+                                             String memo) {
+        return observe(service.uploadUserInfo(userId, userName,sex, identityType, certificateCode, phone, province, city, address, memo)).map(new Func1<BaseResponse<String>, String>() {
+            @Override
+            public String call(BaseResponse<String> userEntityBaseResponse) {
+                userEntityBaseResponse.throwExceptionIfError();
+                return userEntityBaseResponse.getData();
+            }
+        });
+
+    }
+
 }

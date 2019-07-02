@@ -8,6 +8,7 @@ import com.boc.hopeheatapp.activity.BrowserActivity;
 import com.boc.hopeheatapp.activity.ChannelActivity;
 import com.boc.hopeheatapp.activity.ChannelListActivity;
 import com.boc.hopeheatapp.activity.HomeActivity;
+import com.boc.hopeheatapp.activity.KnowledgeActivity;
 import com.boc.hopeheatapp.activity.LoginActivity;
 import com.boc.hopeheatapp.activity.MainActivity;
 import com.boc.hopeheatapp.activity.PictureShowActivity;
@@ -59,6 +60,7 @@ public class ActivityJumper {
     public static final String EXTRA_URL = "extra_url";
     public static final String EXTRA_TITLE = "extra_title";
     public static final String EXTRA_OVERRIDE_IN_NEW_ACTICITY = "extra_override_in_wewActivity";
+    public static final String EXTRA_TYPE = "extra_knowledge_type";
 
     /**
      * 打开系统设置页面
@@ -416,6 +418,22 @@ public class ActivityJumper {
         }
 
         Intent intent = new Intent(context, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 打开知识查询界面
+     *
+     * @param context
+     */
+    public static void startKnowledgeActivity(Context context, int type) {
+        if (context == null) {
+            return;
+        }
+
+        Intent intent = new Intent(context, KnowledgeActivity.class);
+        intent.putExtra(ActivityJumper.EXTRA_TYPE, type);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
