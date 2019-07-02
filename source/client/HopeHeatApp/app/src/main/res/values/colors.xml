@@ -69,8 +69,8 @@
     <color name="tab_normal_color">#515051</color>
     <color name="tab_selected_color">#D33D3C</color>
 
-    <color name="bottom_bar_text_color_normal">#8d969d</color>
-    <color name="bottom_bar_text_color_selected">@color/common_main_red</color>
+    <color name="bottom_bar_text_color_normal">#333333</color>
+    <color name="bottom_bar_text_color_selected">#3BC7D8</color>
 
     <color name="black_btn">#20201E</color>
 
