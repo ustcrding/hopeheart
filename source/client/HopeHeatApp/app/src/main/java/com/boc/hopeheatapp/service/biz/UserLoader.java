@@ -88,4 +88,20 @@ public class UserLoader extends BaseLoader {
             }
         });
     }
+
+    /**
+     * 通过物联网设备绑定用户信息
+     *
+     * @param userId
+     * @return
+     */
+    public Observable<UserEntity> userBind(String userId) {
+        return observe(service.userBind(userId)).map(new Func1<BaseResponse<UserEntity>, UserEntity>() {
+            @Override
+            public UserEntity call(BaseResponse<UserEntity> baseResponse) {
+                baseResponse.throwExceptionIfError();
+                return baseResponse.getData();
+            }
+        });
+    }
 }

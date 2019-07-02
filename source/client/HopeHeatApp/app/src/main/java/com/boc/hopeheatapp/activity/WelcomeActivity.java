@@ -3,10 +3,16 @@ package com.boc.hopeheatapp.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.boc.hopeheatapp.ActivityJumper;
 import com.boc.hopeheatapp.R;
+import com.boc.hopeheatapp.model.UserEntity;
+import com.boc.hopeheatapp.service.biz.UserLoader;
+import com.boc.hopeheatapp.user.UserManager;
+import com.boc.hopeheatapp.util.string.StringUtil;
+
+import rx.Subscriber;
 
 /**
  * @author dwl
@@ -25,6 +31,7 @@ public class WelcomeActivity extends TitleColorActivity {
             @Override
             public void onClick(View v) {
                 //TODO
+                doUserBind();
             }
         });
 
@@ -55,6 +62,34 @@ public class WelcomeActivity extends TitleColorActivity {
             @Override
             public void onClick(View v) {
 
+            }
+        });
+    }
+
+    private void doUserBind() {
+        UserLoader userLoader = new UserLoader();
+        userLoader.userBind("" + UserManager.getInstance().getUser().getUserId()).subscribe(new Subscriber<UserEntity>() {
+
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                Toast.makeText(getApplicationContext(), "未找到用户", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNext(UserEntity user) {
+                if (user != null && StringUtil.equals(user.getPreserve(), "0")) {
+                    UserManager.getInstance().getUser().setPreserve(user.getPreserve());
+                    UserManager.getInstance().saveUser();
+                    Toast.makeText(getApplicationContext(), "已发现用户身份", Toast.LENGTH_LONG).show();
+                    ActivityJumper.startMainActivity(getApplicationContext());
+                } else {
+                    Toast.makeText(getApplicationContext(), "未找到用户", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

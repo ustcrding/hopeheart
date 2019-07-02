@@ -58,4 +58,13 @@ public interface UserService {
     @POST("http://172.20.10.2/login")
     Observable<BaseResponse<UserEntity>> login(@Field("username") String username,
                                                @Field("password") String password);
+
+    /***
+     * 通过物联网设备绑定用户信息
+     * @param id 用户id
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("http://172.20.10.2/verify")
+    Observable<BaseResponse<UserEntity>> userBind(@Field("userId") String id);
 }
