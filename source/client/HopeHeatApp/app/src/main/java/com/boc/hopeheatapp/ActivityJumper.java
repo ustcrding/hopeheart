@@ -17,6 +17,7 @@ import com.boc.hopeheatapp.activity.PsychologicalTestActivity;
 import com.boc.hopeheatapp.activity.QuestionnaireActivity;
 import com.boc.hopeheatapp.activity.QuestionnaireCompleteActivity;
 import com.boc.hopeheatapp.activity.RegisterActivity;
+import com.boc.hopeheatapp.activity.EvaluationResultActivity;
 import com.boc.hopeheatapp.activity.ScheduleSystemActivity;
 import com.boc.hopeheatapp.activity.SettingActivity;
 import com.boc.hopeheatapp.activity.UpdateDialog;
@@ -63,6 +64,8 @@ public class ActivityJumper {
     public static final String EXTRA_OVERRIDE_IN_NEW_ACTICITY = "extra_override_in_wewActivity";
     public static final String EXTRA_TYPE = "extra_knowledge_type";
     public static final String EXTRA_FIRST_MARK = "extra_welcome_mark";
+    public static final String EXTRA_EVALUATION_MSG = "extra_evaluation_msg";
+    public static final String EXTRA_EVALUATION_SCORE = "extra_evaluation_score";
 
     /**
      * 打开系统设置页面
@@ -452,6 +455,23 @@ public class ActivityJumper {
         }
 
         Intent intent = new Intent(context, ConsultHistoryActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 打开评测结果界面
+     *
+     * @param context
+     */
+    public static void startEvaluationResultActivity(Context context, String msg, int score) {
+        if (context == null) {
+            return;
+        }
+
+        Intent intent = new Intent(context, EvaluationResultActivity.class);
+        intent.putExtra(EXTRA_EVALUATION_MSG, msg);
+        intent.putExtra(EXTRA_EVALUATION_SCORE, score);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }

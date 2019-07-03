@@ -189,4 +189,11 @@
     <string name="user_id_type">证件类型</string>
     <string name="user_card_id">身份证</string>
     <string name="user_id_no">证件号码</string>
+
+
+    <string name="evaluation_result">评测结果</string>
+    <string name="evaluation_level">您的评测结果等级</string>
+    <string name="evaluation_advise">建议您的辅导方式</string>
+    <string name="knonledge_query">相关知识查询</string>
+    <string name="consult_key">&#160;一键咨询</string>
 </resources>

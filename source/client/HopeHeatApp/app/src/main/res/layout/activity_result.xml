@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/title_activity_style"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:padding="17dp"
+        android:gravity="left|top"
+        android:textSize="17sp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/gray_414248"
+        android:text="@string/evaluation_level"/>
+
+    <TextView
+        android:id="@+id/evaluation_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:padding="10dp"
+        android:gravity="center_horizontal"
+        android:textSize="16sp"
+        android:textColor="@color/gray_7E7E7E"
+        android:text="@string/evaluation_advise"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:padding="17dp"
+        android:gravity="left|top"
+        android:textSize="17sp"
+        android:textColor="@color/gray_414248"
+        android:text="@string/evaluation_advise"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:padding="10dp"
+        android:gravity="center_horizontal"
+        android:textSize="16sp"
+        android:textColor="@color/gray_7E7E7E"
+        android:text="建议你好好辅导"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="420dp"
+        android:layout_height="180dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/psychology_consult"
+            android:layout_width="195dp"
+            android:layout_height="45dp"
+            android:background="@drawable/button_selector"
+            android:drawableLeft="@drawable/chat"
+            android:text="@string/consult_key"
+            android:textColor="@color/gray_2C9AB0"
+            android:layout_gravity="right"
+            android:paddingLeft="20dp"
+            android:layout_marginBottom="70dp"
+            android:gravity="left|center_vertical"
+            android:textSize="17sp"/>
+
+        <Button
+            android:id="@+id/psychology_evaluation"
+            android:layout_width="195dp"
+            android:layout_height="45dp"
+            android:background="@drawable/button_selector"
+            android:text="@string/knonledge_query"
+            android:textColor="@color/gray_2C9AB0"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="30dp"
+            android:textSize="17sp"/>
+    </LinearLayout>
+</LinearLayout>

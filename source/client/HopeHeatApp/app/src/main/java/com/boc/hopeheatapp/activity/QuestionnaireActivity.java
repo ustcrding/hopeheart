@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import com.boc.hopeheatapp.ActivityJumper;
 import com.boc.hopeheatapp.R;
+import com.boc.hopeheatapp.model.EvaluationEntity;
+import com.boc.hopeheatapp.util.json.JsonUtils;
 import com.boc.hopeheatapp.util.log.Logger;
 import com.boc.hopeheatapp.util.string.StringUtil;
 
@@ -230,8 +232,11 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
         /** Show a toast from the web page */
         @JavascriptInterface
         public void onQuestionnaireFinished(String json) {
-            Logger.d(TAG, "onQuestionnaireFinished | " + json);
-           Toast.makeText(mContext, json.toString(), Toast.LENGTH_SHORT).show();
+            EvaluationEntity entity = JsonUtils.fromJson(json, EvaluationEntity.class);
+            if (entity != null) {
+                ActivityJumper.startEvaluationResultActivity(QuestionnaireActivity.this, entity.getResult(), entity.getScores());
+                finish();
+            }
         }
     }
 }
