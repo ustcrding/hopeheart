@@ -5,4 +5,24 @@
     android:background="@color/common_container_gray"
     android:orientation="vertical">
 
+    <include layout="@layout/title" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.boc.hopeheatapp.widget.SwipeRefreshView
+            android:id="@+id/swiperefreshlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+            <ListView
+                android:id="@+id/listview"
+                style="@style/pull_listview_style"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.boc.hopeheatapp.widget.SwipeRefreshView>
+
+    </RelativeLayout>
 </LinearLayout>

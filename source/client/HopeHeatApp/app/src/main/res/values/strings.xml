@@ -16,7 +16,7 @@
     <!-- 听写 -->
     <string name="text_begin">请开始说话…</string>
 
-    <string formatted="false" name="tts_toast_format">缓冲进度为%d%%，播放进度为%d%%</string>
+    <string name="tts_toast_format" formatted="false">缓冲进度为%d%%，播放进度为%d%%</string>
 
     <!--语音-->
     <string name="title_boc">智能问答机器人</string>
@@ -168,6 +168,8 @@
 
 
     <string name="loading">加载中...</string>
+    <string name="loading_no_more">已加载全部</string>
+    <string name="error_view_no_data">暂无内容</string>
 
     <string name="user_id_type">证件类型</string>
     <string name="user_card_id">身份证</string>
