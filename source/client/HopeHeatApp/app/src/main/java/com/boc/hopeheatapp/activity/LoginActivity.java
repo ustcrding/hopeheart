@@ -13,7 +13,13 @@ import com.boc.hopeheatapp.service.biz.UserLoader;
 import com.boc.hopeheatapp.setting.BocSettings;
 import com.boc.hopeheatapp.user.UserManager;
 import com.boc.hopeheatapp.util.ToastUtils;
+import com.boc.hopeheatapp.util.log.Logger;
 import com.boc.hopeheatapp.util.string.StringUtil;
+import com.yuntongxun.ecsdk.ECVoIPCallManager;
+import com.yuntongxun.plugin.common.ClientUser;
+import com.yuntongxun.plugin.common.SDKCoreHelper;
+import com.yuntongxun.plugin.common.common.utils.LogUtil;
+import com.yuntongxun.plugin.voip.Voip;
 
 import rx.Subscriber;
 
@@ -25,6 +31,7 @@ import rx.Subscriber;
  */
 public class LoginActivity extends TitleColorActivity {
 
+    private static final String TAG = "LoginActivity";
     /**
      * title 左侧返回按钮
      */
@@ -196,6 +203,8 @@ public class LoginActivity extends TitleColorActivity {
         } else {
             ActivityJumper.startMainActivity(getApplicationContext());
         }
+
+        loginByYuntongxun(userEntity);
         finish();
     }
 
@@ -214,5 +223,16 @@ public class LoginActivity extends TitleColorActivity {
      */
     public void onClickedRegister() {
         ActivityJumper.startRegisterActivity(this);
+    }
+
+    private void loginByYuntongxun(UserEntity userEntity) {
+        String account = "18963792291";
+//        Logger.d(TAG, "loginByYuntongxun | account = " + account + ", userName = " + userEntity.getUsername());
+
+        ClientUser.UserBuilder builder = new ClientUser.UserBuilder(account, "ding2");
+        // 以下参数均为可选
+        SDKCoreHelper.login(builder.build());
+        //设置自为debug模式
+        LogUtil.setDebugMode(true);
     }
 }

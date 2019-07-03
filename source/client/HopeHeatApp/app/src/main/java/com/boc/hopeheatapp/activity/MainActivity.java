@@ -14,6 +14,8 @@ import com.boc.hopeheatapp.fragement.MyFragment;
 import com.boc.hopeheatapp.util.log.Logger;
 import com.boc.hopeheatapp.widget.bottombar.BottomBarItem;
 import com.boc.hopeheatapp.widget.bottombar.BottomBarLayout;
+import com.yuntongxun.ecsdk.ECVoIPCallManager;
+import com.yuntongxun.plugin.voip.Voip;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -146,6 +148,14 @@ public class MainActivity extends TitleColorActivity {
 //        if (position == IDX_QRCODE) {
 //            ActivityJumper.startCaptureActivity(getApplicationContext());
 //        }
+        Voip.startCallAction(
+                this,
+                ECVoIPCallManager.CallType.VIDEO,
+                "姓名- Ding",
+                "18019996045",
+                "手机号",
+                false
+        );
     }
 
 }

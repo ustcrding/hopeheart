@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -11,6 +12,8 @@ import com.boc.hopeheatapp.R;
 import com.boc.hopeheatapp.adapter.MsgListAdapter;
 import com.boc.hopeheatapp.model.MessageEntity;
 import com.boc.hopeheatapp.widget.SwipeRefreshView;
+import com.yuntongxun.ecsdk.ECVoIPCallManager;
+import com.yuntongxun.plugin.voip.Voip;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -130,5 +133,22 @@ public class MsgFragment extends BaseFragment {
         mSwipeRefreshLayout.setRefreshing(false);
 
 
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                onClickedItem((MessageEntity) adapter.getItem(position));
+            }
+        });
+    }
+
+    private void onClickedItem(MessageEntity messageEntity) {
+        Voip.startCallAction(
+                getActivity(),
+                ECVoIPCallManager.CallType.VIDEO,
+                "姓名- Ding",
+                "18919996045",
+                "手机号",
+                false
+        );
     }
 }
