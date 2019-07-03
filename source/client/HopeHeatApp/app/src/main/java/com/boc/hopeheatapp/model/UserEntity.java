@@ -39,10 +39,6 @@ public class UserEntity {
     private String roleId;
 
     @Expose
-    @SerializedName("role_type")
-    private int roleType;
-
-    @Expose
     @SerializedName("record_date")
     private String recordDate;
 
@@ -63,7 +59,7 @@ public class UserEntity {
     private String avatar;
 
     @Expose
-    @SerializedName("identity_code")
+    @SerializedName("identityCode")
     private String identityCode;
 
     @Expose
@@ -79,21 +75,27 @@ public class UserEntity {
     private String phone;
 
     @Expose
-    @SerializedName("device_code")
-    private String device_code;
+    @SerializedName("deviceCode")
+    private String deviceCode;
 
     @Expose
     @SerializedName("company")
     private String company;
 
     @Expose
-    @SerializedName("identity_type")
+    @SerializedName("identityType")
     private String identityType;
 
     // 1:需要晚上个人信息，0：已完善
     @Expose
     @SerializedName("preserve")
     private String preserve;
+
+    public static final String TYPE_DOCTOR = "1";
+    // 1:受灾群众，0：医生
+    @Expose
+    @SerializedName("roleType")
+    private String roleType;
 
     public UserEntity() {
     }
@@ -162,11 +164,11 @@ public class UserEntity {
         this.roleId = roleId;
     }
 
-    public int getRoleType() {
+    public String getRoleType() {
         return roleType;
     }
 
-    public void setRoleType(int roleType) {
+    public void setRoleType(String roleType) {
         this.roleType = roleType;
     }
 
@@ -242,12 +244,12 @@ public class UserEntity {
         this.phone = phone;
     }
 
-    public String getDevice_code() {
-        return device_code;
+    public String getDeviceCode() {
+        return deviceCode;
     }
 
-    public void setDevice_code(String device_code) {
-        this.device_code = device_code;
+    public void setDeviceCode(String device_code) {
+        this.deviceCode = device_code;
     }
 
     public String getCompany() {

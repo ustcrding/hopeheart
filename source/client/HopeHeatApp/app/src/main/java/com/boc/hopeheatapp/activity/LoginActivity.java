@@ -185,16 +185,16 @@ public class LoginActivity extends TitleColorActivity {
         BocSettings.getInstance().setSetting(BocSettings.LOGIN_USERNAME, userName);
         BocSettings.getInstance().setSetting(BocSettings.LOGIN_PASSWORD, password);
 
-        if (StringUtil.equals(userEntity.getPreserve(), "1")) {
-            // 需要完善个人信息
-            ActivityJumper.startWelcomeActivity(getApplicationContext(), true);
-        } else {
-            // 打开home页面
-            if (userEntity.getRoleType() == UserEntity.PATIENT) {
+        if (!StringUtil.equals(userEntity.getRoleType(), UserEntity.TYPE_DOCTOR)) {
+            if (StringUtil.equals(userEntity.getPreserve(), "1")) {
+                // 需要完善个人信息
+                ActivityJumper.startWelcomeActivity(getApplicationContext(), true);
+            } else {
+                // 打开home页面
                 ActivityJumper.startWelcomeActivity(getApplicationContext(), false);
-            } else if (userEntity.getRoleType() == UserEntity.DOCTOR) {
-                ActivityJumper.startMainActivity(getApplicationContext());
             }
+        } else {
+            ActivityJumper.startMainActivity(getApplicationContext());
         }
         finish();
     }
