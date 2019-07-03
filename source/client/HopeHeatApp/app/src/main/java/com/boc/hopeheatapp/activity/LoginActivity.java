@@ -147,9 +147,9 @@ public class LoginActivity extends TitleColorActivity {
             return;
         }
 
-        doLogin(username, pwd);
+//        doLogin(username, pwd);
 //        ActivityJumper.startMainActivity(this);
-//        ActivityJumper.startWelcomeActivity(getApplicationContext());
+        ActivityJumper.startWelcomeActivity(getApplicationContext(), false);
     }
 
     private void doLogin(final String username, final String pwd) {
@@ -187,10 +187,14 @@ public class LoginActivity extends TitleColorActivity {
 
         if (StringUtil.equals(userEntity.getPreserve(), "1")) {
             // 需要完善个人信息
-            ActivityJumper.startWelcomeActivity(getApplicationContext());
+            ActivityJumper.startWelcomeActivity(getApplicationContext(), true);
         } else {
             // 打开home页面
-            ActivityJumper.startMainActivity(getApplicationContext());
+            if (userEntity.getRoleType() == UserEntity.PATIENT) {
+                ActivityJumper.startWelcomeActivity(getApplicationContext(), false);
+            } else if (userEntity.getRoleType() == UserEntity.DOCTOR) {
+                ActivityJumper.startMainActivity(getApplicationContext());
+            }
         }
         finish();
     }

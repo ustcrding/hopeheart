@@ -130,11 +130,13 @@
     <string name="mic_listening">&#160;&#160;&#160;倾听中...</string>
     <string name="mic_recognizing">&#160;&#160;&#160;识别中...</string>
 
-    <string name="welcome_msg">很高兴为您服务，为方便后续（相关）知识获取，请您提供个人信息。</string>
+    <string name="welcome_msg">很高兴为您服务，为方便后续相关知识获取，请您提供个人信息</string>
+    <string name="welcome_msg2">欢迎使用希望智心</string>
     <string name="read_from_card">读卡识别</string>
     <string name="input_personal_info">录入个人信息</string>
     <string name="ignore">暂不录入</string>
     <string name="user_info_title">个人信息录入</string>
+    <string name="consult_history">咨询历史</string>
     <string name="submit">提交</string>
     <string name="user_id">ID</string>
     <string name="user_id_hint">请填写ID号</string>
@@ -157,6 +159,8 @@
     <string name="search_info">查看救援知识</string>
     <string name="feedback">意见反馈</string>
     <string name="check_in_date">登记时间</string>
+    <string name="error_tips">请填写完整信息</string>
+    <string name="success_tips">提交成功</string>
 
 
     <string name="consult_history_title">咨询历史</string>
@@ -164,8 +168,18 @@
     <string name="knowledge_detail">知识详情</string>
 
     <string name="rescue_knowledge">查询救援知识</string>
+    <string name="rescue_knowledge_type">救援知识类型</string>
     <string name="psychology_knowledge">查询心理知识</string>
+    <string name="psychology_knowledge_type">心理知识类型</string>
 
+    <string name="rescue_knowledge_category">救援知识大类</string>
+    <string name="rescue_knowledge_subcategory">救援知识小类</string>
+    <string name="psychology_knowledge_category">心理知识大类</string>
+    <string name="psychology_knowledge_subcategory">心理知识小类</string>
+    <string name="psychology_test">心理评测</string>
+
+    <string name="ensure">确定</string>
+    <string name="cancel">取消</string>
 
     <string name="loading">加载中...</string>
     <string name="loading_no_more">已加载全部</string>

@@ -1,6 +1,7 @@
 package com.boc.hopeheatapp.service.api;
 
 import com.boc.hopeheatapp.http.BaseResponse;
+import com.boc.hopeheatapp.model.CodeEntity;
 import com.boc.hopeheatapp.model.UserEntity;
 
 import retrofit2.http.Field;
@@ -55,16 +56,29 @@ public interface UserService {
      * @return
      */
     @FormUrlEncoded
-    @POST("http://172.20.10.2/login")
+    @POST("http://172.20.10.5/login")
     Observable<BaseResponse<UserEntity>> login(@Field("username") String username,
                                                @Field("password") String password);
 
+
+    @FormUrlEncoded
+    @POST("http://172.20.10.5/victim/collect")
+    Observable<BaseResponse<CodeEntity>> uploadUserInfo(@Field("id") String userId,
+                                                        @Field("name") String userName,
+                                                        @Field("sex") String sex,
+                                                        @Field("identityType") String identityType,
+                                                        @Field("certificateCode") String certificateCode,
+                                                        @Field("phone") String phone,
+                                                        @Field("province") String province,
+                                                        @Field("city") String city,
+                                                        @Field("address") String address,
+                                                        @Field("memo") String memo);
     /***
      * 通过物联网设备绑定用户信息
      * @param id 用户id
      * @return
      */
     @FormUrlEncoded
-    @POST("http://172.20.10.2/verify")
+    @POST("http://172.20.10.5/verify")
     Observable<BaseResponse<UserEntity>> userBind(@Field("userId") String id);
 }

@@ -11,35 +11,44 @@
     <LinearLayout
         android:id="@+id/ll_knowledge_type"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center_vertical">
         <TextView
             android:id="@+id/knowledge_name"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:paddingLeft="20dp"/>
+            android:paddingLeft="20dp"
+            android:text="@string/rescue_knowledge_type"
+            android:gravity="center_vertical|left"
+            android:textColor="@color/black_333333"
+            android:textSize="16sp"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/triangle"
             android:paddingLeft="10dp"/>
     </LinearLayout>
-    <EditText
+    <TextView
         android:id="@+id/knowledge_text"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:background="@null"
         android:padding="10dp"
-        android:hint="@string/knowledge_detail"/>
+        android:hint="@string/knowledge_detail"
+        android:gravity="left|top"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:gravity="center">
         <Button
             android:id="@+id/psychology_evaluation"
-            android:layout_width="130dp"
-            android:layout_height="30dp"
-            android:background="@drawable/button_selector"/>
+            android:layout_width="195dp"
+            android:layout_height="45dp"
+            android:background="@drawable/button_selector"
+            android:text="@string/psychology_test"
+            android:textColor="@color/gray_2C9AB0"
+            android:textSize="17sp"/>
     </LinearLayout>
 </LinearLayout>

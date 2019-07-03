@@ -16,7 +16,7 @@
             android:id="@+id/vp_content"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"></android.support.v4.view.ViewPager>
+            android:layout_weight="1"/>
 
         <View
             android:layout_width="match_parent"
@@ -42,7 +42,7 @@
                 app:iconNormal="@drawable/ic_home2"
                 app:iconSelected="@drawable/ic_home"
                 app:itemMarginTop="5dp"
-                app:itemText="消息"
+                app:itemText="首页"
                 app:itemTextSize="12sp"
                 app:openTouchBg="false"
                 app:textColorNormal="@color/bottom_bar_text_color_normal"

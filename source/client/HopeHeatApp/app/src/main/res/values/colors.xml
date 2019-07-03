@@ -21,6 +21,9 @@
     <color name="gray_999999">#999999</color>
     <color name="gray_f5f6fa">#faf6fa</color>
 
+    <color name="gray_3BC7D8">#3BC7D8</color>
+    <color name="gray_2C9AB0">#2C9AB0</color>
+
     <color name="transparent">#00000000</color>
     <color name="common_stroke_little_gray">#d6d6d6</color>
     <color name="common_bk_gray">#fff3f3f3</color>
