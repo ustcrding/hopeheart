@@ -1,7 +1,12 @@
 package com.boc.hopeheatapp.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -15,10 +20,16 @@ import com.boc.hopeheatapp.user.UserManager;
 import com.boc.hopeheatapp.util.ToastUtils;
 import com.boc.hopeheatapp.util.log.Logger;
 import com.boc.hopeheatapp.util.string.StringUtil;
+import com.yuntongxun.ecsdk.ECDevice;
 import com.yuntongxun.ecsdk.ECVoIPCallManager;
+import com.yuntongxun.ecsdk.SdkErrorCode;
+import com.yuntongxun.plugin.common.AppMgr;
 import com.yuntongxun.plugin.common.ClientUser;
 import com.yuntongxun.plugin.common.SDKCoreHelper;
+import com.yuntongxun.plugin.common.common.utils.ECPreferences;
+import com.yuntongxun.plugin.common.common.utils.EasyPermissionsEx;
 import com.yuntongxun.plugin.common.common.utils.LogUtil;
+import com.yuntongxun.plugin.common.common.utils.ToastUtil;
 import com.yuntongxun.plugin.voip.Voip;
 
 import rx.Subscriber;
@@ -74,6 +85,10 @@ public class LoginActivity extends TitleColorActivity {
         addListener();
 
         initData();
+
+        registerBroadcast();
+
+        loginByYuntongxun(null);
     }
 
     private void initTitle() {
@@ -234,5 +249,76 @@ public class LoginActivity extends TitleColorActivity {
         SDKCoreHelper.login(builder.build());
         //设置自为debug模式
         LogUtil.setDebugMode(true);
+
+        try {
+            Thread.sleep(1000*2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private BroadcastReceiver mSDKNotifyReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (SDKCoreHelper.isLoginSuccess(intent)) {
+                String pushToken = ECPreferences.getSharedPreferences().getString("pushToken", null);
+                Logger.d(TAG, "SDK connect Success ,reportToken:" + pushToken);
+                if (!TextUtils.isEmpty(pushToken)) {
+                    ECDevice.reportHuaWeiToken(pushToken);
+                }
+                Intent action = new Intent(LoginActivity.this, MainActivity.class);
+                action.putExtra("userid", AppMgr.getUserId());
+                startActivity(action);
+                finish();
+
+                String str1 = intent.toUri(Intent.URI_INTENT_SCHEME);
+                String str2 = action.toUri(Intent.URI_INTENT_SCHEME);
+                Logger.d(TAG, "uri1:" + str1 + ",uri2:" + str2);
+
+            } else {
+                int error = intent.getIntExtra("error", 0);
+                if (error == SdkErrorCode.CONNECTING) {
+                    return;
+                }
+                Logger.e(TAG, "登入失败[" + error + "]");
+                ToastUtil.showMessage("登入失败 == " + error);
+//                proBar.setVisibility(View.GONE);
+            }
+        }
+    };
+
+    private void registerBroadcast() {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(SDKCoreHelper.ACTION_SDK_CONNECT);
+        intentFilter.addAction(SDKCoreHelper.ACTION_LOGOUT);
+        registerReceiver(mSDKNotifyReceiver, intentFilter);
+        if (AppMgr.getClientUser() != null) {
+            LogUtil.d(TAG, "SDK auto connect...");
+            SDKCoreHelper.init(getApplicationContext());
+            //设置自为debug模式
+            LogUtil.setDebugMode(true);
+        }
+        initPermissions();
+    }
+
+    public static final String rationale = "需要访问存储设置、相机、麦克风、读取通讯录的权限";
+    public static final String[] needPermissionsInit = new String[]{android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            android.Manifest.permission.RECORD_AUDIO, android.Manifest.permission.READ_CONTACTS, android.Manifest.permission.READ_PHONE_STATE};
+    public static final int PERMISSIONS_REQUEST_INIT = 0x16;
+
+
+    private void initPermissions() {
+        if (EasyPermissionsEx.hasPermissions(this, needPermissionsInit)) {
+            LogUtil.d("btnClicked: hasPermissions");
+        } else {
+            EasyPermissionsEx.requestPermissions(LoginActivity.this, rationale, PERMISSIONS_REQUEST_INIT, needPermissionsInit);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LogUtil.e(TAG, "onDestroy");
+        unregisterReceiver(mSDKNotifyReceiver);
     }
 }

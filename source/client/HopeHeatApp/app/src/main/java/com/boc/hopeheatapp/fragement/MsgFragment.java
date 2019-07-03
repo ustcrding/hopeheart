@@ -1,5 +1,6 @@
 package com.boc.hopeheatapp.fragement;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -142,8 +143,9 @@ public class MsgFragment extends BaseFragment {
     }
 
     private void onClickedItem(MessageEntity messageEntity) {
+        Context context = getContext();
         Voip.startCallAction(
-                getActivity(),
+                context,
                 ECVoIPCallManager.CallType.VIDEO,
                 "姓名- Ding",
                 "18919996045",
