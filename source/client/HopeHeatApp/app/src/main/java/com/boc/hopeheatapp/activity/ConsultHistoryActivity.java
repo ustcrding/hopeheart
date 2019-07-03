@@ -12,9 +12,12 @@ import android.widget.TextView;
 
 import com.boc.hopeheatapp.ActivityJumper;
 import com.boc.hopeheatapp.R;
+import com.boc.hopeheatapp.adapter.ConsultHistoryAdapter;
 import com.boc.hopeheatapp.model.CatalogListEntity;
 import com.boc.hopeheatapp.model.ChannelEntity;
+import com.boc.hopeheatapp.model.ConsultHistoryEntity;
 import com.boc.hopeheatapp.service.biz.CatalogLoader;
+import com.boc.hopeheatapp.service.biz.ConsultLoader;
 import com.boc.hopeheatapp.util.string.StringUtil;
 import com.boc.hopeheatapp.widget.channel.ChannelAdapter;
 import com.boc.hopeheatapp.widget.channel.GridDivider;
@@ -37,13 +40,9 @@ public class ConsultHistoryActivity extends TitleColorActivity {
     private TextView tvTitle;
     private TextView btnTitleRight;
 
-    private ChannelEntity channelEntity;
-
     private ListView lvConsultHistory;
-    private LinearLayoutManager mManagerDrawable;
-    private GridLayoutManager mManagerColor;
 
-    private ChannelAdapter channelAdapter;
+    private ConsultHistoryAdapter historyAdapter;
 
     private final int DEFAULT_SPAN_COUNT = 3;
 
@@ -55,10 +54,10 @@ public class ConsultHistoryActivity extends TitleColorActivity {
 
         initView();
 
-        channelEntity = getIntent().getParcelableExtra(ActivityJumper.EXTRA_CHANNEL_ENTITY);
-
         initData();
         addListener();
+
+        requestHistory();
     }
 
     private void initTitle() {
@@ -68,7 +67,6 @@ public class ConsultHistoryActivity extends TitleColorActivity {
 
         tvTitle.setVisibility(View.VISIBLE);
         tvTitle.setText(R.string.consult_history_title);
-        btnBack.setVisibility(View.VISIBLE);
         btnTitleRight.setVisibility(View.INVISIBLE);
     }
 
@@ -79,24 +77,16 @@ public class ConsultHistoryActivity extends TitleColorActivity {
         initTitle();
 
         lvConsultHistory = (ListView) findViewById(R.id.lv_consult_history);
+        lvConsultHistory.setDividerHeight(0);
 
-        //设置颜色分割线
-        mManagerColor = new GridLayoutManager(this, DEFAULT_SPAN_COUNT);
+        historyAdapter = new ConsultHistoryAdapter(getApplicationContext());
+        lvConsultHistory.setAdapter(historyAdapter);
 
-        channelAdapter = new ChannelAdapter(this);
-
-        lvConsultHistory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-        });
     }
 
     private void initData() {
-        tvTitle.setText(R.string.title_channel_list);
+        tvTitle.setText(R.string.consult_history_title);
 
-        initChannel();
     }
 
     /**
@@ -109,27 +99,21 @@ public class ConsultHistoryActivity extends TitleColorActivity {
                 onBackPressed();
             }
         });
-    }
 
-    private void initChannel() {
-        channelAdapter.setGridItemClickListener(new GridItemClickListener() {
+        lvConsultHistory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onGridItemClick(View view, ChannelEntity channelEntity) {
-                if (StringUtil.equals(channelEntity.getType(), ChannelEntity.TYPE_OPEN_URL)) {
-                    ActivityJumper.startBrowserActivity(ConsultHistoryActivity.this, channelEntity.getOpenUrl());
-                } else {
-                    ActivityJumper.startChannelActivity(ConsultHistoryActivity.this, channelEntity);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                List<ConsultHistoryEntity.Result> datas = historyAdapter.getDatas();
+                if (datas.size() > position) {
+                    ActivityJumper.startConsultDetailActivity(ConsultHistoryActivity.this, "v001", datas.get(position).getVictimtestId());
                 }
-
             }
         });
-
-        requestChannel();
     }
 
-    private void requestChannel() {
-        CatalogLoader catelogLoader = new CatalogLoader();
-        catelogLoader.get().subscribe(new Subscriber<CatalogListEntity>() {
+    private void requestHistory() {
+        ConsultLoader consultLoader = new ConsultLoader();
+        consultLoader.queryConsultHistory("v001", "1").subscribe(new Subscriber<ConsultHistoryEntity>() {
 
             @Override
             public void onCompleted() {
@@ -142,19 +126,15 @@ public class ConsultHistoryActivity extends TitleColorActivity {
             }
 
             @Override
-            public void onNext(CatalogListEntity catalogListEntity) {
+            public void onNext(ConsultHistoryEntity catalogListEntity) {
                 //handleLoginSuccess(username, pwd, userEntity);
                 if (catalogListEntity != null) {
-                    List<ChannelEntity> list = new ArrayList<>(catalogListEntity.getList());
-                    int mod = DEFAULT_SPAN_COUNT - list.size() % DEFAULT_SPAN_COUNT;
-                    if (mod != 0) {
-                        for (int i = 0; i < mod; ++i) {
-                            ChannelEntity channelEntity = new ChannelEntity();
-                            channelEntity.setType(ChannelEntity.TYPE_EMPTY);
-                            list.add(channelEntity);
-                        }
+                    List<ConsultHistoryEntity.Result> results = catalogListEntity.getResults();
+                    if (results != null ) {
+                        historyAdapter.setData(results);
+                        historyAdapter.notifyDataSetChanged();
                     }
-                    channelAdapter.setDataList(list);
+
                 }
             }
         });

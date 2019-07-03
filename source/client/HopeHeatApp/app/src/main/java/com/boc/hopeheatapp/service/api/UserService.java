@@ -1,7 +1,6 @@
 package com.boc.hopeheatapp.service.api;
 
 import com.boc.hopeheatapp.http.BaseResponse;
-import com.boc.hopeheatapp.model.CodeEntity;
 import com.boc.hopeheatapp.model.UserEntity;
 
 import retrofit2.http.Field;

@@ -9,9 +9,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.boc.hopeheatapp.ActivityJumper;
 import com.boc.hopeheatapp.R;
-import com.boc.hopeheatapp.model.CodeEntity;
 import com.boc.hopeheatapp.model.UserEntity;
 import com.boc.hopeheatapp.parser.TextUtils;
 import com.boc.hopeheatapp.service.biz.UserLoader;

@@ -3,7 +3,6 @@ package com.boc.hopeheatapp.service.biz;
 import com.boc.hopeheatapp.http.BaseLoader;
 import com.boc.hopeheatapp.http.BaseResponse;
 import com.boc.hopeheatapp.http.UpdateServiceManager;
-import com.boc.hopeheatapp.model.CodeEntity;
 import com.boc.hopeheatapp.model.UserEntity;
 import com.boc.hopeheatapp.service.api.UserService;
 import com.boc.hopeheatapp.util.string.StringUtil;

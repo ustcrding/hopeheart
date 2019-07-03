@@ -7,6 +7,7 @@ import com.boc.hopeheatapp.activity.AboutActivity;
 import com.boc.hopeheatapp.activity.BrowserActivity;
 import com.boc.hopeheatapp.activity.ChannelActivity;
 import com.boc.hopeheatapp.activity.ChannelListActivity;
+import com.boc.hopeheatapp.activity.ConsultDetailActivity;
 import com.boc.hopeheatapp.activity.ConsultHistoryActivity;
 import com.boc.hopeheatapp.activity.HomeActivity;
 import com.boc.hopeheatapp.activity.KnowledgeActivity;
@@ -66,6 +67,9 @@ public class ActivityJumper {
     public static final String EXTRA_FIRST_MARK = "extra_welcome_mark";
     public static final String EXTRA_EVALUATION_MSG = "extra_evaluation_msg";
     public static final String EXTRA_EVALUATION_SCORE = "extra_evaluation_score";
+
+    public static final String EXTRA_VICTIM_ID = "extra_victimId";
+    public static final String EXTRA_VICTIM_TEST_ID = "extra_victimTestId";
 
     /**
      * 打开系统设置页面
@@ -464,6 +468,23 @@ public class ActivityJumper {
      *
      * @param context
      */
+    public static void startConsultDetailActivity(Context context, String victimId, String victimTestId) {
+        if (context == null) {
+            return;
+        }
+
+        Intent intent = new Intent(context, ConsultDetailActivity.class);
+        intent.putExtra(EXTRA_VICTIM_ID, victimId);
+        intent.putExtra(EXTRA_VICTIM_TEST_ID, victimTestId);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 打开评测结果界面
+     *
+     * @param context
+     */
     public static void startEvaluationResultActivity(Context context, String msg, int score) {
         if (context == null) {
             return;
@@ -475,4 +496,6 @@ public class ActivityJumper {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
+
+
 }

@@ -49,6 +49,11 @@ public class ApiConfig {
      */
     public static final String PSYCHOLOGICAL_TEST_URL = "https://boysama.cn/index2.html";
 
+    /**
+     * BASE url
+     */
+    public static final String HOPE_HEAT_BASE_URL = "http://192.168.43.20";
+
     public static void setAppId(String appId) {
         ApiConfig.appId = appId;
     }
