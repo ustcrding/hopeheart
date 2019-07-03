@@ -17,7 +17,6 @@ import com.boc.hopeheatapp.parser.TextUtils;
 import com.boc.hopeheatapp.service.biz.UserLoader;
 import com.boc.hopeheatapp.user.UserManager;
 import com.boc.hopeheatapp.util.ToastUtils;
-import com.boc.hopeheatapp.util.log.Logger;
 
 import rx.Subscriber;
 
@@ -192,19 +191,19 @@ public class UserInfoActivity extends TitleColorActivity {
     private void onClickedResiter() {
         String userName = etUserName.getText().toString();
         if (TextUtils.isEmpty(userName)) {
-            ToastUtils.showShort(this, R.string.error_tips);
+            ToastUtils.showShort(this, R.string.fill_tips);
             return ;
         }
         String defChoice = getResources().getString(R.string.choice_default);
         String sex = tvSex.getText().toString();
         if (defChoice.equals(sex)) {
-            ToastUtils.showShort(this, R.string.error_tips);
+            ToastUtils.showShort(this, R.string.fill_tips);
             return ;
         }
 
         String credentialsType = tvCredentialsType.getText().toString();
         if (defChoice.equals(credentialsType)) {
-            ToastUtils.showShort(this, R.string.error_tips);
+            ToastUtils.showShort(this, R.string.fill_tips);
             return;
         }
         int credentialsIndex = -1;
@@ -217,19 +216,19 @@ public class UserInfoActivity extends TitleColorActivity {
         }
         String credentialsNo = etCredentialsNo.getText().toString();
         if (TextUtils.isEmpty(credentialsNo)) {
-            ToastUtils.showShort(this, R.string.error_tips);
+            ToastUtils.showShort(this, R.string.fill_tips);
             return ;
         }
 
         String phone = tvPhone.getText().toString();
         if (TextUtils.isEmpty(phone)) {
-            ToastUtils.showShort(this, R.string.error_tips);
+            ToastUtils.showShort(this, R.string.fill_tips);
             return;
         }
 
         String city = tvCityName.getText().toString();
         if (defChoice.equals(city)) {
-            ToastUtils.showShort(this, R.string.error_tips);
+            ToastUtils.showShort(this, R.string.fill_tips);
             return;
         }
 
@@ -243,7 +242,7 @@ public class UserInfoActivity extends TitleColorActivity {
 
         UserLoader userLoader = new UserLoader();
         UserEntity user = UserManager.getInstance().getUser();
-        userLoader.uploadUserInfo(user.getUserId() + "", userName, sex.equals("男") ? "0" : "1", credentialsIndex + "", credentialsNo, phone, "", city, address, memo).subscribe(new Subscriber<CodeEntity>() {
+        userLoader.uploadUserInfo(user.getUserId() + "", userName, sex.equals("男") ? "0" : "1", credentialsIndex + "", credentialsNo, phone, "", city, address, memo).subscribe(new Subscriber<Void>() {
             @Override
             public void onCompleted() {
 
@@ -251,14 +250,13 @@ public class UserInfoActivity extends TitleColorActivity {
 
             @Override
             public void onError(Throwable throwable) {
-
+                ToastUtils.showShort(UserInfoActivity.this, R.string.error_tips);
             }
 
             @Override
-            public void onNext(CodeEntity s) {
-                if (s != null) {
-                    Logger.d(TAG, s.getCode() + "");
-                }
+            public void onNext(Void s) {
+                ToastUtils.showShort(UserInfoActivity.this, R.string.success_tips);
+                finish();
             }
         });
     }

@@ -65,7 +65,7 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
         if (StringUtil.isNotBlank(mTitle)) {
             mtvTitle.setText(mTitle);
         } else {
-            mtvTitle.setText("");
+            mtvTitle.setText(R.string.psychology_test);
         }
 
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar_webview);
@@ -117,13 +117,13 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
             @Override
             public void onReceivedTitle(WebView view, String title) {
                 super.onReceivedTitle(view, title);
-                if (null != mtvTitle && StringUtil.isEmpty(mTitle)) {
-                    int idx = title.lastIndexOf("/");
-                    if (idx != -1) {
-                        title = title.substring(idx + 1);
-                    }
-                    mtvTitle.setText(title);
-                }
+//                if (null != mtvTitle && StringUtil.isEmpty(mTitle)) {
+//                    int idx = title.lastIndexOf("/");
+//                    if (idx != -1) {
+//                        title = title.substring(idx + 1);
+//                    }
+//                    mtvTitle.setText(title);
+//                }
             }
         });
 
@@ -131,7 +131,7 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
         WebSettings settings = webView.getSettings();
         //支持javascript
         settings.setJavaScriptEnabled(true);
-        //settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
         settings.setLoadWithOverviewMode(true);
 
         //扩大比例的缩放
@@ -147,7 +147,7 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         settings.setLoadWithOverviewMode(true);
 
-        webView.addJavascriptInterface(new WebAppInterface(QuestionnaireActivity.this), "WebAppInterface");
+        webView.addJavascriptInterface(new WebAppInterface(QuestionnaireActivity.this), "angle");
     }
 
     private void showProgress(int progress) {

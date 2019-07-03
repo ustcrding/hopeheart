@@ -86,6 +86,13 @@ public class HomeFragment extends BaseFragment {
             }
         });
 
+        getActivity().findViewById(R.id.bt_history).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityJumper.startConsultHistoryActivity(getActivity());
+            }
+        });
+
         if (mShowFirst) {
             tvHomeMsg.setText(R.string.welcome_msg);
             btHistory.setVisibility(View.GONE);

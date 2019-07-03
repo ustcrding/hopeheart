@@ -147,9 +147,9 @@ public class LoginActivity extends TitleColorActivity {
             return;
         }
 
-//        doLogin(username, pwd);
+        doLogin(username, pwd);
 //        ActivityJumper.startMainActivity(this);
-        ActivityJumper.startWelcomeActivity(getApplicationContext(), false);
+//        ActivityJumper.startWelcomeActivity(getApplicationContext(), false);
     }
 
     private void doLogin(final String username, final String pwd) {

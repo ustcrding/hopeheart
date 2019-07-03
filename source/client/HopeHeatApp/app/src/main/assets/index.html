@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Questionnaire</title>
+    <style>
+      #test {
+        margin-bottom: 10px;
+      }
+
+      #imgs {
+        max-width: 1010px;
+        margin: 0 auto;
+      }
+      img {
+        vertical-align: top;
+        /* max-width: 500px; */
+        /* max-height: 500px; */
+      }
+      .normal {
+        color: green;
+        text-decoration: underline;
+      }
+      .light {
+        color: lightpink;
+        text-decoration: underline;
+      }
+      .middle {
+        color: orange;
+        text-decoration: underline;
+      }
+      .serious {
+        color: red;
+        text-decoration: underline;
+      }
+    
+    </style>
+  </head>
+  <body style="margin:20px 0; text-align: center;">
+    <div id="test">请选择与自身状况最相似的图片：（当前进度：<span id=page>1</span>/10）</div>
+    <div id="imgs">
+      <img id="img1" src="">
+      <img id="img2" src="">
+    </div>
+    <div id="result" hidden>
+      <p>得分：<span id="resultText"></span></p>
+      <p>评级：<span id="resultLevel"></span></p>
+    </div>
+    <script>
+
+      var current = 1;
+      var result = [];
+      var question = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+      var answers = [2,1,2,2,2,1,2,2,2,2,1,1,1,1,1,1,1,2,1,1];//每题正向选择的图片编号，用于计算答案
+      var imgs = document.getElementById("imgs");
+      var img1 = document.getElementById("img1");
+      var img2 = document.getElementById("img2");
+      var pageIndex = document.getElementById("page");
+      var resultDiv = document.getElementById("result");
+      var resultText = document.getElementById("resultText");
+      var resultLevel = document.getElementById("resultLevel");
+
+      //随机从question数组[1-20]中不重复的取出1道题
+      var getQuestion = function(){
+        var max = question.length;
+        var rand = Math.floor(Math.random() * (max - 1 + 1)) + 1;//随机数范围[1,max]
+        return question.splice(rand-1, 1);
+      };
+      var calcScores = function(res){
+        var total = 0;
+        for(var item of res){
+          if(answers[item.split("-")[0] - 1] == item.split("-")[1]){
+            total = total + 1;
+          }else {
+            total = total + 4;
+          }
+        }
+        var totalFiltered = Math.floor(total*2.5);
+        var levelStats = "无抑郁";
+        if(totalFiltered < 53) {
+          levelStats = "无抑郁";
+          resultText.classList = ["normal"];
+          resultLevel.classList = ["normal"];
+        } else if(totalFiltered < 63){
+          levelStats = "轻度抑郁";
+          resultText.classList = ["light"];
+          resultLevel.classList = ["light"];
+        } else if(totalFiltered < 73){
+          levelStats = "中度抑郁";
+          resultText.classList = ["middle"];
+          resultLevel.classList = ["middle"];
+        } else{
+          levelStats = "重度抑郁";
+          resultText.classList = ["serious"];
+          resultLevel.classList = ["serious"];
+        }
+        return {scores:totalFiltered, level:levelStats};
+      };
+
+      var submitToApp = function(scores){
+        angle.onQuestionnaireFinished(JSON.stringify(scores));
+      }
+
+      //样式计算
+      windWidth = document.documentElement.clientWidth;
+      windHeight = document.documentElement.clientHeight;
+      img1.style.maxWidth = windWidth>500? "48%" : windWidth + "px";
+      img2.style.maxWidth = windWidth>500? "48%" : windWidth + "px";
+      img1.style.maxHeight = windWidth>500? windHeight-72 + "px" :(windHeight-72)/2 + "px";
+      img2.style.maxHeight = windWidth>500? windHeight-72 + "px" : (windHeight-72)/2 + "px";
+
+      //初始化第一题
+      var quesIndex = getQuestion();
+      img1.src = "imgs/" + quesIndex + "-1.jpg";
+      img2.src = "imgs/" + quesIndex + "-2.jpg";
+      
+      img1.addEventListener("click", function(ev){
+        if(current<10){
+          result.push(quesIndex + "-1");
+          current++;
+          pageIndex.innerText = current;
+          //生成下一题的题号
+          quesIndex = getQuestion();
+          img1.src = "imgs/" + quesIndex + "-1.jpg";
+          img2.src = "imgs/" + quesIndex + "-2.jpg";
+          
+        } else {
+          result.push(quesIndex + "-1");
+          imgs.hidden = true;
+          var finalScores = calcScores(result);
+          resultText.innerText = finalScores.scores;
+          resultLevel.innerText = finalScores.level;
+          resultDiv.hidden = false;
+          submitToApp(finalScores);
+        }
+        
+      });
+
+      img2.addEventListener("click", function(ev){
+        if(current<10){
+          result.push(quesIndex + "-2");
+          current++;
+          pageIndex.innerText = current;
+          //生成下一题的题号
+          quesIndex = getQuestion();
+          img1.src = "imgs/" + quesIndex + "-1.jpg";
+          img2.src = "imgs/" + quesIndex + "-2.jpg";
+          
+        } else {
+          result.push(quesIndex + "-2");
+          imgs.hidden = true;
+          var finalScores = calcScores(result);
+          resultText.innerText = finalScores.scores;
+          resultLevel.innerText = finalScores.level;
+          resultDiv.hidden = false;
+          submitToApp(finalScores);
+        }
+      });
+
+    </script>
+  </body>
+</html>

@@ -16,7 +16,12 @@ import com.boc.hopeheatapp.ActivityJumper;
 import com.boc.hopeheatapp.R;
 import com.boc.hopeheatapp.adapter.GridViewAdapter;
 import com.boc.hopeheatapp.model.ChannelEntity;
+import com.boc.hopeheatapp.model.PsychologyEntity;
+import com.boc.hopeheatapp.model.RescueEntity;
+import com.boc.hopeheatapp.service.biz.KnowledgeLoader;
 import com.boc.hopeheatapp.util.phone.DensityUtils;
+
+import rx.Subscriber;
 
 /**
  * 频道列表界面
@@ -115,7 +120,7 @@ public class KnowledgeActivity extends TitleColorActivity {
         findViewById(R.id.psychology_evaluation).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "file:////android_asset/test.html";
+                String url = "file:////android_asset/index.html";
                 ActivityJumper.startQuestionnaireCompleteActivity(KnowledgeActivity.this, url);
             }
         });
@@ -151,11 +156,10 @@ public class KnowledgeActivity extends TitleColorActivity {
         final GridViewAdapter categoryAdapter = new GridViewAdapter(this);
         final GridViewAdapter subCategoryAdapter = new GridViewAdapter(this);
         if (mType == TYPE_RESCUE) {
-            categoryAdapter.setData(getResources().getStringArray(R.array.category_list), -1);
+            categoryAdapter.setData(getResources().getStringArray(R.array.rescue_category_list), -1);
         } else if (mType == TYPE_PSYCHOLOGY) {
-            //TODO
+            categoryAdapter.setData(getResources().getStringArray(R.array.psychology_category_list), -1);
         }
-        //subCategoryAdapter.setData(getResources().getStringArray(R.array.sub_category_list), -1);
 
         category.setAdapter(categoryAdapter);
         subCategory.setAdapter(subCategoryAdapter);
@@ -172,20 +176,35 @@ public class KnowledgeActivity extends TitleColorActivity {
 
                 if (mType == TYPE_RESCUE) {
                     if (position == 0) {
-                        subCategoryAdapter.setData(getResources().getStringArray(R.array.sub_category_list0), -1);
+                        subCategoryAdapter.setData(getResources().getStringArray(R.array.rescue_sub_category_list0), -1);
                         subCategoryAdapter.notifyDataSetChanged();
                     } else if (position == 1) {
-                        subCategoryAdapter.setData(getResources().getStringArray(R.array.sub_category_list1), -1);
+                        subCategoryAdapter.setData(getResources().getStringArray(R.array.rescue_sub_category_list1), -1);
                         subCategoryAdapter.notifyDataSetChanged();
                     } else if (position == 2) {
-                        subCategoryAdapter.setData(getResources().getStringArray(R.array.sub_category_list2), -1);
+                        subCategoryAdapter.setData(getResources().getStringArray(R.array.rescue_sub_category_list2), -1);
                         subCategoryAdapter.notifyDataSetChanged();
                     } else if (position == 3) {
-                        subCategoryAdapter.setData(getResources().getStringArray(R.array.sub_category_list3), -1);
+                        subCategoryAdapter.setData(getResources().getStringArray(R.array.rescue_sub_category_list3), -1);
                         subCategoryAdapter.notifyDataSetChanged();
                     }
                 } else if (mType == TYPE_PSYCHOLOGY) {
-                    //TODO
+                    if (position == 0) {
+                        subCategoryAdapter.setData(getResources().getStringArray(R.array.sub_psychology_category_list0), -1);
+                        subCategoryAdapter.notifyDataSetChanged();
+                    } else if (position == 1) {
+                        subCategoryAdapter.setData(getResources().getStringArray(R.array.sub_psychology_category_list1), -1);
+                        subCategoryAdapter.notifyDataSetChanged();
+                    } else if (position == 2) {
+                        subCategoryAdapter.setData(getResources().getStringArray(R.array.sub_psychology_category_list2), -1);
+                        subCategoryAdapter.notifyDataSetChanged();
+                    } else if (position == 3) {
+                        subCategoryAdapter.setData(getResources().getStringArray(R.array.sub_psychology_category_list3), -1);
+                        subCategoryAdapter.notifyDataSetChanged();
+                    } else if (position == 4) {
+                        subCategoryAdapter.setData(getResources().getStringArray(R.array.sub_psychology_category_list4), -1);
+                        subCategoryAdapter.notifyDataSetChanged();
+                    }
                 }
             }
         });
@@ -207,6 +226,10 @@ public class KnowledgeActivity extends TitleColorActivity {
                 if (popupWindow_view != null && popupWindow_view.isShown()) {
                     popupWindow.dismiss();
                 }
+
+                if (categoryAdapter.getSelection() >= 0 && subCategoryAdapter.getSelection() >= 0) {
+                    doQuery(categoryAdapter.getSelection(), subCategoryAdapter.getSelection());
+                }
             }
         });
 
@@ -217,13 +240,91 @@ public class KnowledgeActivity extends TitleColorActivity {
                 if (popupWindow_view != null && popupWindow_view.isShown()) {
                     popupWindow.dismiss();
                 }
-
-                if (categoryAdapter.getSelection() >= 0 && subCategoryAdapter.getSelection() >= 0) {
-                    //TODO
-                }
             }
         });
 
         popupWindow.showAtLocation(getWindow().getDecorView(), Gravity.RIGHT | Gravity.TOP, 0, 0);
+    }
+
+    private void doQuery(int categoryIndex, int subCategoryIndex) {
+        if (mType == TYPE_RESCUE) {
+            String[] rescue = getResources().getStringArray(R.array.rescue_category_tag);
+            if (rescue != null && rescue.length > categoryIndex) {
+                String type = rescue[categoryIndex];
+                String subType = "";
+                String[] subRescue = null;
+                if (categoryIndex == 0) {
+                    subRescue = getResources().getStringArray(R.array.g_tag);
+                } else if (categoryIndex == 1) {
+                    subRescue = getResources().getStringArray(R.array.m_tag);
+                } else if (categoryIndex == 2) {
+                    subRescue = getResources().getStringArray(R.array.o_tag);
+                } else if (categoryIndex == 3) {
+                    subRescue = getResources().getStringArray(R.array.e_tag);
+                }
+                if (subRescue != null && subRescue.length > subCategoryIndex) {
+                    subType = subRescue[subCategoryIndex];
+                }
+                KnowledgeLoader loader = new KnowledgeLoader();
+                loader.queryRescueInfo(type, subType).subscribe(new Subscriber<RescueEntity>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+
+                    }
+
+                    @Override
+                    public void onNext(RescueEntity rescueEntity) {
+                        if (rescueEntity != null) {
+                            etKnowledgeDetail.setText(rescueEntity.getRescueKnowledge());
+                        }
+                    }
+                });
+            }
+        } else if (mType == TYPE_PSYCHOLOGY) {
+            String[] psychology = getResources().getStringArray(R.array.psychology_category_tag);
+            if (psychology != null && psychology.length > categoryIndex) {
+                String type = psychology[categoryIndex];
+                String subType = "";
+                String[] subPsychology = null;
+                if (categoryIndex == 0) {
+                    subPsychology = getResources().getStringArray(R.array.c_tag);
+                } else if (categoryIndex == 1) {
+                    subPsychology = getResources().getStringArray(R.array.p_tag);
+                } else if (categoryIndex == 2) {
+                    subPsychology = getResources().getStringArray(R.array.i_tag);
+                } else if (categoryIndex == 3) {
+                    subPsychology = getResources().getStringArray(R.array.b_tag);
+                } else if (categoryIndex == 4) {
+                    subPsychology = getResources().getStringArray(R.array.e_tag);
+                }
+                if (subPsychology != null && subPsychology.length > subCategoryIndex) {
+                    subType = subPsychology[subCategoryIndex];
+                }
+                KnowledgeLoader loader = new KnowledgeLoader();
+                loader.queryPsychologyInfo(type, subType).subscribe(new Subscriber<PsychologyEntity>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+
+                    }
+
+                    @Override
+                    public void onNext(PsychologyEntity rescueEntity) {
+                        if (rescueEntity != null) {
+                            etKnowledgeDetail.setText(rescueEntity.getRescueKnowledge());
+                        }
+                    }
+                });
+            }
+        }
     }
 }

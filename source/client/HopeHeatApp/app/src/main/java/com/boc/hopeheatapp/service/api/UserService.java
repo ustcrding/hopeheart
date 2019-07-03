@@ -56,14 +56,14 @@ public interface UserService {
      * @return
      */
     @FormUrlEncoded
-    @POST("http://172.20.10.5/login")
+    @POST("http://172.20.10.4/login")
     Observable<BaseResponse<UserEntity>> login(@Field("username") String username,
                                                @Field("password") String password);
 
 
     @FormUrlEncoded
-    @POST("http://172.20.10.5/victim/collect")
-    Observable<BaseResponse<CodeEntity>> uploadUserInfo(@Field("id") String userId,
+    @POST("http://172.20.10.4/victim/collect")
+    Observable<BaseResponse<Void>> uploadUserInfo(@Field("id") String userId,
                                                         @Field("name") String userName,
                                                         @Field("sex") String sex,
                                                         @Field("identityType") String identityType,
@@ -79,6 +79,6 @@ public interface UserService {
      * @return
      */
     @FormUrlEncoded
-    @POST("http://172.20.10.5/verify")
+    @POST("http://172.20.10.4/verify")
     Observable<BaseResponse<UserEntity>> userBind(@Field("userId") String id);
 }

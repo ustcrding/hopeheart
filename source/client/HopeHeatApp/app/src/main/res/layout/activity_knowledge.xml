@@ -37,11 +37,14 @@
         android:background="@null"
         android:padding="10dp"
         android:hint="@string/knowledge_detail"
-        android:gravity="left|top"/>
+        android:gravity="left|top"
+        android:textSize="16sp"
+        android:textColor="@color/black_333333"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:background="@color/gray_f8f8f8">
         <Button
             android:id="@+id/psychology_evaluation"
             android:layout_width="195dp"

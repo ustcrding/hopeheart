@@ -90,7 +90,7 @@ public class UserLoader extends BaseLoader {
         });
     }
 
-    public Observable<CodeEntity> uploadUserInfo(String userId,
+    public Observable<Void> uploadUserInfo(String userId,
                                              String userName,
                                              String sex,
                                              String identityType,
@@ -100,9 +100,9 @@ public class UserLoader extends BaseLoader {
                                              String city,
                                              String address,
                                              String memo) {
-        return observe(service.uploadUserInfo(userId, userName,sex, identityType, certificateCode, phone, province, city, address, memo)).map(new Func1<BaseResponse<CodeEntity>, CodeEntity>() {
+        return observe(service.uploadUserInfo(userId, userName,sex, identityType, certificateCode, phone, province, city, address, memo)).map(new Func1<BaseResponse<Void>, Void>() {
             @Override
-            public CodeEntity call(BaseResponse<CodeEntity> userEntityBaseResponse) {
+            public Void call(BaseResponse<Void> userEntityBaseResponse) {
                 userEntityBaseResponse.throwExceptionIfError();
                 return userEntityBaseResponse.getData();
             }

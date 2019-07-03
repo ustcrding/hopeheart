@@ -159,8 +159,9 @@
     <string name="search_info">查看救援知识</string>
     <string name="feedback">意见反馈</string>
     <string name="check_in_date">登记时间</string>
-    <string name="error_tips">请填写完整信息</string>
+    <string name="fill_tips">请填写完整信息</string>
     <string name="success_tips">提交成功</string>
+    <string name="error_tips">提交失败</string>
 
 
     <string name="consult_history_title">咨询历史</string>

@@ -226,9 +226,18 @@
             android:theme="@style/CommonActivityTheme"
             android:windowSoftInputMode="stateAlwaysHidden"></activity>
 
-        <!--首页-->
+        <!--知识查询-->
         <activity
             android:name="com.boc.hopeheatapp.activity.KnowledgeActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/CommonActivityTheme"
+            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+
+        <!--咨询历史-->
+        <activity
+            android:name="com.boc.hopeheatapp.activity.ConsultHistoryActivity"
             android:configChanges="orientation|keyboardHidden"
             android:exported="true"
             android:screenOrientation="portrait"

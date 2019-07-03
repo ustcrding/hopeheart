@@ -55,21 +55,21 @@
         <item>女</item>
     </string-array>
 
-    <string-array name="category_list">
-        <item>地质灾害救援</item>
-        <item>气象灾害救援</item>
-        <item>海洋灾害救援</item>
-        <item>生态环境灾害救援</item>
+    <string-array name="rescue_category_list">
+        <item>地质灾害</item>
+        <item>气象灾害</item>
+        <item>海洋灾害</item>
+        <item>生态环境灾害</item>
     </string-array>
 
-    <string-array name="category_tag">
+    <string-array name="rescue_category_tag">
         <item>G</item>
         <item>M</item>
         <item>O</item>
         <item>E</item>
     </string-array>
 
-    <string-array name="sub_category_list0">
+    <string-array name="rescue_sub_category_list0">
         <item>火山</item>
         <item>地震</item>
         <item>崩塌</item>
@@ -85,7 +85,7 @@
         <item>G5</item>
     </string-array>
 
-    <string-array name="sub_category_list1">
+    <string-array name="rescue_sub_category_list1">
         <item>干旱</item>
         <item>洪涝</item>
         <item>台风（飓风）</item>
@@ -103,7 +103,7 @@
         <item>M6</item>
     </string-array>
 
-    <string-array name="sub_category_list2">
+    <string-array name="rescue_sub_category_list2">
         <item>海啸</item>
         <item>风暴潮</item>
         <item>赤潮</item>
@@ -115,7 +115,7 @@
         <item>O3</item>
     </string-array>
 
-    <string-array name="sub_category_list3">
+    <string-array name="rescue_sub_category_list3">
         <item>虫灾</item>
         <item>鼠灾</item>
         <item>森林和草原火灾</item>
@@ -124,5 +124,80 @@
         <item>E1</item>
         <item>E2</item>
         <item>E3</item>
+    </string-array>
+
+
+    <string-array name="psychology_category_list" >
+        <item>认知</item>
+        <item>人格</item>
+        <item>人际</item>
+        <item>行为</item>
+        <item>情绪</item>
+    </string-array>
+
+    <string-array name="psychology_category_tag">
+        <item>C</item>
+        <item>P</item>
+        <item>I</item>
+        <item>B</item>
+        <item>E</item>
+    </string-array>
+
+    <string-array name="sub_psychology_category_list0">
+        <item>注意</item>
+        <item>感知觉</item>
+        <item>记忆</item>
+        <item>思维</item>
+        <item>语言</item>
+    </string-array>
+    <string-array name="c_tag">
+        <item>C1</item>
+        <item>C2</item>
+        <item>C3</item>
+        <item>C4</item>
+        <item>C5</item>
+    </string-array>
+
+    <string-array name="sub_psychology_category_list1">
+        <item>人格及其结构</item>
+        <item>人格的形成</item>
+        <item>人格理论</item>
+        <item>人格测验</item>
+    </string-array>
+    <string-array name="p_tag">
+        <item>P1</item>
+        <item>P2</item>
+        <item>P3</item>
+        <item>P4</item>
+    </string-array>
+
+    <string-array name="sub_psychology_category_list2">
+        <item>人际沟通</item>
+        <item>人际认知</item>
+        <item>人际关系</item>
+        <item>人际互动</item>
+    </string-array>
+    <string-array name="i_tag">
+        <item>I1</item>
+        <item>I2</item>
+        <item>I3</item>
+        <item>I4</item>
+    </string-array>
+
+    <string-array name="sub_psychology_category_list3">
+        <item>需要</item>
+        <item>动机</item>
+        <item>动机激发</item>
+    </string-array>
+    <string-array name="b_tag">
+        <item>B1</item>
+        <item>B2</item>
+        <item>B3</item>
+    </string-array>
+
+    <string-array name="sub_psychology_category_list4">
+        <item>情绪与认知</item>
+        <item>情绪与行为</item>
+        <item>情绪调控</item>
     </string-array>
 </resources>
