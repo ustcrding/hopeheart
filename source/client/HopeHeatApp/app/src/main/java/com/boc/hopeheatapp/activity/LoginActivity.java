@@ -88,7 +88,7 @@ public class LoginActivity extends TitleColorActivity {
 
         registerBroadcast();
 
-        loginByYuntongxun(null);
+//        loginByYuntongxun(null);
     }
 
     private void initTitle() {
@@ -156,22 +156,24 @@ public class LoginActivity extends TitleColorActivity {
     }
 
     private void onClickedLogin() {
-        String username = etUserName.getText().toString();
-        String pwd = etPassword.getText().toString();
-
-        if (StringUtil.isEmpty(username)) {
-            ToastUtils.showLong(getApplicationContext(), R.string.tip_username_invalid);
-            return;
-        }
-
-        if (StringUtil.isEmpty(pwd)) {
-            ToastUtils.showLong(getApplicationContext(), R.string.tip_pwd_invalid);
-            return;
-        }
-
-        doLogin(username, pwd);
+//        String username = etUserName.getText().toString();
+//        String pwd = etPassword.getText().toString();
+//
+//        if (StringUtil.isEmpty(username)) {
+//            ToastUtils.showLong(getApplicationContext(), R.string.tip_username_invalid);
+//            return;
+//        }
+//
+//        if (StringUtil.isEmpty(pwd)) {
+//            ToastUtils.showLong(getApplicationContext(), R.string.tip_pwd_invalid);
+//            return;
+//        }
+//
+//        doLogin(username, pwd);
 //        ActivityJumper.startMainActivity(this);
 //        ActivityJumper.startWelcomeActivity(getApplicationContext(), false);
+
+        testCall();
     }
 
     private void doLogin(final String username, final String pwd) {
@@ -219,7 +221,7 @@ public class LoginActivity extends TitleColorActivity {
             ActivityJumper.startMainActivity(getApplicationContext());
         }
 
-        loginByYuntongxun(userEntity);
+//        loginByYuntongxun(userEntity);
         finish();
     }
 
@@ -237,7 +239,9 @@ public class LoginActivity extends TitleColorActivity {
      * 点击注册按钮
      */
     public void onClickedRegister() {
-        ActivityJumper.startRegisterActivity(this);
+//        ActivityJumper.startRegisterActivity(this);
+
+        SDKCoreHelper.logout();
     }
 
     private void loginByYuntongxun(UserEntity userEntity) {
@@ -250,11 +254,11 @@ public class LoginActivity extends TitleColorActivity {
         //设置自为debug模式
         LogUtil.setDebugMode(true);
 
-        try {
-            Thread.sleep(1000*2);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(1000*2);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
     }
 
     private BroadcastReceiver mSDKNotifyReceiver = new BroadcastReceiver() {
@@ -293,7 +297,7 @@ public class LoginActivity extends TitleColorActivity {
         intentFilter.addAction(SDKCoreHelper.ACTION_LOGOUT);
         registerReceiver(mSDKNotifyReceiver, intentFilter);
         if (AppMgr.getClientUser() != null) {
-            LogUtil.d(TAG, "SDK auto connect...");
+            Logger.d(TAG, "SDK auto connect...");
             SDKCoreHelper.init(getApplicationContext());
             //设置自为debug模式
             LogUtil.setDebugMode(true);
@@ -309,7 +313,7 @@ public class LoginActivity extends TitleColorActivity {
 
     private void initPermissions() {
         if (EasyPermissionsEx.hasPermissions(this, needPermissionsInit)) {
-            LogUtil.d("btnClicked: hasPermissions");
+            Logger.d(TAG, "btnClicked: hasPermissions");
         } else {
             EasyPermissionsEx.requestPermissions(LoginActivity.this, rationale, PERMISSIONS_REQUEST_INIT, needPermissionsInit);
         }
@@ -318,7 +322,17 @@ public class LoginActivity extends TitleColorActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        LogUtil.e(TAG, "onDestroy");
+        Logger.e(TAG, "onDestroy");
         unregisterReceiver(mSDKNotifyReceiver);
+    }
+
+    private void testCall() {
+        Intent intent = new Intent();
+        intent.setAction("com.boc.hopeheatapp.video_call");  //应用在清淡文件中注册的action
+        intent.setPackage("com.yuntongxun.voipdemo");                  //应用程序的包名
+        intent.putExtra("phone", "18019996045");
+        intent.putExtra("username", "d2");
+        startService(intent);
+
     }
 }

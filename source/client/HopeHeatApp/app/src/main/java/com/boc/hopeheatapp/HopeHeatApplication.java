@@ -4,24 +4,17 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.os.Process;
-import android.util.Log;
 
-import com.boc.hopeheatapp.BuildConfig;
-import com.boc.hopeheatapp.R;
 import com.boc.hopeheatapp.setting.BocSettings;
 import com.boc.hopeheatapp.tts.TtsManager;
 import com.boc.hopeheatapp.user.UserManager;
 import com.boc.hopeheatapp.util.log.Logger;
 import com.boc.hopeheatapp.util.string.StringUtil;
-import com.huawei.android.pushagent.api.PushManager;
 import com.iflytek.cloud.Setting;
 import com.iflytek.cloud.SpeechUtility;
 import com.iflytek.sunflower.FlowerCollector;
 import com.iflytek.util.Logs;
-import com.xiaomi.channel.commonutils.logger.LoggerInterface;
-import com.xiaomi.mipush.sdk.MiPushClient;
 import com.yuntongxun.plugin.common.SDKCoreHelper;
-import com.yuntongxun.plugin.common.common.utils.DeviceUtil;
 import com.yuntongxun.plugin.common.common.utils.FileAccessor;
 import com.yuntongxun.plugin.common.common.utils.LogUtil;
 import com.yuntongxun.plugin.voip.Voip;
@@ -120,18 +113,21 @@ public class HopeHeatApplication extends Application {
 
     private void initYuntongxun() {
         boolean shouldResult = shouldInit(this);
-        LogUtil.d(TAG, "App onCreate " + shouldResult);
+        Logger.d(TAG, "App onCreate " + shouldResult);
         if (!shouldResult) {
             return;
         }
+
         // 初始化本地文件夹
         FileAccessor.initFileAccess();
         // 云通讯SDK上下文对象，必选
         SDKCoreHelper.setContext(this);
         // 音视频通话插件初始化(可选)
+//        Voip.VoIPPluginParams.Builder builder = new Voip.VoIPPluginParams.Builder();
+//        builder.setVoipCallback(VoipImpl.getInstance());
+//        Voip.initVoIPPlugin(builder.build());
+
         Voip.VoIPPluginParams.Builder builder = new Voip.VoIPPluginParams.Builder();
-        // 开启音频录制
-        // builder.setOpenRecordMicrophone(true);
         // 设置VoIP回掉接口
         builder.setVoipCallback(VoipImpl.getInstance());
         Voip.initVoIPPlugin(builder.build());
@@ -157,33 +153,4 @@ public class HopeHeatApplication extends Application {
         }
         return false;
     }
-
-    /**
-     * 小米初始化
-     */
-    private void initXiaoMiPush(String appid, String appkey) {
-        // 注册push服务，注册成功后会向DemoMessageReceiver发送广播
-        // 可以从DemoMessageReceiver的onCommandResult方法中MiPushCommandMessage对象参数中获取注册信息
-        MiPushClient.registerPush(this, appid, appkey);
-        LoggerInterface newLogger = new LoggerInterface() {
-
-            @Override
-            public void setTag(String tag) {
-                // ignore
-            }
-
-            @Override
-            public void log(String content, Throwable t) {
-                Log.d(TAG, content, t);
-            }
-
-            @Override
-            public void log(String content) {
-                Log.d(TAG, content);
-            }
-        };
-        com.xiaomi.mipush.sdk.Logger.setLogger(this, newLogger);
-
-    }
-
 }
