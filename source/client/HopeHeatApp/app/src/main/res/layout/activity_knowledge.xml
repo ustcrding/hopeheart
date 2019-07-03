@@ -27,7 +27,7 @@
             android:src="@drawable/triangle"
             android:paddingLeft="10dp"/>
     </LinearLayout>
-    <EditText
+    <TextView
         android:id="@+id/knowledge_text"
         android:layout_width="match_parent"
         android:layout_height="0dp"

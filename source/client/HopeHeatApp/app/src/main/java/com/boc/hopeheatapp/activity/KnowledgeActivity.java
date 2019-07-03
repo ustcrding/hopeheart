@@ -1,5 +1,6 @@
 package com.boc.hopeheatapp.activity;
 
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -11,12 +12,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.boc.hopeheatapp.ActivityJumper;
 import com.boc.hopeheatapp.R;
+import com.boc.hopeheatapp.adapter.GridViewAdapter;
 import com.boc.hopeheatapp.model.CatalogListEntity;
 import com.boc.hopeheatapp.model.ChannelEntity;
 import com.boc.hopeheatapp.service.biz.CatalogLoader;
@@ -40,6 +43,8 @@ public class KnowledgeActivity extends TitleColorActivity {
     public static final int TYPE_RESCUE = 1;
     public static final int TYPE_PSYCHOLOGY = 2;
 
+    private int mType;
+
     private View btnBack;
     private TextView tvTitle;
     private TextView btnTitleRight;
@@ -47,12 +52,14 @@ public class KnowledgeActivity extends TitleColorActivity {
     private ChannelEntity channelEntity;
 
     private TextView tvKnowledgeNmae;
-    private EditText etKnowledgeDetail;
+    private TextView etKnowledgeDetail;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mType = getIntent().getIntExtra(ActivityJumper.EXTRA_TYPE, TYPE_RESCUE);
 
         setContentView(R.layout.activity_knowledge);
 
@@ -82,7 +89,13 @@ public class KnowledgeActivity extends TitleColorActivity {
         initTitle();
 
         tvKnowledgeNmae = (TextView) findViewById(R.id.knowledge_name);
-        etKnowledgeDetail = (EditText)findViewById(R.id.knowledge_text);
+        etKnowledgeDetail = (TextView)findViewById(R.id.knowledge_text);
+
+        if (mType == TYPE_RESCUE) {
+            tvKnowledgeNmae.setText(R.string.rescue_knowledge_type);
+        } else if (mType == TYPE_PSYCHOLOGY) {
+            tvKnowledgeNmae.setText(R.string.psychology_knowledge_type);
+        }
     }
 
     private void initData() {
@@ -129,19 +142,40 @@ public class KnowledgeActivity extends TitleColorActivity {
 
     private void showMenu() {
         final View popipWindow_view = getLayoutInflater().inflate(R.layout.popup_menu,null,false);
-        //创建Popupwindow 实例，200，LayoutParams.MATCH_PARENT 分别是宽高
         final PopupWindow popupWindow = new PopupWindow(popipWindow_view, DensityUtils.dp2px(this,300), ViewGroup.LayoutParams.MATCH_PARENT,true);
-        //popupWindow.setAnimationStyle(R.style.AnimationFade);
-        //点击其他地方消失
-        popipWindow_view.setOnTouchListener(new View.OnTouchListener() {
+        popupWindow.setFocusable(true);
+        popupWindow.setTouchable(true);
+
+        final GridView category = (GridView) popipWindow_view.findViewById(R.id.category);
+        final GridView subCategory = (GridView) popipWindow_view.findViewById(R.id.sub_category);
+        final GridViewAdapter categoryAdapter = new GridViewAdapter(this);
+        final GridViewAdapter subCategoryAdapter = new GridViewAdapter(this);
+        categoryAdapter.setData(getResources().getStringArray(R.array.category_list), -1);
+        subCategoryAdapter.setData(getResources().getStringArray(R.array.sub_category_list), -1);
+
+        category.setAdapter(categoryAdapter);
+        subCategory.setAdapter(subCategoryAdapter);
+
+        category.setSelector(new ColorDrawable(Color.TRANSPARENT));
+        subCategory.setSelector(new ColorDrawable(Color.TRANSPARENT));
+
+
+        category.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (popipWindow_view != null && popipWindow_view.isShown()) {
-                    popupWindow.dismiss();
-                }
-                return false;
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                categoryAdapter.setSeclection(position);
+                categoryAdapter.notifyDataSetChanged();
             }
         });
+
+        subCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                subCategoryAdapter.setSeclection(position);
+                subCategoryAdapter.notifyDataSetChanged();
+            }
+        });
+
 
         popupWindow.setBackgroundDrawable(new ColorDrawable(0));
         Button button1 = (Button) popipWindow_view.findViewById(R.id.bt_ensure);

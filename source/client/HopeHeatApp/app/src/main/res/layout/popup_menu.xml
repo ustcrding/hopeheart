@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:layout_gravity="right"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="20dp"
         android:text="@string/cancel"/>
     <TextView
         android:id="@+id/iv_logo"
@@ -22,11 +22,15 @@
         android:layout_below="@+id/rl_title_container"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:text="@string/rescue_knowledge_category"/>
+        android:text="@string/rescue_knowledge_category"
+        android:paddingLeft="10dp"/>
 
     <GridView android:id="@+id/category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:descendantFocusability="blocksDescendants"
+        android:numColumns="3"/>
 
     <TextView
         android:id="@+id/tv_version"
@@ -35,19 +39,28 @@
         android:layout_below="@+id/iv_logo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="@string/rescue_knowledge_subcategory" />
+        android:text="@string/rescue_knowledge_subcategory"
+        android:paddingLeft="10dp"/>
 
     <GridView android:id="@+id/sub_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:descendantFocusability="blocksDescendants"
+        android:numColumns="3"/>
 
-    <Button
-        android:id="@+id/bt_ensure"
-        android:layout_width="130dp"
-        android:layout_height="30dp"
-        android:background="@drawable/button_selector"
-        android:text="@string/ensure"
-        android:layout_gravity="center_horizontal"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center">
+        <Button
+            android:id="@+id/bt_ensure"
+            android:layout_width="195dp"
+            android:layout_height="45dp"
+            android:background="@drawable/button_selector"
+            android:text="@string/ensure"
+            android:layout_gravity="center_horizontal"
+            />
+    </LinearLayout>
 
 </LinearLayout>

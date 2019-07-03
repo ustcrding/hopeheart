@@ -54,4 +54,25 @@
         <item>男</item>
         <item>女</item>
     </string-array>
+
+    <string-array name="category_list">
+        <item>大类型</item>
+        <item>大类型</item>
+        <item>大类型</item>
+        <item>大类型</item>
+        <item>大类型</item>
+        <item>大类型</item>
+        <item>大类型</item>
+        <item>大类型</item>
+        <item>大类型</item>
+    </string-array>
+
+    <string-array name="sub_category_list">
+        <item>小类型</item>
+        <item>小类型</item>
+        <item>小类型</item>
+        <item>小类型</item>
+        <item>小类型</item>
+        <item>小类型</item>
+    </string-array>
 </resources>
