@@ -10,9 +10,11 @@
  
     <TextView
         android:id="@+id/idGridviewCheck"
-        android:layout_width="64dp"
+        android:layout_width="80dp"
         android:layout_height="36dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:gravity="center"/>
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:textColor="@color/black_333333"
+        android:gravity="center"
+        android:textSize="15sp"/>
 </LinearLayout>

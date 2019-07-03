@@ -3,6 +3,7 @@ package com.boc.hopeheatapp.service.biz;
 import com.boc.hopeheatapp.http.BaseLoader;
 import com.boc.hopeheatapp.http.BaseResponse;
 import com.boc.hopeheatapp.http.UpdateServiceManager;
+import com.boc.hopeheatapp.model.CodeEntity;
 import com.boc.hopeheatapp.model.UserEntity;
 import com.boc.hopeheatapp.service.api.UserService;
 import com.boc.hopeheatapp.util.string.StringUtil;
@@ -89,7 +90,7 @@ public class UserLoader extends BaseLoader {
         });
     }
 
-    public Observable<String> uploadUserInfo(String userId,
+    public Observable<CodeEntity> uploadUserInfo(String userId,
                                              String userName,
                                              String sex,
                                              String identityType,
@@ -99,9 +100,9 @@ public class UserLoader extends BaseLoader {
                                              String city,
                                              String address,
                                              String memo) {
-        return observe(service.uploadUserInfo(userId, userName,sex, identityType, certificateCode, phone, province, city, address, memo)).map(new Func1<BaseResponse<String>, String>() {
+        return observe(service.uploadUserInfo(userId, userName,sex, identityType, certificateCode, phone, province, city, address, memo)).map(new Func1<BaseResponse<CodeEntity>, CodeEntity>() {
             @Override
-            public String call(BaseResponse<String> userEntityBaseResponse) {
+            public CodeEntity call(BaseResponse<CodeEntity> userEntityBaseResponse) {
                 userEntityBaseResponse.throwExceptionIfError();
                 return userEntityBaseResponse.getData();
             }

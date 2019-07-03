@@ -2,15 +2,29 @@ package com.boc.hopeheatapp.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.boc.hopeheatapp.ActivityJumper;
 import com.boc.hopeheatapp.R;
+import com.boc.hopeheatapp.fragement.BaseFragment;
+import com.boc.hopeheatapp.fragement.HomeFragment;
+import com.boc.hopeheatapp.fragement.MyFragment;
 import com.boc.hopeheatapp.model.UserEntity;
 import com.boc.hopeheatapp.service.biz.UserLoader;
 import com.boc.hopeheatapp.user.UserManager;
+import com.boc.hopeheatapp.util.log.Logger;
 import com.boc.hopeheatapp.util.string.StringUtil;
+import com.boc.hopeheatapp.widget.bottombar.BottomBarItem;
+import com.boc.hopeheatapp.widget.bottombar.BottomBarLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import rx.Subscriber;
 
@@ -19,80 +33,89 @@ import rx.Subscriber;
  * @date 2018/2/8.
  */
 public class WelcomeActivity extends TitleColorActivity {
+    private static final String TAG = WelcomeActivity.class.getSimpleName();
+
+    private ViewPager mViewPager;
+    private LinearLayout mContent;
+    BottomBarLayout mBottomBarLayout;
+
+    private List<BaseFragment> mFragmentList = new ArrayList<>();
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        boolean first = getIntent().getBooleanExtra(ActivityJumper.EXTRA_FIRST_MARK, false);
+
         setContentView(R.layout.activity_welcome);
 
-        findViewById(R.id.read_from_card).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO
-                doUserBind();
-            }
-        });
+        mViewPager = (ViewPager) findViewById(R.id.vp_content);
+        mContent = (LinearLayout) findViewById(R.id.ll_content);
+        mBottomBarLayout = (BottomBarLayout) findViewById(R.id.bbl);
 
-        findViewById(R.id.input_personal_info).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ActivityJumper.startUserInfoActivity(WelcomeActivity.this);
-            }
-        });
+        if (first) {
+            mContent.setVisibility(View.GONE);
+            mFragmentList.add(buildHomeFragment(savedInstanceState));
 
-        findViewById(R.id.ignore).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            mViewPager.setAdapter(new WelcomeActivity.HomeTabAdapter(getSupportFragmentManager()));
+            mViewPager.setOffscreenPageLimit(5);
+        } else {
+            mFragmentList.add(buildHomeFragment(savedInstanceState));
+            mFragmentList.add(buildMyFragment(savedInstanceState));
 
-            }
-        });
+            mViewPager.setAdapter(new WelcomeActivity.HomeTabAdapter(getSupportFragmentManager()));
+            mViewPager.setOffscreenPageLimit(5);
+            mBottomBarLayout.setViewPager(mViewPager);
 
-        // 查询救援知识
-        findViewById(R.id.btn_search_rescue).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ActivityJumper.startKnowledgeActivity(WelcomeActivity.this, KnowledgeActivity.TYPE_RESCUE);
-            }
-        });
-
-        // 查询心理知识
-        findViewById(R.id.btn_search_psychology).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ActivityJumper.startKnowledgeActivity(WelcomeActivity.this, KnowledgeActivity.TYPE_PSYCHOLOGY);
-            }
-        });
+            ((HomeFragment)mFragmentList.get(0)).setFirst(false);
+        }
     }
 
-    private void doUserBind() {
-        UserLoader userLoader = new UserLoader();
-        userLoader.userBind("" + UserManager.getInstance().getUser().getUserId()).subscribe(new Subscriber<UserEntity>() {
+    private BaseFragment buildHomeFragment(Bundle savedInstanceState) {
+        HomeFragment home = null;
+        if (savedInstanceState != null) {
+            home = (HomeFragment) getSupportFragmentManager().findFragmentByTag(
+                    HomeFragment.class.getSimpleName());
+            Logger.d(TAG, "buildMsgFragment from savedInstanceState");
+        }
 
-            @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable throwable) {
-                Toast.makeText(getApplicationContext(), "未找到用户", Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onNext(UserEntity user) {
-                if (user != null && StringUtil.equals(user.getPreserve(), "0")) {
-                    UserManager.getInstance().getUser().setPreserve(user.getPreserve());
-                    UserManager.getInstance().saveUser();
-                    Toast.makeText(getApplicationContext(), "已发现用户身份", Toast.LENGTH_LONG).show();
-                    ActivityJumper.startMainActivity(getApplicationContext());
-                } else {
-                    Toast.makeText(getApplicationContext(), "未找到用户", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+        /*重建对象*/
+        if (home == null) {
+            home = HomeFragment.newInstance();
+        }
+        return home;
     }
 
+    private BaseFragment buildMyFragment(Bundle savedInstanceState) {
+        MyFragment myFragment = null;
+        if (savedInstanceState != null) {
+            myFragment = (MyFragment) getSupportFragmentManager().findFragmentByTag(
+                    MyFragment.class.getSimpleName());
+            Logger.d(TAG, "buildMyFragment from savedInstanceState");
+        }
 
+        /*重建对象*/
+        if (myFragment == null) {
+            myFragment = MyFragment.newInstance();
+        }
+        return myFragment;
+    }
+
+    class HomeTabAdapter extends FragmentStatePagerAdapter {
+
+        public HomeTabAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+    }
 }

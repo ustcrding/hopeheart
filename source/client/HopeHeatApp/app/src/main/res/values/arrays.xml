@@ -56,23 +56,73 @@
     </string-array>
 
     <string-array name="category_list">
-        <item>大类型</item>
-        <item>大类型</item>
-        <item>大类型</item>
-        <item>大类型</item>
-        <item>大类型</item>
-        <item>大类型</item>
-        <item>大类型</item>
-        <item>大类型</item>
-        <item>大类型</item>
+        <item>地质灾害救援</item>
+        <item>气象灾害救援</item>
+        <item>海洋灾害救援</item>
+        <item>生态环境灾害救援</item>
     </string-array>
 
-    <string-array name="sub_category_list">
-        <item>小类型</item>
-        <item>小类型</item>
-        <item>小类型</item>
-        <item>小类型</item>
-        <item>小类型</item>
-        <item>小类型</item>
+    <string-array name="category_tag">
+        <item>G</item>
+        <item>M</item>
+        <item>O</item>
+        <item>E</item>
+    </string-array>
+
+    <string-array name="sub_category_list0">
+        <item>火山</item>
+        <item>地震</item>
+        <item>崩塌</item>
+        <item>滑坡</item>
+        <item>泥石流</item>
+    </string-array>
+
+    <string-array name="g_tag">
+        <item>G1</item>
+        <item>G2</item>
+        <item>G3</item>
+        <item>G4</item>
+        <item>G5</item>
+    </string-array>
+
+    <string-array name="sub_category_list1">
+        <item>干旱</item>
+        <item>洪涝</item>
+        <item>台风（飓风）</item>
+        <item>沙尘暴</item>
+        <item>寒潮</item>
+        <item>雪灾</item>
+    </string-array>
+
+    <string-array name="m_tag">
+        <item>M1</item>
+        <item>M2</item>
+        <item>M3</item>
+        <item>M4</item>
+        <item>M5</item>
+        <item>M6</item>
+    </string-array>
+
+    <string-array name="sub_category_list2">
+        <item>海啸</item>
+        <item>风暴潮</item>
+        <item>赤潮</item>
+    </string-array>
+
+    <string-array name="o_tag">
+        <item>O1</item>
+        <item>O2</item>
+        <item>O3</item>
+    </string-array>
+
+    <string-array name="sub_category_list3">
+        <item>虫灾</item>
+        <item>鼠灾</item>
+        <item>森林和草原火灾</item>
+    </string-array>
+    <string-array name="e_tag">
+        <item>E1</item>
+        <item>E2</item>
+        <item>E3</item>
     </string-array>
 </resources>

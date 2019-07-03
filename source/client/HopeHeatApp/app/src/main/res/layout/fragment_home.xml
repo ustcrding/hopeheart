@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/title_activity_style"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/ic_background"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="190dp"
+            android:gravity="center_horizontal"
+            android:text="你好!"
+            android:textColor="#2C9AB0"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_home_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="55dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginRight="55dp"
+            android:layout_marginBottom="44dp"
+            android:text="@string/welcome_msg"
+            android:textColor="#2C9AB0"
+            android:textSize="16sp"
+            android:gravity="center_horizontal"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_search_rescue"
+        android:layout_width="195dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/button_selector"
+        android:text="查询救援知识" />
+
+    <Button
+        android:id="@+id/btn_search_psychology"
+        android:layout_width="195dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/button_selector"
+        android:text="查询心理知识" />
+
+    <Button
+        android:id="@+id/bt_history"
+        android:layout_width="195dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/button_selector2"
+        android:text="@string/consult_history"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/input_personal_info"
+        android:layout_width="195dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/button_selector2"
+        android:text="@string/input_personal_info" />
+
+    <Button
+        android:id="@+id/read_from_card"
+        android:layout_width="195dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/button_selector2"
+        android:visibility="gone"
+        android:text="@string/read_from_card" />
+
+    <Button
+        android:id="@+id/ignore"
+        android:layout_width="195dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/button_selector2"
+        android:text="@string/ignore"
+        android:visibility="gone" />
+
+</LinearLayout>

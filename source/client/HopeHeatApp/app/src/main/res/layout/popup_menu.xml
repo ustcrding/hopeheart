@@ -14,16 +14,20 @@
         android:layout_gravity="right"
         android:layout_marginRight="15dp"
         android:layout_marginTop="20dp"
-        android:text="@string/cancel"/>
+        android:text="@string/cancel"
+        android:textColor="@color/gray_3BC7D8"
+        android:textSize="16sp"/>
     <TextView
-        android:id="@+id/iv_logo"
+        android:id="@+id/tv_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_title_container"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:text="@string/rescue_knowledge_category"
-        android:paddingLeft="10dp"/>
+        android:paddingLeft="10dp"
+        android:textColor="@color/black_333333"
+        android:textSize="16sp"/>
 
     <GridView android:id="@+id/category"
         android:layout_width="match_parent"
@@ -33,14 +37,16 @@
         android:numColumns="3"/>
 
     <TextView
-        android:id="@+id/tv_version"
+        android:id="@+id/tv_sub_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/iv_logo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:text="@string/rescue_knowledge_subcategory"
-        android:paddingLeft="10dp"/>
+        android:paddingLeft="10dp"
+        android:textColor="@color/black_333333"
+        android:textSize="16sp"/>
 
     <GridView android:id="@+id/sub_category"
         android:layout_width="match_parent"
@@ -60,6 +66,8 @@
             android:background="@drawable/button_selector"
             android:text="@string/ensure"
             android:layout_gravity="center_horizontal"
+            android:textColor="@color/gray_2C9AB0"
+            android:textSize="17sp"
             />
     </LinearLayout>
 

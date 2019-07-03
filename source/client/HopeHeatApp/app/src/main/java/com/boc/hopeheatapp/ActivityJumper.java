@@ -61,6 +61,7 @@ public class ActivityJumper {
     public static final String EXTRA_TITLE = "extra_title";
     public static final String EXTRA_OVERRIDE_IN_NEW_ACTICITY = "extra_override_in_wewActivity";
     public static final String EXTRA_TYPE = "extra_knowledge_type";
+    public static final String EXTRA_FIRST_MARK = "extra_welcome_mark";
 
     /**
      * 打开系统设置页面
@@ -382,12 +383,13 @@ public class ActivityJumper {
      *
      * @param context
      */
-    public static void startWelcomeActivity(Context context) {
+    public static void startWelcomeActivity(Context context, boolean first) {
         if (context == null) {
             return;
         }
 
         Intent intent = new Intent(context, WelcomeActivity.class);
+        intent.putExtra(ActivityJumper.EXTRA_FIRST_MARK, first);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }

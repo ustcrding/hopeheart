@@ -1,94 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/title_activity_style"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical">
 
-    <LinearLayout
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_content"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:background="@drawable/ic_background"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/common_stroke_little_gray" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="240dp"
-            android:gravity="center_horizontal"
-            android:text="你好!"
-            android:textColor="#2C9AB0"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+    <com.boc.hopeheatapp.widget.bottombar.BottomBarLayout
+        android:id="@+id/bbl"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_gravity="center"
+        android:background="@color/color_white"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="55dp"
-            android:layout_marginTop="33dp"
-            android:layout_marginRight="55dp"
-            android:layout_marginBottom="48dp"
-            android:text="@string/welcome_msg"
-            android:textColor="#2C9AB0"
-            android:textSize="16sp" />
+        <com.boc.hopeheatapp.widget.bottombar.BottomBarItem
+            android:id="@+id/main_tab_msg"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            app:iconNormal="@drawable/ic_home2"
+            app:iconSelected="@drawable/ic_home"
+            app:itemMarginTop="5dp"
+            app:itemText="消息"
+            app:itemTextSize="12sp"
+            app:openTouchBg="false"
+            app:textColorNormal="@color/bottom_bar_text_color_normal"
+            app:textColorSelected="@color/bottom_bar_text_color_selected"
+            app:touchDrawable="@drawable/selector_bg" />
+
+        <com.boc.hopeheatapp.widget.bottombar.BottomBarItem
+            android:id="@+id/main_tab_my"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            app:iconNormal="@drawable/ic_wode"
+            app:iconSelected="@drawable/ic_wode_2"
+            app:itemMarginTop="5dp"
+            app:itemText="我的"
+            app:itemTextSize="12sp"
+            app:openTouchBg="false"
+            app:textColorNormal="@color/bottom_bar_text_color_normal"
+            app:textColorSelected="@color/bottom_bar_text_color_selected"
+            app:touchDrawable="@drawable/selector_bg" />
+
+    </com.boc.hopeheatapp.widget.bottombar.BottomBarLayout>
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_search_rescue"
-        android:layout_width="195dp"
-        android:layout_height="45dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/button_b"
-        android:text="查询救援知识" />
-
-    <Button
-        android:id="@+id/btn_search_psychology"
-        android:layout_width="195dp"
-        android:layout_height="45dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/button_b"
-        android:text="查询心理知识" />
-
-    <Button
-        android:id="@+id/input_personal_info"
-        android:layout_width="195dp"
-        android:layout_height="45dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/button_b"
-        android:text="@string/input_personal_info" />
-
-    <Button
-        android:id="@+id/read_from_card"
-        android:layout_width="195dp"
-        android:layout_height="45dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/button_a"
-        android:text="@string/read_from_card" />
-
-    <Button
-        android:id="@+id/ignore"
-        android:layout_width="195dp"
-        android:layout_height="45dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/button_b"
-        android:text="@string/ignore"
-        android:visibility="gone" />
 
 </LinearLayout>

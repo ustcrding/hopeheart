@@ -11,6 +11,9 @@ import com.google.gson.annotations.SerializedName;
  * @date 2018/2/23.
  */
 public class UserEntity {
+    public static final int PATIENT = 0;
+    public static final int DOCTOR = 1;
+
     @Expose
     @SerializedName("id")
     private int userId;
@@ -34,6 +37,10 @@ public class UserEntity {
     @Expose
     @SerializedName("role_id")
     private String roleId;
+
+    @Expose
+    @SerializedName("role_type")
+    private int roleType;
 
     @Expose
     @SerializedName("record_date")
@@ -153,6 +160,14 @@ public class UserEntity {
 
     public void setRoleId(String roleId) {
         this.roleId = roleId;
+    }
+
+    public int getRoleType() {
+        return roleType;
+    }
+
+    public void setRoleType(int roleType) {
+        this.roleType = roleType;
     }
 
     public String getRecordDate() {

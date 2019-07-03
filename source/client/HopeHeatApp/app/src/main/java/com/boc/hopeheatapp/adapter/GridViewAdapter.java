@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.boc.hopeheatapp.R;
@@ -23,8 +22,12 @@ public class GridViewAdapter extends BaseAdapter {
         this.lastPosition = lastPos;
     }
 
-    public void setSeclection(int position) {
+    public void setSelection(int position) {
         lastPosition = position;
+    }
+
+    public int getSelection() {
+        return lastPosition;
     }
 
     public GridViewAdapter(Context mContext) {
@@ -34,7 +37,7 @@ public class GridViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return str.length;
+        return str != null ? str.length : 0;
     }
 
     @Override
@@ -58,7 +61,10 @@ public class GridViewAdapter extends BaseAdapter {
         } else {
             holder = (GridViewAdapter.ViewHolder) mView.getTag();
         }
-        holder.check.setText(str[position] + "");
+        if (str != null && position < str.length && position >= 0) {
+            holder.check.setText(str[position] + "");
+        }
+
         if (lastPosition == position) {//最后选择的位置
             holder.check.setBackgroundResource(R.drawable.ic_rectangle2);
         } else {
