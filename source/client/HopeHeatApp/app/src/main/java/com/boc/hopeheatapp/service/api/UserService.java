@@ -1,5 +1,6 @@
 package com.boc.hopeheatapp.service.api;
 
+import com.boc.hopeheatapp.ApiConfig;
 import com.boc.hopeheatapp.http.BaseResponse;
 import com.boc.hopeheatapp.model.UserEntity;
 
@@ -55,13 +56,13 @@ public interface UserService {
      * @return
      */
     @FormUrlEncoded
-    @POST("http://172.20.10.4/login")
+    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/login")
     Observable<BaseResponse<UserEntity>> login(@Field("username") String username,
                                                @Field("password") String password);
 
 
     @FormUrlEncoded
-    @POST("http://172.20.10.4/victim/collect")
+    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/victim/collect")
     Observable<BaseResponse<Void>> uploadUserInfo(@Field("id") String userId,
                                                         @Field("name") String userName,
                                                         @Field("sex") String sex,
@@ -78,6 +79,6 @@ public interface UserService {
      * @return
      */
     @FormUrlEncoded
-    @POST("http://172.20.10.4/verify")
+    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/verify")
     Observable<BaseResponse<UserEntity>> userBind(@Field("userId") String id);
 }

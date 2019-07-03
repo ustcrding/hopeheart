@@ -235,6 +235,10 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
             EvaluationEntity entity = JsonUtils.fromJson(json, EvaluationEntity.class);
             if (entity != null) {
                 ActivityJumper.startEvaluationResultActivity(QuestionnaireActivity.this, entity.getResult(), entity.getScores());
+                if (mWebView != null) {
+                    mWebView.destroy();
+                    mWebView = null;
+                }
                 finish();
             }
         }

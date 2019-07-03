@@ -252,6 +252,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/CommonActivityTheme"
             android:windowSoftInputMode="stateAlwaysHidden"></activity>
+        <!--咨询-->
+        <activity
+            android:name="com.boc.hopeheatapp.activity.ConsultActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/CommonActivityTheme"
+            android:windowSoftInputMode="stateAlwaysHidden"></activity>
 
         <!--评测结果-->
         <activity

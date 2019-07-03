@@ -2,21 +2,57 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Questionnaire</title>
     <style>
       #test {
-        margin-bottom: 10px;
+        margin-bottom: 0.16rem;
+        margin-left: 0.34rem;
+        line-height: 0.48rem;
+        text-align: left;
+        color: #414248;
+      }
+
+      #div2 {
+        width: 6.8rem;
+        height: 0.59rem;
+        margin: 0 auto;
+        text-align: left;
+      }
+
+      #barwrap {
+        height: 0.12rem;
+        width: 5.1rem;
+        background-color: #DDDDDD;
+        border-radius: 0.06rem;
+        display: inline-block;
+      }
+      #bar {
+        width: 0.51rem;
+        height: 0.12rem;
+        background-color: #4EDCED;
+        border-radius: 0.06rem;
+      }
+
+      #pageDiv {
+        text-align: right;
+        float: right;
+        font-size: 0.32rem;
+      }
+      #page {
+        color: #3BC7D8;
+        line-height: 0.59rem;
+        font-size: 0.42rem;
       }
 
       #imgs {
-        max-width: 1010px;
-        margin: 0 auto;
+        max-width: 10.1rem;
+        margin: 0.54rem auto;
       }
       img {
-        vertical-align: top;
-        /* max-width: 500px; */
-        /* max-height: 500px; */
+        width: 6.8rem;
+        height: 3.15rem;
+        margin-bottom: 0.35rem;
       }
       .normal {
         color: green;
@@ -37,8 +73,10 @@
     
     </style>
   </head>
-  <body style="margin:20px 0; text-align: center;">
-    <div id="test">请选择与自身状况最相似的图片：（当前进度：<span id=page>1</span>/10）</div>
+  <body style="margin:0.42rem 0; text-align: center;">
+    <div id="test">请选择与自身状况最相似的图片</div>
+    <div id="div2"><div id="barwrap"><div id="bar"></div></div>
+    <span id="pageDiv"><span id=page>1</span>/10</span></div>
     <div id="imgs">
       <img id="img1" src="">
       <img id="img2" src="">
@@ -48,11 +86,17 @@
       <p>评级：<span id="resultLevel"></span></p>
     </div>
     <script>
+      //代码
+      document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+      document.body.style.fontSize = '0.34rem';
 
       var current = 1;
       var result = [];
       var question = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
-      var answers = [2,1,2,2,2,1,2,2,2,2,1,1,1,1,1,1,1,2,1,1];//每题正向选择的图片编号，用于计算答案
+      var answers = [1,1,2,1,1,
+      1,1,2,2,1,
+      1,1,1,2,1,
+      1,1,2,1,1];//每题正向选择的图片编号，用于计算答案
       var imgs = document.getElementById("imgs");
       var img1 = document.getElementById("img1");
       var img2 = document.getElementById("img2");
@@ -77,21 +121,21 @@
           }
         }
         var totalFiltered = Math.floor(total*2.5);
-        var levelStats = "无抑郁";
+        var levelStats = "健康状态";
         if(totalFiltered < 53) {
-          levelStats = "无抑郁";
+          levelStats = "健康状态";
           resultText.classList = ["normal"];
           resultLevel.classList = ["normal"];
         } else if(totalFiltered < 63){
-          levelStats = "轻度抑郁";
+          levelStats = "不良状态";
           resultText.classList = ["light"];
           resultLevel.classList = ["light"];
         } else if(totalFiltered < 73){
-          levelStats = "中度抑郁";
+          levelStats = "心理障碍";
           resultText.classList = ["middle"];
           resultLevel.classList = ["middle"];
         } else{
-          levelStats = "重度抑郁";
+          levelStats = "心理疾病";
           resultText.classList = ["serious"];
           resultLevel.classList = ["serious"];
         }
@@ -103,12 +147,12 @@
       }
 
       //样式计算
-      windWidth = document.documentElement.clientWidth;
-      windHeight = document.documentElement.clientHeight;
-      img1.style.maxWidth = windWidth>500? "48%" : windWidth + "px";
-      img2.style.maxWidth = windWidth>500? "48%" : windWidth + "px";
-      img1.style.maxHeight = windWidth>500? windHeight-72 + "px" :(windHeight-72)/2 + "px";
-      img2.style.maxHeight = windWidth>500? windHeight-72 + "px" : (windHeight-72)/2 + "px";
+      // windWidth = document.documentElement.clientWidth;
+      // windHeight = document.documentElement.clientHeight;
+      // img1.style.maxWidth = windWidth>500? "48%" : windWidth + "px";
+      // img2.style.maxWidth = windWidth>500? "48%" : windWidth + "px";
+      // img1.style.maxHeight = windWidth>500? windHeight-72 + "px" :(windHeight-72)/2 + "px";
+      // img2.style.maxHeight = windWidth>500? windHeight-72 + "px" : (windHeight-72)/2 + "px";
 
       //初始化第一题
       var quesIndex = getQuestion();
@@ -120,6 +164,7 @@
           result.push(quesIndex + "-1");
           current++;
           pageIndex.innerText = current;
+          document.getElementById("bar").style.width = 0.51*current + "rem";
           //生成下一题的题号
           quesIndex = getQuestion();
           img1.src = "imgs/" + quesIndex + "-1.jpg";
@@ -142,6 +187,7 @@
           result.push(quesIndex + "-2");
           current++;
           pageIndex.innerText = current;
+          document.getElementById("bar").style.width = 0.51*current + "rem";
           //生成下一题的题号
           quesIndex = getQuestion();
           img1.src = "imgs/" + quesIndex + "-1.jpg";

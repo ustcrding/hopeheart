@@ -7,6 +7,7 @@ import com.boc.hopeheatapp.activity.AboutActivity;
 import com.boc.hopeheatapp.activity.BrowserActivity;
 import com.boc.hopeheatapp.activity.ChannelActivity;
 import com.boc.hopeheatapp.activity.ChannelListActivity;
+import com.boc.hopeheatapp.activity.ConsultActivity;
 import com.boc.hopeheatapp.activity.ConsultDetailActivity;
 import com.boc.hopeheatapp.activity.ConsultHistoryActivity;
 import com.boc.hopeheatapp.activity.HomeActivity;
@@ -448,6 +449,20 @@ public class ActivityJumper {
         context.startActivity(intent);
     }
 
+    /**
+     * 打开咨询界面
+     *
+     * @param context
+     */
+    public static void startConsultActivity(Context context) {
+        if (context == null) {
+            return;
+        }
+
+        Intent intent = new Intent(context, ConsultActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
     /**
      * 打开咨询历史界面
      *

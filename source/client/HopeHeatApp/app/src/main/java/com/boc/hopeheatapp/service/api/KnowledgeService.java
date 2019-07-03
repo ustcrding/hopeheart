@@ -1,5 +1,6 @@
 package com.boc.hopeheatapp.service.api;
 
+import com.boc.hopeheatapp.ApiConfig;
 import com.boc.hopeheatapp.http.BaseResponse;
 import com.boc.hopeheatapp.model.PsychologyEntity;
 import com.boc.hopeheatapp.model.RescueEntity;
@@ -15,12 +16,12 @@ import rx.Observable;
 public interface KnowledgeService {
 
     @FormUrlEncoded
-    @POST("http://172.20.10.4/knowledge/rescue/query")
+    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/knowledge/rescue/query")
     Observable<BaseResponse<RescueEntity>> queryRescueInfo(@Field("rescueType") String type,
                                                            @Field("rescueSubType") String subType);
 
     @FormUrlEncoded
-    @POST("http://172.20.10.4/knowledge/psy/query")
+    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/knowledge/psy/query")
     Observable<BaseResponse<PsychologyEntity>> queryPsychologyInfo(@Field("psyledgeType") String type,
                                                                    @Field("psyledgeSubtype") String subType);
 }

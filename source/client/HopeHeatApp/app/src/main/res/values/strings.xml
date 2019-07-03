@@ -213,4 +213,11 @@
 
     <string name="agree">是</string>
     <string name="disagree">否</string>
+
+    <string name="evaluation_advise1">健康-无需咨询</string>
+    <string name="evaluation_advise2">不良-心理知识获取</string>
+    <string name="evaluation_advise3">障碍-寻求心理治疗</string>
+    <string name="evaluation_advise4">疾病 -一对一辅导</string>
+
+    <string name="finish">结束</string>
 </resources>

@@ -30,6 +30,7 @@ public class EvaluationResultActivity extends TitleColorActivity {
     private static final String TAG = EvaluationResultActivity.class.getSimpleName();
 
     private TextView tvEvaluationResult;
+    private TextView tvEvaluationAdvise;
     /**
      * title 左侧返回按钮
      */
@@ -57,6 +58,18 @@ public class EvaluationResultActivity extends TitleColorActivity {
 
         String message = getIntent().getStringExtra(ActivityJumper.EXTRA_EVALUATION_MSG);
         tvEvaluationResult.setText(message);
+
+        int score = getIntent().getIntExtra(ActivityJumper.EXTRA_EVALUATION_SCORE, 0);
+        if (score < 53) {
+            tvEvaluationAdvise.setText(R.string.evaluation_advise1);
+        } else if (score < 63) {
+            tvEvaluationAdvise.setText(R.string.evaluation_advise2);
+        } else if (score < 73) {
+            tvEvaluationAdvise.setText(R.string.evaluation_advise3);
+        } else {
+            tvEvaluationAdvise.setText(R.string.evaluation_advise4);
+        }
+
     }
 
     private void initTitle() {
@@ -69,6 +82,7 @@ public class EvaluationResultActivity extends TitleColorActivity {
         btnTitleRight.setVisibility(View.INVISIBLE);
 
         tvEvaluationResult = (TextView) findViewById(R.id.evaluation_result);
+        tvEvaluationAdvise = (TextView) findViewById(R.id.evaluation_advise);
     }
 
     /**
@@ -90,6 +104,7 @@ public class EvaluationResultActivity extends TitleColorActivity {
         findViewById(R.id.psychology_consult).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ActivityJumper.startConsultActivity(EvaluationResultActivity.this);
             }
         });
 
