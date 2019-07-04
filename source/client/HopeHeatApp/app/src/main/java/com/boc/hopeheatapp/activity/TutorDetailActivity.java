@@ -143,21 +143,33 @@ public class TutorDetailActivity extends TitleColorActivity {
                     }
 
                     tvVictimName.setText(entity.getVictimName());
-                    tvVictimSex.setText(entity.getVictimGender());
-                    tvCredentialsType.setText(entity.getVictimCerType());
+
+                    if ("F".equals(entity.getVictimGender())) {
+                        tvVictimSex.setText(R.string.female);
+                    } else {
+                        tvVictimSex.setText(R.string.male);
+                    }
+                    try {
+                        int type =Integer.parseInt(entity.getVictimCerType());
+                        tvCredentialsType.setText(getResources().getStringArray(R.array.credentials_type)[type]);
+                    } catch (Exception e) {
+                        tvCredentialsType.setText(entity.getVictimCerType());
+                    }
+
                     tvVictimPhone.setText(entity.getVictimPhone());
                     tvVictimAddr.setText(entity.getAddressDetail());
-                    tvVictimCity.setText("四川 汶川");
+                    tvVictimCity.setText(entity.getVictimAddressCode());
                     tvTutorDate.setText(entity.getTestJoinDate());
                     tvTutorTime.setText(entity.getTestJoinTime());
 
-                    tvTutorLocateArea.setText("北京 东城区");
+                    tvTutorLocateArea.setText(entity.getAddressCode());
+
                     if (StringUtil.equals(entity.getSatisficing(), "W")) {
-                        tvVictimLevel.setText("非常满意");
-                    } else if (StringUtil.equals(entity.getTestsLevel(), "G")) {
-                        tvVictimLevel.setText("基本满意");
-                    } else if (StringUtil.equals(entity.getTestsLevel(), "Y")) {
-                        tvVictimLevel.setText("不满意");
+                        tvTutorSatisfaction.setText("非常满意");
+                    } else if (StringUtil.equals(entity.getSatisficing(), "G")) {
+                        tvTutorSatisfaction.setText("基本满意");
+                    } else if (StringUtil.equals(entity.getSatisficing(), "Y")) {
+                        tvTutorSatisfaction.setText("不满意");
                     }
 
                 }

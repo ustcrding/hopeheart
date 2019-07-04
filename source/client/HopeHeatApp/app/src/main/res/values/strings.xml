@@ -142,6 +142,8 @@
     <string name="user_id_hint">请填写ID号</string>
     <string name="user_name">姓名</string>
     <string name="user_sex">性别</string>
+    <string name="male">男</string>
+    <string name="female">女</string>
     <string name="user_name_hint">请填写姓名</string>
     <string name="user_credentials_type">证件类型</string>
     <string name="choice_default">请选择</string>

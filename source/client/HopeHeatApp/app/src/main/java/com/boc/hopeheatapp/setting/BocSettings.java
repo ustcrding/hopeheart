@@ -44,6 +44,7 @@ public class BocSettings implements ISettings {
      */
     public static final String APP_ID = "appId";
 
+    public static final String VICTIM_TEST_ID = "victim_test_id";
     public static final String DOCTOR_ID = "doctor_id";
 
     private HashMap<String, Integer> mDefaultSettingHashMap;

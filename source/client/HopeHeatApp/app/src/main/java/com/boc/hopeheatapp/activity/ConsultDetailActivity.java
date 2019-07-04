@@ -121,18 +121,35 @@ public class ConsultDetailActivity extends TitleColorActivity {
                 //handleLoginSuccess(username, pwd, userEntity);
                 if (entity != null) {
                     tvVictimId.setText(entity.getVictimtestId());
-                    tvVictimLevel.setText(entity.getTestsLevel());
+                    if ("H".equals(entity.getTestsLevel())) {
+                        tvVictimLevel.setText(R.string.evaluation_result1);
+                    } else if ("U".equals(entity.getTestsLevel())) {
+                        tvVictimLevel.setText(R.string.evaluation_result2);
+                    } else if ("B".equals(entity.getTestsLevel())) {
+                        tvVictimLevel.setText(R.string.evaluation_result3);
+                    } else if ("I".equals(entity.getTestsLevel())) {
+                        tvVictimLevel.setText(R.string.evaluation_result4);
+                    }
+
                     if ("Y".equals(entity.getCounseling())) {
                         tvJoinConsult.setText(R.string.agree);
                     } else {
                         tvJoinConsult.setText(R.string.disagree);
                     }
-                    tvDoctorName.setText(entity.getVolunteerName());
-                    //tvDoctorLevel.setText();
+                    tvDoctorName.setText(entity.getDoctorName());
+                    tvDoctorLevel.setText(entity.getCertificate());
                     tvVolunteerPlatform.setText(entity.getPlatform());
                     tvJoinDate.setText(entity.getTestioinDate());
-                    //tvJoinTime.setText(); ;
-                    tvConsultSatisfaction.setText(entity.getSatisficing());
+                    tvJoinTime.setText(entity.getTestjoinTime()); ;
+
+                    if ("W".equals(entity.getSatisficing())) {
+                        tvConsultSatisfaction.setText(R.string.wonderful);
+                    } else if ("Y".equals(entity.getSatisficing())) {
+                        tvConsultSatisfaction.setText(R.string.yawp);
+                    } else if ("G".equals(entity.getSatisficing())) {
+                        tvConsultSatisfaction.setText(R.string.good);
+                    }
+
 
                 }
             }
