@@ -19,7 +19,7 @@ public class UserEntity {
     private int userId;
 
     @Expose
-    @SerializedName("user_name")
+    @SerializedName("username")
     private String username;
 
     @Expose

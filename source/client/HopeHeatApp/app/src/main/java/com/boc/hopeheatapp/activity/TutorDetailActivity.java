@@ -11,6 +11,7 @@ import com.boc.hopeheatapp.service.biz.TutorLoader;
 import com.boc.hopeheatapp.util.string.StringUtil;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import rx.Subscriber;
 
 /**
@@ -65,6 +66,8 @@ public class TutorDetailActivity extends TitleColorActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_tutor_detail);
+
+        ButterKnife.bind(this);
 
         initView();
 

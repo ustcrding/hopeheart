@@ -56,7 +56,7 @@ public class TutorHistoryAdapter extends BaseAdapter {
         ViewHolder holder = null;
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.consult_history_item, null);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.tutor_history_item, null);
             holder.tvEndDateLabel  = (TextView) convertView.findViewById(R.id.tv_end_date_label);
             holder.tvStartDate = (TextView) convertView.findViewById(R.id.tv_start_date);
             holder.tvEndDate = (TextView) convertView.findViewById(R.id.tv_end_date);
@@ -68,10 +68,9 @@ public class TutorHistoryAdapter extends BaseAdapter {
         }
 
         TutorHistoryEntity.Result result = mDatas.get(position);
-        holder.tvStartDate.setText(result.getTestioinDate());
+        holder.tvStartDate.setText(result.getVictimName());
+        holder.tvEndDate.setText(result.getTestioinDate());
 
-        holder.tvEndDateLabel.setVisibility(View.GONE);
-        holder.tvEndDate.setVisibility(View.GONE);
 
         holder.tvCity.setText(result.getAddressCode());
 
