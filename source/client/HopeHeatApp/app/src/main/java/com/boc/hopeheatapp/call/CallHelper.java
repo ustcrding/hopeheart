@@ -45,8 +45,8 @@ public class CallHelper {
         Intent intent = new Intent();
         intent.setAction(VOIP_VIDEO_CALL);  //应用在清淡文件中注册的action
         intent.setPackage("com.yuntongxun.voipdemo");                  //应用程序的包名
-        intent.putExtra("phone", "18019996045");
-        intent.putExtra("username", "d2");
+        intent.putExtra("phone", phone);
+        intent.putExtra("username", username);
         context.startService(intent);
     }
 }

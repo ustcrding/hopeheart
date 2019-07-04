@@ -3,6 +3,7 @@ package com.boc.hopeheatapp.service.biz;
 import com.boc.hopeheatapp.http.BaseLoader;
 import com.boc.hopeheatapp.http.BaseResponse;
 import com.boc.hopeheatapp.http.UpdateServiceManager;
+import com.boc.hopeheatapp.model.DoctorEntity;
 import com.boc.hopeheatapp.model.UserEntity;
 import com.boc.hopeheatapp.service.api.UserService;
 import com.boc.hopeheatapp.util.string.StringUtil;
@@ -130,10 +131,25 @@ public class UserLoader extends BaseLoader {
      *
      * @return
      */
-    public Observable<Void> uploadEvaluationResult(String testiId, String testLevel, String date, String time, String address) {
-        return observe(service.uploadEvaluationResult(testiId, testLevel, date, time, address)).map(new Func1<BaseResponse<Void>, Void>() {
+    public Observable<Void> uploadEvaluationResult(String victimId, String testiId, String testLevel, String date, String time, String address) {
+        return observe(service.uploadEvaluationResult(victimId, testiId, testLevel, date, time, address)).map(new Func1<BaseResponse<Void>, Void>() {
             @Override
             public Void call(BaseResponse<Void> baseResponse) {
+                baseResponse.throwExceptionIfError();
+                return baseResponse.getData();
+            }
+        });
+    }
+
+    /**
+     * 心理医师咨询
+     *
+     * @return
+     */
+    public Observable<DoctorEntity> queryDoctor(String victimId, String testiId, String testLevel, String date, String time, String address) {
+        return observe(service.queryDoctor(victimId, testiId, testLevel, date, time, address)).map(new Func1<BaseResponse<DoctorEntity>, DoctorEntity>() {
+            @Override
+            public DoctorEntity call(BaseResponse<DoctorEntity> baseResponse) {
                 baseResponse.throwExceptionIfError();
                 return baseResponse.getData();
             }

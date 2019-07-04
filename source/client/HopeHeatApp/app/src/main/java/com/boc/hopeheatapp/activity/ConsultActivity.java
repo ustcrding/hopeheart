@@ -13,12 +13,10 @@ import android.widget.TextView;
 import com.boc.hopeheatapp.ActivityJumper;
 import com.boc.hopeheatapp.R;
 import com.boc.hopeheatapp.adapter.ChatRecyclerAdapter;
+import com.boc.hopeheatapp.call.CallHelper;
 import com.boc.hopeheatapp.model.ChatMessageBean;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -38,6 +36,7 @@ public class ConsultActivity extends TitleColorActivity {
     private RecyclerView lv_chart;
     private ChatRecyclerAdapter tbAdapter;
     public List<ChatMessageBean> tblist = new ArrayList<ChatMessageBean>();
+    private String doctorId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,6 +145,13 @@ public class ConsultActivity extends TitleColorActivity {
                 });
                 AlertDialog dialog = alertBuilder.create();
                 dialog.show();
+            }
+        });
+
+        tbAdapter.setFromUserClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CallHelper.videoCall(getApplicationContext(),"18963792291", "患者");
             }
         });
     }

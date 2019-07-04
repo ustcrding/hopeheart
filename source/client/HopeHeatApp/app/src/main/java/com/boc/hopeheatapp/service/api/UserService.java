@@ -2,6 +2,7 @@ package com.boc.hopeheatapp.service.api;
 
 import com.boc.hopeheatapp.ApiConfig;
 import com.boc.hopeheatapp.http.BaseResponse;
+import com.boc.hopeheatapp.model.DoctorEntity;
 import com.boc.hopeheatapp.model.UserEntity;
 
 import retrofit2.http.Field;
@@ -88,12 +89,24 @@ public interface UserService {
      */
     @FormUrlEncoded
     @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/psytest/evaluation")
-    Observable<BaseResponse<Void>> uploadEvaluationResult(@Field("psytestsId") String testiId,
+    Observable<BaseResponse<Void>> uploadEvaluationResult(@Field("victimId") String victimId,
+                                                          @Field("psytestsId") String testiId,
                                                           @Field("testsLevel") String testLevel,
                                                           @Field("testionDate") String date,
                                                           @Field("testionTime") String time,
                                                           @Field("addressCode") String address);
-
+    /***
+     * 上传评测结果
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/psytest/recommend/doctor")
+    Observable<BaseResponse<DoctorEntity>> queryDoctor(@Field("victimId") String victimId,
+                                                       @Field("psytestsId") String testiId,
+                                                       @Field("testsLevel") String testLevel,
+                                                       @Field("testionDate") String date,
+                                                       @Field("testionTime") String time,
+                                                       @Field("addressCode") String address);
     /***
      * 反馈满意度
      * @return

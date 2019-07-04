@@ -19,9 +19,11 @@ import android.widget.Toast;
 
 import com.boc.hopeheatapp.ActivityJumper;
 import com.boc.hopeheatapp.R;
+import com.boc.hopeheatapp.model.DoctorEntity;
 import com.boc.hopeheatapp.model.EvaluationEntity;
 import com.boc.hopeheatapp.model.UserEntity;
 import com.boc.hopeheatapp.service.biz.UserLoader;
+import com.boc.hopeheatapp.setting.BocSettings;
 import com.boc.hopeheatapp.user.UserManager;
 import com.boc.hopeheatapp.util.json.JsonUtils;
 import com.boc.hopeheatapp.util.log.Logger;
@@ -256,15 +258,16 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
                 } else {
                     status = "I";
                 }
-                UserLoader userService = new UserLoader();
 
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
                 SimpleDateFormat sdf2 = new SimpleDateFormat("HHmmss");
                 Date date = new Date();
                 String address = "";
 
+                String victimId = "";
                 UserEntity user = UserManager.getInstance().getUser();
                 if (user != null) {
+                    victimId = user.getAuthId();
                     if (!TextUtils.isEmpty(user.getProvince())) {
                         address += user.getProvince();
                     }
@@ -272,7 +275,8 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
                         address += user.getCity();
                     }
                 }
-                userService.uploadEvaluationResult("test001", status, sdf.format(date), sdf2.format(date), address).subscribe(new Subscriber<Void>() {
+                UserLoader userService = new UserLoader();
+                userService.uploadEvaluationResult(victimId, "1", status, sdf.format(date), sdf2.format(date), address).subscribe(new Subscriber<Void>() {
                     @Override
                     public void onCompleted() {
 
@@ -289,19 +293,35 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
                     }
                 });
 
-                mWebView.post(new Runnable() {
+                userService.queryDoctor(victimId, "1", status, sdf.format(date), sdf2.format(date), address).subscribe(new Subscriber<DoctorEntity>() {
                     @Override
-                    public void run() {
-                        ActivityJumper.startEvaluationResultActivity(QuestionnaireActivity.this, entity.getResult(), entity.getScores());
-                        if (mWebView != null) {
-                            mWebView.destroy();
-                            mWebView = null;
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+
+                    }
+
+                    @Override
+                    public void onNext(DoctorEntity doctorEntity) {
+                        if (doctorEntity != null) {
+                            BocSettings.getInstance().setSetting(BocSettings.DOCTOR_ID, doctorEntity.getDoctorId());
                         }
-                        finish();
+                        gotoResult(entity.getResult(), entity.getScores());
                     }
                 });
-
             }
         }
+    }
+
+    private void gotoResult(String result, int score) {
+        ActivityJumper.startEvaluationResultActivity(QuestionnaireActivity.this, result, score);
+        if (mWebView != null) {
+            mWebView.destroy();
+            mWebView = null;
+        }
+        finish();
     }
 }

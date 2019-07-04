@@ -43,6 +43,7 @@ public class ChatRecyclerAdapter extends
     private int mMaxItemWith;
     private int mMinItemWith;
     private SendErrorListener sendErrorListener;
+    private View.OnClickListener fromUserClickListener;
     private LayoutInflater mLayoutInflater;
     private boolean isGif = true;
 
@@ -50,11 +51,14 @@ public class ChatRecyclerAdapter extends
         public void onClick(int position);
     }
 
+
     public void setSendErrorListener(SendErrorListener sendErrorListener) {
         this.sendErrorListener = sendErrorListener;
     }
 
-
+    public void setFromUserClickListener(View.OnClickListener listener) {
+        fromUserClickListener = listener;
+    }
 
     public ChatRecyclerAdapter(Context context, List<ChatMessageBean> userList) {
         this.context = context;
@@ -83,6 +87,7 @@ public class ChatRecyclerAdapter extends
             case FROM_USER_MSG:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_msgfrom_list_item, parent, false);
                 holder = new FromUserMsgViewHolder(view);
+                view.setOnClickListener(fromUserClickListener);
                 break;
 
             case TO_USER_MSG:

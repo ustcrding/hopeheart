@@ -69,7 +69,6 @@ public class EvaluationResultActivity extends TitleColorActivity {
         } else {
             tvEvaluationAdvise.setText(R.string.evaluation_advise4);
         }
-
     }
 
     private void initTitle() {

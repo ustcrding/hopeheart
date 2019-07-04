@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.boc.hopeheatapp.R;
 import com.boc.hopeheatapp.service.api.UserService;
 import com.boc.hopeheatapp.service.biz.UserLoader;
+import com.boc.hopeheatapp.setting.BocSettings;
 import com.boc.hopeheatapp.util.ToastUtils;
 
 import rx.Subscriber;
@@ -103,7 +104,7 @@ public class CommentActivity extends TitleColorActivity {
                     msg = "G";
                 }
                 UserLoader userService = new UserLoader();
-                userService.uploadComment("test001", "doc001", msg).subscribe(new Subscriber<Void>() {
+                userService.uploadComment("test001", BocSettings.getInstance().getString(BocSettings.DOCTOR_ID), msg).subscribe(new Subscriber<Void>() {
                     @Override
                     public void onCompleted() {
 
