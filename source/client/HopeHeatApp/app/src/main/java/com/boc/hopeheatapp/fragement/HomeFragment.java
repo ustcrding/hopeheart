@@ -130,7 +130,7 @@ public class HomeFragment extends BaseFragment {
                     UserManager.getInstance().getUser().setPreserve(user.getPreserve());
                     UserManager.getInstance().saveUser();
                     Toast.makeText(getActivity(), "已发现用户身份", Toast.LENGTH_LONG).show();
-                    ActivityJumper.startMainActivity(getActivity());
+//                    ActivityJumper.startMainActivity(getActivity());
                 } else {
                     Toast.makeText(getActivity(), "未找到用户", Toast.LENGTH_LONG).show();
                 }
