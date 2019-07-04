@@ -1,9 +1,11 @@
 package com.boc.hopeheatapp.fragement;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.boc.hopeheatapp.ActivityJumper;
 import com.boc.hopeheatapp.R;
 import com.boc.hopeheatapp.model.UserEntity;
 import com.boc.hopeheatapp.user.UserManager;
@@ -12,6 +14,7 @@ import com.boc.hopeheatapp.widget.PreferenceItemView;
 import com.boc.hopeheatapp.widget.PreferenceItemView2;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * @author dwl
@@ -40,6 +43,9 @@ public class MyFragment extends BaseFragment {
 
     @BindView(R.id.view_user_reg_date)
     PreferenceItemView2 viewUserRegDate;
+
+    @BindView(R.id.view_tutor_history)
+    PreferenceItemView viewTutorHistory;
 
     public static MyFragment newInstance() {
         MyFragment fragment = new MyFragment();
@@ -75,5 +81,14 @@ public class MyFragment extends BaseFragment {
         viewUserId.setNameAndValue(getString(R.string.user_id_type), userEntity.getIdentityCode());
         viewUserPhone.setValue(userEntity.getPhone());
         viewUserRegDate.setValue(StringUtil.subString(userEntity.getRecordDate(), 10));
+
+        viewUserRegDate.setVisibility(View.GONE);
+
+        viewTutorHistory.setIconAndName(-1, R.string.tutor_history);
+    }
+
+    @OnClick(R.id.view_tutor_history)
+    public void onClickTutorHistory() {
+        ActivityJumper.startTutorHistoryActivity(getContext());
     }
 }

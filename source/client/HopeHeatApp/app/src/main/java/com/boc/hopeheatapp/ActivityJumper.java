@@ -23,6 +23,8 @@ import com.boc.hopeheatapp.activity.RegisterActivity;
 import com.boc.hopeheatapp.activity.EvaluationResultActivity;
 import com.boc.hopeheatapp.activity.ScheduleSystemActivity;
 import com.boc.hopeheatapp.activity.SettingActivity;
+import com.boc.hopeheatapp.activity.TutorDetailActivity;
+import com.boc.hopeheatapp.activity.TutorHistoryActivity;
 import com.boc.hopeheatapp.activity.UpdateDialog;
 import com.boc.hopeheatapp.activity.UserInfoActivity;
 import com.boc.hopeheatapp.activity.VocalIdentifyActivity;
@@ -31,7 +33,9 @@ import com.boc.hopeheatapp.activity.VocalVerifyActivity;
 import com.boc.hopeheatapp.activity.WelcomeActivity;
 import com.boc.hopeheatapp.activity.WorkbenchActivity;
 import com.boc.hopeheatapp.model.ChannelEntity;
+import com.boc.hopeheatapp.model.TutorHistoryEntity;
 import com.boc.hopeheatapp.model.VersionEntity;
+import com.boc.hopeheatapp.util.json.JsonUtils;
 import com.boc.hopeheatapp.util.string.StringUtil;
 
 import java.util.ArrayList;
@@ -464,6 +468,7 @@ public class ActivityJumper {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
+
     /**
      * 打开咨询历史界面
      *
@@ -524,6 +529,38 @@ public class ActivityJumper {
         }
 
         Intent intent = new Intent(context, OneKeyConsultActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 打开辅导历史页面
+     *
+     * @param context
+     */
+    public static void startTutorHistoryActivity(Context context) {
+        if (context == null) {
+            return;
+        }
+
+        Intent intent = new Intent(context, TutorHistoryActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 打开辅导详情页
+     *
+     * @param context
+     */
+    public static void startTutorDetailActivity(Context context, String victimId, String victimTestId) {
+        if (context == null) {
+            return;
+        }
+
+        Intent intent = new Intent(context, TutorDetailActivity.class);
+        intent.putExtra(EXTRA_VICTIM_ID, victimId);
+        intent.putExtra(EXTRA_VICTIM_TEST_ID, victimTestId);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }

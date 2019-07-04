@@ -107,6 +107,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="55dp" />
 
+
+            <com.boc.hopeheatapp.widget.PreferenceItemView
+                android:id="@+id/view_tutor_history"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                />
+
         </LinearLayout>
     </ScrollView>
 
