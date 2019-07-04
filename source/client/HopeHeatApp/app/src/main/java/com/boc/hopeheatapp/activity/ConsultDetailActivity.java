@@ -12,7 +12,6 @@ import com.boc.hopeheatapp.adapter.ConsultHistoryAdapter;
 import com.boc.hopeheatapp.model.ConsultDetailEntity;
 import com.boc.hopeheatapp.model.ConsultHistoryEntity;
 import com.boc.hopeheatapp.service.biz.ConsultLoader;
-import com.boc.hopeheatapp.util.string.StringUtil;
 
 import java.util.List;
 
@@ -122,26 +121,35 @@ public class ConsultDetailActivity extends TitleColorActivity {
                 //handleLoginSuccess(username, pwd, userEntity);
                 if (entity != null) {
                     tvVictimId.setText(entity.getVictimtestId());
-                    tvVictimLevel.setText(entity.getTestsLevel());
+                    if ("H".equals(entity.getTestsLevel())) {
+                        tvVictimLevel.setText(R.string.evaluation_result1);
+                    } else if ("U".equals(entity.getTestsLevel())) {
+                        tvVictimLevel.setText(R.string.evaluation_result2);
+                    } else if ("B".equals(entity.getTestsLevel())) {
+                        tvVictimLevel.setText(R.string.evaluation_result3);
+                    } else if ("I".equals(entity.getTestsLevel())) {
+                        tvVictimLevel.setText(R.string.evaluation_result4);
+                    }
+
                     if ("Y".equals(entity.getCounseling())) {
                         tvJoinConsult.setText(R.string.agree);
                     } else {
                         tvJoinConsult.setText(R.string.disagree);
                     }
                     tvDoctorName.setText(entity.getDoctorName());
-                    //tvDoctorLevel.setText();
-                    tvVolunteerPlatform.setText(entity.getAffiliate());
+                    tvDoctorLevel.setText(entity.getCertificate());
+                    tvVolunteerPlatform.setText(entity.getPlatform());
                     tvJoinDate.setText(entity.getTestioinDate());
-                    //tvJoinTime.setText(); ;
-//                    tvConsultSatisfaction.setText(entity.getSatisficing());
+                    tvJoinTime.setText(entity.getTestjoinTime()); ;
 
-                    if (StringUtil.equals(entity.getSatisficing(), "W")) {
-                        tvConsultSatisfaction.setText("非常满意");
-                    } else if (StringUtil.equals(entity.getTestsLevel(), "G")) {
-                        tvConsultSatisfaction.setText("基本满意");
-                    } else if (StringUtil.equals(entity.getTestsLevel(), "Y")) {
-                        tvConsultSatisfaction.setText("不满意");
+                    if ("W".equals(entity.getSatisficing())) {
+                        tvConsultSatisfaction.setText(R.string.wonderful);
+                    } else if ("Y".equals(entity.getSatisficing())) {
+                        tvConsultSatisfaction.setText(R.string.yawp);
+                    } else if ("G".equals(entity.getSatisficing())) {
+                        tvConsultSatisfaction.setText(R.string.good);
                     }
+
 
                 }
             }

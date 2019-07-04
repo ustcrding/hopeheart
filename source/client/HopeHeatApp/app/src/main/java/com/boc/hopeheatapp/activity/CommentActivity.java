@@ -104,7 +104,7 @@ public class CommentActivity extends TitleColorActivity {
                     msg = "G";
                 }
                 UserLoader userService = new UserLoader();
-                userService.uploadComment(UserManager.getInstance().getUser().getUserId() + "", "1", BocSettings.getInstance().getString(BocSettings.DOCTOR_ID), msg).subscribe(new Subscriber<Void>() {
+                userService.uploadComment(UserManager.getInstance().getUser().getRoleId() + "", BocSettings.getInstance().getString(BocSettings.VICTIM_TEST_ID), BocSettings.getInstance().getString(BocSettings.DOCTOR_ID), msg).subscribe(new Subscriber<Void>() {
                     @Override
                     public void onCompleted() {
 

@@ -142,6 +142,8 @@
     <string name="user_id_hint">请填写ID号</string>
     <string name="user_name">姓名</string>
     <string name="user_sex">性别</string>
+    <string name="male">男</string>
+    <string name="female">女</string>
     <string name="user_name_hint">请填写姓名</string>
     <string name="user_credentials_type">证件类型</string>
     <string name="choice_default">请选择</string>
@@ -228,6 +230,11 @@
     <string name="evaluation_advise2">不良-心理知识获取</string>
     <string name="evaluation_advise3">障碍-寻求心理治疗</string>
     <string name="evaluation_advise4">疾病 -一对一辅导</string>
+
+    <string name="evaluation_result1">健康状态</string>
+    <string name="evaluation_result2">不良状态</string>
+    <string name="evaluation_result3">心理障碍</string>
+    <string name="evaluation_result4">心理疾病</string>
 
     <string name="finish">结束</string>
     <string name="chat_hint">请输入文字...</string>

@@ -296,7 +296,7 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
                     }
 
                     @Override
-                    public void onNext(ConsultEntity consultEntity) {
+                    public void onNext(final ConsultEntity consultEntity) {
                         userService.queryDoctor(mVictimId, "1", consultEntity != null ? consultEntity.getVictimtestId() : "1", mStatus, sdf.format(date), sdf2.format(date), mAddress).subscribe(new Subscriber<DoctorEntity>() {
                             @Override
                             public void onCompleted() {
@@ -310,6 +310,9 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
 
                             @Override
                             public void onNext(DoctorEntity doctorEntity) {
+                                if (consultEntity != null) {
+                                    BocSettings.getInstance().setSetting(BocSettings.VICTIM_TEST_ID, consultEntity.getVictimtestId());
+                                }
                                 if (doctorEntity != null) {
                                     BocSettings.getInstance().setSetting(BocSettings.DOCTOR_ID, doctorEntity.getDoctorId());
                                 }

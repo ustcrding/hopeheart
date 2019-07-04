@@ -74,7 +74,8 @@
             android:layout_marginTop="40dp"
             android:background="@drawable/sl_default_btn"
             android:layout_gravity="center_horizontal"
-            android:text="@string/public_login" />
+            android:text="@string/public_login"
+            android:layout_marginBottom="10dp"/>
 
 
         <!--<LinearLayout-->

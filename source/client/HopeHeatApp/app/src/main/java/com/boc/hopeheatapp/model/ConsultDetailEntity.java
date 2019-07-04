@@ -48,9 +48,8 @@ public class ConsultDetailEntity {
     private String doctorName;
 
     @Expose
-    @SerializedName("affiliate")
-    private String affiliate;
-
+    @SerializedName("certificate")
+    private String certificate;
 
     public String getAddressCode() {
         return addressCode;
@@ -132,12 +131,11 @@ public class ConsultDetailEntity {
         this.doctorName = doctorName;
     }
 
-
-    public String getAffiliate() {
-        return affiliate;
+    public String getCertificate() {
+        return certificate;
     }
 
-    public void setAffiliate(String affiliate) {
-        this.affiliate = affiliate;
+    public void setCertificate(String certificate) {
+        this.certificate = certificate;
     }
 }

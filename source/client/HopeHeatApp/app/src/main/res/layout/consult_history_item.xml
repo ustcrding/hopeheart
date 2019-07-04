@@ -12,7 +12,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="match_parent"
             android:text="@string/start_date"
             android:textColor="@color/gray_888888"
@@ -22,7 +22,7 @@
 
         <TextView
             android:id="@+id/tv_start_date"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:text="@string/start_date"
             android:textColor="@color/black_333333"
@@ -56,11 +56,12 @@
 
         <TextView
             android:id="@+id/tv_end_date_label"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="match_parent"
             android:text="@string/evaluation_status"
             android:textColor="@color/gray_888888"
             android:layout_gravity="left|center_vertical"
+            android:gravity="left|center_vertical"
             android:paddingLeft="15dp"
             android:textSize="14sp"/>
 
@@ -71,6 +72,7 @@
             android:textColor="@color/black_333333"
             android:paddingLeft="20dp"
             android:gravity="left|center_vertical"
+            android:layout_gravity="left|center_vertical"
             android:textSize="15sp"/>
     </LinearLayout>
     <View
