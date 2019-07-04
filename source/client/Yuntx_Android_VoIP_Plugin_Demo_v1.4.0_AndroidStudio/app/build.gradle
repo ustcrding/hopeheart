@@ -1,0 +1,71 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion parent.ext.compileSdkVersion
+    buildToolsVersion parent.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.yuntongxun.voipdemo"
+        minSdkVersion parent.ext.minSdkVersion
+        versionCode parent.ext.versionCode
+        versionName parent.ext.versionName
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+    android {
+        lintOptions {
+            abortOnError false
+        }
+    }
+
+}
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:26.+'
+
+    compile files('libs/MiPush_SDK_Client_3_2_2.jar')
+    compile files('libs/HwPush_SDK_NOMAP_V2705.jar')
+    compile(name: 'Yuntx_Android_VoIP_Plugin_v1.4.0', ext: 'aar')
+    compile(name: 'Yuntx_Android_Common_Plugin_v1.4.0', ext: 'aar')
+
+    compile 'com.belerweb:pinyin4j:2.5.1'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'org.jsoup:jsoup:1.10.1'
+    compile 'io.reactivex:rxjava:1.1.1'
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+    compile('com.squareup.retrofit2:converter-gson:2.1.0') {
+        transitive = true
+    }
+    compile 'com.alibaba:fastjson:1.2.17'
+}
+
+android.applicationVariants.all { variant ->
+    // custom package name
+    def apk = variant.outputs[0].outputFile;
+    def versionName = android.defaultConfig.versionName;
+    //def manifestParser = new DefaultManifestParser()
+    //def versionName =manifestParser.getVersionName(android.sourceSets.main.manifest.srcFile)
+    def newName = "";
+    if (variant.buildType.name == "release") {
+        newName = apk.name.replace(".apk", "_Yuntx_Android_VoIP_V" + versionName + "_release.apk");
+    } else {
+        newName = apk.name.replace(".apk", "_Yuntx_Android_VoIP_V" + versionName + "_debug.apk");
+    }
+    newName = newName.replace("-" + variant.buildType.name, "");
+    variant.outputs[0].outputFile = new File(apk.parentFile, newName);
+    if (variant.outputs[0].zipAlign) {
+        variant.outputs[0].zipAlign.outputFile = new File(apk.parentFile, newName.replace("-unaligned", ""));
+    }
+}
