@@ -153,11 +153,11 @@ public class TutorDetailActivity extends TitleColorActivity {
 
                     tvTutorLocateArea.setText("北京 东城区");
                     if (StringUtil.equals(entity.getSatisficing(), "W")) {
-                        tvVictimLevel.setText("非常满意");
+                        tvTutorSatisfaction.setText("非常满意");
                     } else if (StringUtil.equals(entity.getTestsLevel(), "G")) {
-                        tvVictimLevel.setText("基本满意");
+                        tvTutorSatisfaction.setText("基本满意");
                     } else if (StringUtil.equals(entity.getTestsLevel(), "Y")) {
-                        tvVictimLevel.setText("不满意");
+                        tvTutorSatisfaction.setText("不满意");
                     }
 
                 }

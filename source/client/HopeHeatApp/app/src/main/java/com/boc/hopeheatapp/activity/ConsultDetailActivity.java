@@ -12,6 +12,7 @@ import com.boc.hopeheatapp.adapter.ConsultHistoryAdapter;
 import com.boc.hopeheatapp.model.ConsultDetailEntity;
 import com.boc.hopeheatapp.model.ConsultHistoryEntity;
 import com.boc.hopeheatapp.service.biz.ConsultLoader;
+import com.boc.hopeheatapp.util.string.StringUtil;
 
 import java.util.List;
 
@@ -127,12 +128,20 @@ public class ConsultDetailActivity extends TitleColorActivity {
                     } else {
                         tvJoinConsult.setText(R.string.disagree);
                     }
-                    tvDoctorName.setText(entity.getVolunteerName());
+                    tvDoctorName.setText(entity.getDoctorName());
                     //tvDoctorLevel.setText();
-                    tvVolunteerPlatform.setText(entity.getPlatform());
+                    tvVolunteerPlatform.setText(entity.getAffiliate());
                     tvJoinDate.setText(entity.getTestioinDate());
                     //tvJoinTime.setText(); ;
-                    tvConsultSatisfaction.setText(entity.getSatisficing());
+//                    tvConsultSatisfaction.setText(entity.getSatisficing());
+
+                    if (StringUtil.equals(entity.getSatisficing(), "W")) {
+                        tvConsultSatisfaction.setText("非常满意");
+                    } else if (StringUtil.equals(entity.getTestsLevel(), "G")) {
+                        tvConsultSatisfaction.setText("基本满意");
+                    } else if (StringUtil.equals(entity.getTestsLevel(), "Y")) {
+                        tvConsultSatisfaction.setText("不满意");
+                    }
 
                 }
             }

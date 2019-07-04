@@ -43,6 +43,15 @@ public class ConsultDetailEntity {
     @SerializedName("testioinDate")
     private String testioinDate;
 
+    @Expose
+    @SerializedName("doctorName")
+    private String doctorName;
+
+    @Expose
+    @SerializedName("affiliate")
+    private String affiliate;
+
+
     public String getAddressCode() {
         return addressCode;
     }
@@ -113,5 +122,22 @@ public class ConsultDetailEntity {
 
     public void setTestioinDate(String testioinDate) {
         this.testioinDate = testioinDate;
+    }
+
+    public String getDoctorName() {
+        return doctorName;
+    }
+
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
+    }
+
+
+    public String getAffiliate() {
+        return affiliate;
+    }
+
+    public void setAffiliate(String affiliate) {
+        this.affiliate = affiliate;
     }
 }
