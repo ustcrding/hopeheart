@@ -8,211 +8,58 @@
 
     <include layout="@layout/title" />
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/lv_chart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/gray_f8f8f8"/>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="41dp"
-        android:layout_marginLeft="20dp"
-        android:gravity="center_vertical"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
         android:orientation="horizontal"
-        android:layout_marginTop="7dp">
+        android:gravity="center_vertical">
 
-        <TextView
+        <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/victim_id"
-            android:gravity="center_vertical"
-            />
-        <TextView
-            android:id="@+id/tv_victim_id"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            />
-    </LinearLayout>
+            android:layout_height="40dp"
+            android:layout_weight="1">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="41dp"
-        android:layout_marginLeft="20dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+            <EditText
+                android:id="@+id/et_text"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="7.5dp"
+                android:background="@null"
+                android:textColor="#999999"
+                android:textColorHint="#999999"
+                android:textCursorDrawable="@null"
+                android:hint="@string/chat_hint"/>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/victim_level"
-            android:gravity="center_vertical"
-            />
-        <TextView
-            android:id="@+id/tv_victim_level"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            />
-    </LinearLayout>
+            <View
+                android:id="@+id/v_line"
+                android:layout_width="1px"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@color/gray_DEE0E8"
+                />
+        </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="41dp"
-        android:layout_marginLeft="20dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/join_consult"
-            android:gravity="center_vertical"
-            />
-        <TextView
-            android:id="@+id/tv_join_consult"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="41dp"
-        android:layout_marginLeft="20dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/doctor_name"
-            android:gravity="center_vertical"
-            />
-        <TextView
-            android:id="@+id/tv_doctor_name"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="41dp"
-        android:layout_marginLeft="20dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/doctor_level"
-            android:gravity="center_vertical"
-            />
-        <TextView
-            android:id="@+id/tv_doctor_level"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="41dp"
-        android:layout_marginLeft="20dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/volunteer_platform"
-            android:gravity="center_vertical"
-            />
-        <TextView
-            android:id="@+id/tv_volunteer_platform"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="41dp"
-        android:layout_marginLeft="20dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/join_date"
-            android:gravity="center_vertical"
-            />
-        <TextView
-            android:id="@+id/tv_join_date"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="41dp"
-        android:layout_marginLeft="20dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/join_time"
-            android:gravity="center_vertical"
-            />
-        <TextView
-            android:id="@+id/tv_join_time"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="41dp"
-        android:layout_marginLeft="20dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/consult_satisfaction"
-            android:gravity="center_vertical"
-            />
-        <TextView
-            android:id="@+id/tv_consult_satisfaction"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="68dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="7.5dp"
+            android:gravity="center"
+            android:text="发送"
+            android:textColor="@color/gray_3BC7D8"
+            android:textSize="17sp"
+            android:background="@null"
             />
     </LinearLayout>
 

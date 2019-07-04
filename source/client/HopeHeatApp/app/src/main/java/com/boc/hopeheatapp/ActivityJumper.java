@@ -7,6 +7,7 @@ import com.boc.hopeheatapp.activity.AboutActivity;
 import com.boc.hopeheatapp.activity.BrowserActivity;
 import com.boc.hopeheatapp.activity.ChannelActivity;
 import com.boc.hopeheatapp.activity.ChannelListActivity;
+import com.boc.hopeheatapp.activity.CommentActivity;
 import com.boc.hopeheatapp.activity.ConsultActivity;
 import com.boc.hopeheatapp.activity.ConsultDetailActivity;
 import com.boc.hopeheatapp.activity.ConsultHistoryActivity;
@@ -508,6 +509,22 @@ public class ActivityJumper {
         Intent intent = new Intent(context, EvaluationResultActivity.class);
         intent.putExtra(EXTRA_EVALUATION_MSG, msg);
         intent.putExtra(EXTRA_EVALUATION_SCORE, score);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 打开评价界面
+     *
+     * @param context
+     */
+    public static void startCommentActivity(Context context) {
+        if (context == null) {
+            return;
+        }
+
+        Intent intent = new Intent(context, CommentActivity.class);
+
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }

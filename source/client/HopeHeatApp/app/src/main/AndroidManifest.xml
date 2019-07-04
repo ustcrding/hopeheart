@@ -261,9 +261,10 @@
             android:theme="@style/CommonActivityTheme"
             android:windowSoftInputMode="stateAlwaysHidden"></activity>
 
-        <!--评测结果-->
+
+        <!--评价-->
         <activity
-            android:name="com.boc.hopeheatapp.activity.EvaluationResultActivity"
+            android:name="com.boc.hopeheatapp.activity.CommentActivity"
             android:configChanges="orientation|keyboardHidden"
             android:exported="true"
             android:screenOrientation="portrait"

@@ -81,4 +81,26 @@ public interface UserService {
     @FormUrlEncoded
     @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/verify")
     Observable<BaseResponse<UserEntity>> userBind(@Field("userId") String id);
+
+    /***
+     * 上传评测结果
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/psytest/evaluation")
+    Observable<BaseResponse<Void>> uploadEvaluationResult(@Field("psytestsId") String testiId,
+                                                          @Field("testsLevel") String testLevel,
+                                                          @Field("testionDate") String date,
+                                                          @Field("testionTime") String time,
+                                                          @Field("addressCode") String address);
+
+    /***
+     * 反馈满意度
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/psyQuery/feedback")
+    Observable<BaseResponse<Void>> uploadComment(@Field("victimTestId") String testId,
+                                                 @Field("doctorId") String doctorId,
+                                                 @Field("satisficing") String satisficing);
 }

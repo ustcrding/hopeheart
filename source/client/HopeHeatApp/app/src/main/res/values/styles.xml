@@ -198,4 +198,11 @@
         <item name="android:listSelector">@drawable/listview_item_bg</item>
         <item name="android:scrollingCache">true</item>
     </style>
+
+    <style name="fiveRatingBar" parent="@android:style/Widget.RatingBar">
+           <item name="android:progressDrawable">@drawable/five_rating_bar</item>
+           <item name="android:minHeight">23dp</item>
+           <item name="android:maxHeight">23dp</item>
+    </style>
+
 </resources>
