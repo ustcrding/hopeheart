@@ -39,11 +39,11 @@ public class UserEntity {
     private String roleId;
 
     @Expose
-    @SerializedName("record_date")
+    @SerializedName("recordDate")
     private String recordDate;
 
     @Expose
-    @SerializedName("certificate_code")
+    @SerializedName("certificateCode")
     private String certificateCode;
 
     @Expose

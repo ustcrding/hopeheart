@@ -65,7 +65,8 @@ public class MyFragment extends BaseFragment {
     private void initView() {
         viewUserIdType.setNameAndValue(R.string.user_id_type, R.string.user_card_id);
         viewUserId.setNameAndValue(getString(R.string.user_id_no), "342401199001011234");
-        viewUserPhone.setNameAndValue("联系方式", "18912341234");
+
+        viewUserPhone.setNameAndValue("联系方式", "180xxxxxxxx");
         viewUserRegDate.setNameAndValue("登记日期", "2019-06-25");
 
         UserEntity userEntity = UserManager.getInstance().getUser();
@@ -78,13 +79,19 @@ public class MyFragment extends BaseFragment {
             ivUserSex.setImageResource(R.drawable.women);
         }
         tvUserAddr.setText(userEntity.getProvince() + ' ' + userEntity.getCity());
+
         viewUserId.setNameAndValue(getString(R.string.user_id_no), userEntity.getIdentityCode());
-        viewUserPhone.setValue(userEntity.getPhone());
-        viewUserRegDate.setValue(StringUtil.subString(userEntity.getRecordDate(), 10));
+        if (!StringUtil.equals(userEntity.getRoleType(), UserEntity.TYPE_DOCTOR)) {
+            viewUserPhone.setValue(userEntity.getPhone());
 
-        viewUserRegDate.setVisibility(View.GONE);
-
-        viewTutorHistory.setIconAndName(-1, R.string.tutor_history);
+            viewUserRegDate.setValue(StringUtil.subString(userEntity.getRecordDate(), 10));
+            viewTutorHistory.setVisibility(View.GONE);
+        } else {
+            viewUserPhone.setNameAndValue("执业资格证号", "7183773828239");
+            viewUserRegDate.setNameAndValue("登记日期", "2019-06-25");
+            viewUserRegDate.setVisibility(View.GONE);
+            viewTutorHistory.setIconAndName(-1, R.string.tutor_history);
+        }
     }
 
     @OnClick(R.id.view_tutor_history)

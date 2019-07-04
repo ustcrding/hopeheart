@@ -144,11 +144,11 @@ public class TutorDetailActivity extends TitleColorActivity {
                     tvCredentialsType.setText(entity.getVictimCerType());
                     tvVictimPhone.setText(entity.getVictimPhone());
                     tvVictimAddr.setText(entity.getAddressDetail());
-                    tvVictimCity.setText(entity.getAddressCode());
+                    tvVictimCity.setText("四川 汶川");
                     tvTutorDate.setText(entity.getTestJoinDate());
                     tvTutorTime.setText(entity.getTestJoinTime());
 
-                    tvTutorLocateArea.setText(entity.getVictimAddressCode());
+                    tvTutorLocateArea.setText("北京 东城区");
                     if (StringUtil.equals(entity.getSatisficing(), "W")) {
                         tvVictimLevel.setText("非常满意");
                     } else if (StringUtil.equals(entity.getTestsLevel(), "G")) {
