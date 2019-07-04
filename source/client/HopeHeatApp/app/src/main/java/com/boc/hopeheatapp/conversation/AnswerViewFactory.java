@@ -90,7 +90,7 @@ public class AnswerViewFactory {
         AnswerView answerView = new SingleAnswerNoZcView(context);
 
         MsgEntity msgEntity = MsgEntity.genAnswerMsg();
-        msgEntity.setContent(content);
+        msgEntity.setContent(response);
         answerView.setMsg(msgEntity);
         return answerView;
     }

@@ -14,6 +14,7 @@ import com.boc.hopeheatapp.activity.HomeActivity;
 import com.boc.hopeheatapp.activity.KnowledgeActivity;
 import com.boc.hopeheatapp.activity.LoginActivity;
 import com.boc.hopeheatapp.activity.MainActivity;
+import com.boc.hopeheatapp.activity.OneKeyConsultActivity;
 import com.boc.hopeheatapp.activity.PictureShowActivity;
 import com.boc.hopeheatapp.activity.PsychologicalTestActivity;
 import com.boc.hopeheatapp.activity.QuestionnaireActivity;
@@ -508,6 +509,21 @@ public class ActivityJumper {
         Intent intent = new Intent(context, EvaluationResultActivity.class);
         intent.putExtra(EXTRA_EVALUATION_MSG, msg);
         intent.putExtra(EXTRA_EVALUATION_SCORE, score);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 打开一键咨询页面
+     *
+     * @param context
+     */
+    public static void startOneKeyConsultActivity(Context context) {
+        if (context == null) {
+            return;
+        }
+
+        Intent intent = new Intent(context, OneKeyConsultActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }

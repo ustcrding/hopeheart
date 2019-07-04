@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.boc.hopeheatapp.ActivityJumper;
 import com.boc.hopeheatapp.R;
 import com.boc.hopeheatapp.adapter.MsgListAdapter;
 import com.boc.hopeheatapp.model.MessageEntity;
@@ -100,6 +102,17 @@ public class MsgFragment extends BaseFragment {
                 requestData();
             }
         });
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                onclickedItem((MessageEntity) adapter.getItem(position));
+            }
+        });
+    }
+
+    private void onclickedItem(MessageEntity item) {
+        ActivityJumper.startOneKeyConsultActivity(getContext());
     }
 
     private void requestData() {
@@ -112,14 +125,14 @@ public class MsgFragment extends BaseFragment {
         messageEntity.setTime("15:30");
 
         MessageEntity messageEntity2 = new MessageEntity();
-        messageEntity2.setMsgFrom("李某某");
+        messageEntity2.setMsgFrom("张某某");
         messageEntity2.setMsg("你好，在吗");
-        messageEntity2.setTime("15:30");
+        messageEntity2.setTime("15:00");
 
         MessageEntity messageEntity3 = new MessageEntity();
-        messageEntity3.setMsgFrom("李某某");
+        messageEntity3.setMsgFrom("丁某某");
         messageEntity3.setMsg("你好，在吗");
-        messageEntity3.setTime("15:30");
+        messageEntity3.setTime("12:30");
 
         list.add(messageEntity);
         list.add(messageEntity2);
