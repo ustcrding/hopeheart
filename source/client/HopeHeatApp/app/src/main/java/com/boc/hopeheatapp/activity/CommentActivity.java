@@ -103,7 +103,7 @@ public class CommentActivity extends TitleColorActivity {
                     msg = "G";
                 }
                 UserLoader userService = new UserLoader();
-                userService.uploadComment("test01", "d001", msg).subscribe(new Subscriber<Void>() {
+                userService.uploadComment("test001", "doc001", msg).subscribe(new Subscriber<Void>() {
                     @Override
                     public void onCompleted() {
 

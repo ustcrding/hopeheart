@@ -197,7 +197,7 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (mWebView.canGoBack()) {
+            if (mWebView != null && mWebView.canGoBack()) {
                 mWebView.goBack();// 返回上一页面
                 return true;
             } else {
@@ -208,7 +208,7 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
     }
 
     private void onClickedBack() {
-        if (mWebView.canGoBack()) {
+        if (mWebView != null && mWebView.canGoBack()) {
             mWebView.goBack();// 返回上一页面
         } else {
             finish();
@@ -219,14 +219,18 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
     protected void onPause() {
         super.onPause();
 
-        mWebView.onPause();
+        if (mWebView != null) {
+            mWebView.onPause();
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        mWebView.onResume();
+        if (mWebView != null) {
+            mWebView.onResume();
+        }
     }
 
     public class WebAppInterface {
@@ -240,7 +244,7 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
         /** Show a toast from the web page */
         @JavascriptInterface
         public void onQuestionnaireFinished(String json) {
-            EvaluationEntity entity = JsonUtils.fromJson(json, EvaluationEntity.class);
+            final EvaluationEntity entity = JsonUtils.fromJson(json, EvaluationEntity.class);
             if (entity != null) {
                 String status = "H";
                 if (entity.getScores() < 53) {
@@ -285,12 +289,18 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
                     }
                 });
 
-                ActivityJumper.startEvaluationResultActivity(QuestionnaireActivity.this, entity.getResult(), entity.getScores());
-                if (mWebView != null) {
-                    mWebView.destroy();
-                    mWebView = null;
-                }
-                finish();
+                mWebView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        ActivityJumper.startEvaluationResultActivity(QuestionnaireActivity.this, entity.getResult(), entity.getScores());
+                        if (mWebView != null) {
+                            mWebView.destroy();
+                            mWebView = null;
+                        }
+                        finish();
+                    }
+                });
+
             }
         }
     }
