@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.boc.hopeheatapp.ActivityJumper;
 import com.boc.hopeheatapp.R;
 import com.boc.hopeheatapp.model.UserEntity;
 import com.boc.hopeheatapp.parser.TextUtils;
@@ -224,13 +225,13 @@ public class UserInfoActivity extends TitleColorActivity {
             return;
         }
 
-        String city = tvCityName.getText().toString();
+        final String city = tvCityName.getText().toString();
         if (defChoice.equals(city)) {
             ToastUtils.showShort(this, R.string.fill_tips);
             return;
         }
 
-        String address = etAddress.getText().toString();
+        final String address = etAddress.getText().toString();
 //        if (TextUtils.isEmpty(address)) {
 //            return;
 //        }
@@ -254,6 +255,11 @@ public class UserInfoActivity extends TitleColorActivity {
             @Override
             public void onNext(Void s) {
                 ToastUtils.showShort(UserInfoActivity.this, R.string.success_tips);
+                UserEntity user = UserManager.getInstance().getUser();
+                user.setProvince("");
+                user.setCity(city);
+                user.setAddress(address);
+                ActivityJumper.startWelcomeActivity(getApplicationContext(), false);
                 finish();
             }
         });

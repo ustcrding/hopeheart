@@ -405,7 +405,7 @@ public class ActivityJumper {
 
         Intent intent = new Intent(context, WelcomeActivity.class);
         intent.putExtra(ActivityJumper.EXTRA_FIRST_MARK, first);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(intent);
     }
 
