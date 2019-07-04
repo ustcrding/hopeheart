@@ -62,7 +62,7 @@ public class TutorHistoryEntity {
 
     public static class Result {
         @Expose
-        @SerializedName("victim_name")
+        @SerializedName("victimName")
         private String victimName;
 
         @Expose
@@ -70,23 +70,23 @@ public class TutorHistoryEntity {
         private String victimGender;
 
         @Expose
-        @SerializedName("victim_test_id")
+        @SerializedName("victimtestId")
         private String victimTestId;
 
         @Expose
-        @SerializedName("victim_id")
+        @SerializedName("victimId")
         private String victimId;
 
         @Expose
-        @SerializedName("tests_level")
+        @SerializedName("testsLevel")
         private String testsLevel;
 
         @Expose
-        @SerializedName("testioin_date")
+        @SerializedName("testioinDate")
         private String testioinDate;
 
         @Expose
-        @SerializedName("address_code")
+        @SerializedName("addressCode")
         private String addressCode;
 
         public String getAddressCode() {
