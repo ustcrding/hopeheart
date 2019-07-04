@@ -19,11 +19,11 @@ public class UserEntity {
     private int userId;
 
     @Expose
-    @SerializedName("user_name")
+    @SerializedName("username")
     private String username;
 
     @Expose
-    @SerializedName("user_password")
+    @SerializedName("password")
     private String pwd;
 
     @Expose
@@ -35,7 +35,7 @@ public class UserEntity {
     private String groupId;
 
     @Expose
-    @SerializedName("role_id")
+    @SerializedName("roleId")
     private String roleId;
 
     @Expose
@@ -63,7 +63,7 @@ public class UserEntity {
     private String identityCode;
 
     @Expose
-    @SerializedName("password")
+    @SerializedName("user_password")
     private String password;
 
     @Expose
@@ -96,6 +96,10 @@ public class UserEntity {
     @Expose
     @SerializedName("roleType")
     private String roleType;
+
+    @Expose
+    @SerializedName("address")
+    private String address;
 
     public UserEntity() {
     }
@@ -274,5 +278,13 @@ public class UserEntity {
 
     public void setPreserve(String preserve) {
         this.preserve = preserve;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

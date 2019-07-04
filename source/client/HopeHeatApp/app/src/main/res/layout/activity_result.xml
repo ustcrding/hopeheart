@@ -72,14 +72,15 @@
             android:textColor="@color/gray_2C9AB0"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
-            android:gravity="left|center_vertical"
+            android:paddingLeft="20dp"
+            android:gravity="center"
             android:textSize="17sp"/>
 
         <Button
             android:id="@+id/psychology_evaluation"
             android:layout_width="195dp"
             android:layout_height="45dp"
-            android:background="@drawable/button_selector"
+            android:background="@drawable/button_selector2"
             android:text="@string/vedio_consult"
             android:textColor="@color/gray_2C9AB0"
             android:layout_gravity="center_horizontal"

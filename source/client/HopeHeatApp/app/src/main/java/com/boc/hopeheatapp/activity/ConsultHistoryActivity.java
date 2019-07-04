@@ -18,6 +18,7 @@ import com.boc.hopeheatapp.model.ChannelEntity;
 import com.boc.hopeheatapp.model.ConsultHistoryEntity;
 import com.boc.hopeheatapp.service.biz.CatalogLoader;
 import com.boc.hopeheatapp.service.biz.ConsultLoader;
+import com.boc.hopeheatapp.user.UserManager;
 import com.boc.hopeheatapp.util.string.StringUtil;
 import com.boc.hopeheatapp.widget.channel.ChannelAdapter;
 import com.boc.hopeheatapp.widget.channel.GridDivider;
@@ -105,7 +106,7 @@ public class ConsultHistoryActivity extends TitleColorActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 List<ConsultHistoryEntity.Result> datas = historyAdapter.getDatas();
                 if (datas.size() > position) {
-                    ActivityJumper.startConsultDetailActivity(ConsultHistoryActivity.this, "v001", datas.get(position).getVictimtestId());
+                    ActivityJumper.startConsultDetailActivity(ConsultHistoryActivity.this, UserManager.getInstance().getUser().getRoleId(), datas.get(position).getVictimtestId());
                 }
             }
         });
@@ -113,7 +114,7 @@ public class ConsultHistoryActivity extends TitleColorActivity {
 
     private void requestHistory() {
         ConsultLoader consultLoader = new ConsultLoader();
-        consultLoader.queryConsultHistory("v001", "1").subscribe(new Subscriber<ConsultHistoryEntity>() {
+        consultLoader.queryConsultHistory(UserManager.getInstance().getUser().getRoleId(), "1").subscribe(new Subscriber<ConsultHistoryEntity>() {
 
             @Override
             public void onCompleted() {

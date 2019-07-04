@@ -204,11 +204,12 @@
     <string name="evaluation_level">您的评测结果等级</string>
     <string name="evaluation_advise">建议您的辅导方式</string>
     <string name="knonledge_query">相关知识查询</string>
-    <string name="consult_key">&#160;一键咨询</string>
-    <string name="vedio_consult">&#160;视频咨询</string>
+    <string name="consult_key">一键咨询&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</string>
+    <string name="vedio_consult">视频咨询</string>
 
     <string name="start_date">测评开始日期</string>
     <string name="end_date">测评截止日期</string>
+    <string name="evaluation_status">测评状态</string>
 
     <string name="victim_id">心理测评号:</string>
     <string name="victim_level">心理测评等级:</string>

@@ -67,7 +67,17 @@ public class ConsultHistoryAdapter extends BaseAdapter {
 
         ConsultHistoryEntity.Result result = mDatas.get(position);
         holder.tvStartDate.setText(result.getTestioinDate());
-        holder.tvEndDate.setText(result.getTestioinDate());
+        //holder.tvEndDate.setText(result.getTestioinDate());
+        if ("H".equals(result.getTestsLevel())) {
+            holder.tvEndDate.setText(R.string.evaluation_advise1);
+        } else if ("U".equals(result.getTestsLevel())) {
+            holder.tvEndDate.setText(R.string.evaluation_advise2);
+        } else if ("B".equals(result.getTestsLevel())) {
+            holder.tvEndDate.setText(R.string.evaluation_advise3);
+        } else if ("I".equals(result.getTestsLevel())) {
+            holder.tvEndDate.setText(R.string.evaluation_advise4);
+        }
+
         holder.tvCity.setText(result.getAddressCode());
 
         return convertView;

@@ -217,6 +217,11 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
         if (mWebView != null && mWebView.canGoBack()) {
             mWebView.goBack();// 返回上一页面
         } else {
+            if (mWebView != null) {
+                mWebView.destroy();
+                mWebView = null;
+            }
+
             finish();
         }
     }
@@ -269,7 +274,7 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
 
                 UserEntity user = UserManager.getInstance().getUser();
                 if (user != null) {
-                    mVictimId = user.getUserId() + "";
+                    mVictimId = user.getRoleId();
                     mAddress = "";
                     if (!TextUtils.isEmpty(user.getProvince())) {
                         mAddress += user.getProvince();
@@ -292,7 +297,7 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
 
                     @Override
                     public void onNext(ConsultEntity consultEntity) {
-                        userService.queryDoctor(mVictimId, consultEntity != null ? consultEntity.getVictimtestId() : "1", mStatus, sdf.format(date), sdf2.format(date), mAddress).subscribe(new Subscriber<DoctorEntity>() {
+                        userService.queryDoctor(mVictimId, "1", consultEntity != null ? consultEntity.getVictimtestId() : "1", mStatus, sdf.format(date), sdf2.format(date), mAddress).subscribe(new Subscriber<DoctorEntity>() {
                             @Override
                             public void onCompleted() {
 

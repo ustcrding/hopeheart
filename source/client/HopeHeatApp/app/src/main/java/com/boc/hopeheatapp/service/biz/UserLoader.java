@@ -147,8 +147,8 @@ public class UserLoader extends BaseLoader {
      *
      * @return
      */
-    public Observable<DoctorEntity> queryDoctor(String victimId, String testiId, String testLevel, String date, String time, String address) {
-        return observe(service.queryDoctor(victimId, testiId, testLevel, date, time, address)).map(new Func1<BaseResponse<DoctorEntity>, DoctorEntity>() {
+    public Observable<DoctorEntity> queryDoctor(String victimId, String testiId, String victimtestId, String testLevel, String date, String time, String address) {
+        return observe(service.queryDoctor(victimId, testiId, victimtestId, testLevel, date, time, address)).map(new Func1<BaseResponse<DoctorEntity>, DoctorEntity>() {
             @Override
             public DoctorEntity call(BaseResponse<DoctorEntity> baseResponse) {
                 baseResponse.throwExceptionIfError();

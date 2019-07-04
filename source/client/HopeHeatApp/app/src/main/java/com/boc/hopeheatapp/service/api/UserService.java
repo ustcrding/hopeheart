@@ -93,8 +93,8 @@ public interface UserService {
     Observable<BaseResponse<ConsultEntity>> uploadEvaluationResult(@Field("victimId") String victimId,
                                                                    @Field("psytestsId") String testiId,
                                                                    @Field("testsLevel") String testLevel,
-                                                                   @Field("testionDate") String date,
-                                                                   @Field("testionTime") String time,
+                                                                   @Field("testioinDate") String date,
+                                                                   @Field("testioinTime") String time,
                                                                    @Field("addressCode") String address);
     /***
      * 上传评测结果
@@ -104,6 +104,7 @@ public interface UserService {
     @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/psytest/recommend/doctor")
     Observable<BaseResponse<DoctorEntity>> queryDoctor(@Field("victimId") String victimId,
                                                        @Field("psytestsId") String testiId,
+                                                       @Field("victimtestId") String victimtestId,
                                                        @Field("testsLevel") String testLevel,
                                                        @Field("testionDate") String date,
                                                        @Field("testionTime") String time,
