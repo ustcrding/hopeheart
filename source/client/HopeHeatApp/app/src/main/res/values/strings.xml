@@ -228,4 +228,15 @@
     <string name="evaluation_advise4">疾病 -一对一辅导</string>
 
     <string name="finish">结束</string>
+    <string name="chat_hint">请输入文字...</string>
+
+    <string name="finish_confirm">确定要结束咨询？</string>
+
+    <string name="tips_title">提示</string>
+    <string name="comment_title">评价</string>
+    <string name="comment_tips">请对本次咨询进行评价</string>
+
+    <string name="wonderful">非常满意</string>
+    <string name="good">基本满意</string>
+    <string name="yawp">不满意</string>
 </resources>

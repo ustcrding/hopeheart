@@ -7,6 +7,7 @@ import com.boc.hopeheatapp.activity.AboutActivity;
 import com.boc.hopeheatapp.activity.BrowserActivity;
 import com.boc.hopeheatapp.activity.ChannelActivity;
 import com.boc.hopeheatapp.activity.ChannelListActivity;
+import com.boc.hopeheatapp.activity.CommentActivity;
 import com.boc.hopeheatapp.activity.ConsultActivity;
 import com.boc.hopeheatapp.activity.ConsultDetailActivity;
 import com.boc.hopeheatapp.activity.ConsultHistoryActivity;
@@ -519,8 +520,22 @@ public class ActivityJumper {
     }
 
     /**
-     * 打开一键咨询页面
+     * 打开评价界面
      *
+     * @param context
+     */
+    public static void startCommentActivity(Context context) {
+        if (context == null) {
+            return;
+        }
+
+        Intent intent = new Intent(context, CommentActivity.class);
+
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+     /*
      * @param context
      */
     public static void startOneKeyConsultActivity(Context context) {

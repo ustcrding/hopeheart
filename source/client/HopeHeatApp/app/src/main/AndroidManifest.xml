@@ -261,9 +261,10 @@
             android:theme="@style/CommonActivityTheme"
             android:windowSoftInputMode="stateAlwaysHidden"></activity>
 
-        <!--评测结果-->
+
+        <!--评价-->
         <activity
-            android:name="com.boc.hopeheatapp.activity.EvaluationResultActivity"
+            android:name="com.boc.hopeheatapp.activity.CommentActivity"
             android:configChanges="orientation|keyboardHidden"
             android:exported="true"
             android:screenOrientation="portrait"
@@ -272,6 +273,14 @@
 
         <activity
             android:name=".activity.OneKeyConsultActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/CommonActivityTheme"
+            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+
+        <activity
+            android:name=".activity.EvaluationResultActivity"
             android:configChanges="orientation|keyboardHidden"
             android:exported="true"
             android:screenOrientation="portrait"

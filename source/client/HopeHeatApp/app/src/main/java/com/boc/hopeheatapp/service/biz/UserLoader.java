@@ -124,4 +124,34 @@ public class UserLoader extends BaseLoader {
             }
         });
     }
+
+    /**
+     * 上传评测结果
+     *
+     * @return
+     */
+    public Observable<Void> uploadEvaluationResult(String testiId, String testLevel, String date, String time, String address) {
+        return observe(service.uploadEvaluationResult(testiId, testLevel, date, time, address)).map(new Func1<BaseResponse<Void>, Void>() {
+            @Override
+            public Void call(BaseResponse<Void> baseResponse) {
+                baseResponse.throwExceptionIfError();
+                return baseResponse.getData();
+            }
+        });
+    }
+
+    /**
+     * 反馈满意度
+     *
+     * @return
+     */
+    public Observable<Void> uploadComment(String testId, String doctorId, String satisficing) {
+        return observe(service.uploadComment(testId, doctorId, satisficing)).map(new Func1<BaseResponse<Void>, Void>() {
+            @Override
+            public Void call(BaseResponse<Void> baseResponse) {
+                baseResponse.throwExceptionIfError();
+                return baseResponse.getData();
+            }
+        });
+    }
 }

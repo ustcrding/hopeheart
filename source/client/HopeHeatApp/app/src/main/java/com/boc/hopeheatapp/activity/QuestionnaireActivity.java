@@ -20,11 +20,19 @@ import android.widget.Toast;
 import com.boc.hopeheatapp.ActivityJumper;
 import com.boc.hopeheatapp.R;
 import com.boc.hopeheatapp.model.EvaluationEntity;
+import com.boc.hopeheatapp.model.UserEntity;
+import com.boc.hopeheatapp.service.biz.UserLoader;
+import com.boc.hopeheatapp.user.UserManager;
 import com.boc.hopeheatapp.util.json.JsonUtils;
 import com.boc.hopeheatapp.util.log.Logger;
 import com.boc.hopeheatapp.util.string.StringUtil;
 
 import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import rx.Subscriber;
 
 /**
  * 问卷调查页面
@@ -189,7 +197,7 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (mWebView.canGoBack()) {
+            if (mWebView != null && mWebView.canGoBack()) {
                 mWebView.goBack();// 返回上一页面
                 return true;
             } else {
@@ -200,7 +208,7 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
     }
 
     private void onClickedBack() {
-        if (mWebView.canGoBack()) {
+        if (mWebView != null && mWebView.canGoBack()) {
             mWebView.goBack();// 返回上一页面
         } else {
             finish();
@@ -211,14 +219,18 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
     protected void onPause() {
         super.onPause();
 
-        mWebView.onPause();
+        if (mWebView != null) {
+            mWebView.onPause();
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        mWebView.onResume();
+        if (mWebView != null) {
+            mWebView.onResume();
+        }
     }
 
     public class WebAppInterface {
@@ -232,14 +244,63 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
         /** Show a toast from the web page */
         @JavascriptInterface
         public void onQuestionnaireFinished(String json) {
-            EvaluationEntity entity = JsonUtils.fromJson(json, EvaluationEntity.class);
+            final EvaluationEntity entity = JsonUtils.fromJson(json, EvaluationEntity.class);
             if (entity != null) {
-                ActivityJumper.startEvaluationResultActivity(QuestionnaireActivity.this, entity.getResult(), entity.getScores());
-                if (mWebView != null) {
-                    mWebView.destroy();
-                    mWebView = null;
+                String status = "H";
+                if (entity.getScores() < 53) {
+
+                } else if (entity.getScores() < 63) {
+                    status = "U";
+                } else if (entity.getScores() < 73) {
+                    status = "B";
+                } else {
+                    status = "I";
                 }
-                finish();
+                UserLoader userService = new UserLoader();
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                SimpleDateFormat sdf2 = new SimpleDateFormat("HHmmss");
+                Date date = new Date();
+                String address = "";
+
+                UserEntity user = UserManager.getInstance().getUser();
+                if (user != null) {
+                    if (!TextUtils.isEmpty(user.getProvince())) {
+                        address += user.getProvince();
+                    }
+                    if (!TextUtils.isEmpty(user.getCity())) {
+                        address += user.getCity();
+                    }
+                }
+                userService.uploadEvaluationResult("test001", status, sdf.format(date), sdf2.format(date), address).subscribe(new Subscriber<Void>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+
+                    }
+
+                    @Override
+                    public void onNext(Void aVoid) {
+
+                    }
+                });
+
+                mWebView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        ActivityJumper.startEvaluationResultActivity(QuestionnaireActivity.this, entity.getResult(), entity.getScores());
+                        if (mWebView != null) {
+                            mWebView.destroy();
+                            mWebView = null;
+                        }
+                        finish();
+                    }
+                });
+
             }
         }
     }

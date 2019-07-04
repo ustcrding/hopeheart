@@ -150,6 +150,7 @@ public class LoginActivity extends TitleColorActivity {
         doLogin(username, pwd);
 //        ActivityJumper.startMainActivity(this);
 //        ActivityJumper.startWelcomeActivity(getApplicationContext(), false);
+//        ActivityJumper.startConsultActivity(getApplicationContext());
     }
 
     private void doLogin(final String username, final String pwd) {

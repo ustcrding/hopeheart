@@ -274,13 +274,15 @@ public class KnowledgeActivity extends TitleColorActivity {
 
                     @Override
                     public void onError(Throwable throwable) {
-
+                        etKnowledgeDetail.setText("");
                     }
 
                     @Override
                     public void onNext(RescueEntity rescueEntity) {
                         if (rescueEntity != null) {
                             etKnowledgeDetail.setText(rescueEntity.getRescueKnowledge());
+                        } else {
+                            etKnowledgeDetail.setText("");
                         }
                     }
                 });
@@ -314,13 +316,15 @@ public class KnowledgeActivity extends TitleColorActivity {
 
                     @Override
                     public void onError(Throwable throwable) {
-
+                        etKnowledgeDetail.setText("");
                     }
 
                     @Override
                     public void onNext(PsychologyEntity rescueEntity) {
                         if (rescueEntity != null) {
                             etKnowledgeDetail.setText(rescueEntity.getRescueKnowledge());
+                        } else {
+                            etKnowledgeDetail.setText("");
                         }
                     }
                 });

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/mychat_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black_333333"
+        android:textSize="10sp"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/tb_my_user_icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/mychat_time" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cd"
+        android:layout_toLeftOf="@id/tb_my_user_icon"
+        android:textColor="@color/black_333333"
+        android:textSize="16sp"
+        android:layout_marginTop="5dp"/>
+
+
+</RelativeLayout>
