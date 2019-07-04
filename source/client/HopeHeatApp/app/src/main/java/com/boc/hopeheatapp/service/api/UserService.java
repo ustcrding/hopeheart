@@ -2,6 +2,7 @@ package com.boc.hopeheatapp.service.api;
 
 import com.boc.hopeheatapp.ApiConfig;
 import com.boc.hopeheatapp.http.BaseResponse;
+import com.boc.hopeheatapp.model.ConsultEntity;
 import com.boc.hopeheatapp.model.DoctorEntity;
 import com.boc.hopeheatapp.model.UserEntity;
 
@@ -89,12 +90,12 @@ public interface UserService {
      */
     @FormUrlEncoded
     @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/psytest/evaluation")
-    Observable<BaseResponse<Void>> uploadEvaluationResult(@Field("victimId") String victimId,
-                                                          @Field("psytestsId") String testiId,
-                                                          @Field("testsLevel") String testLevel,
-                                                          @Field("testionDate") String date,
-                                                          @Field("testionTime") String time,
-                                                          @Field("addressCode") String address);
+    Observable<BaseResponse<ConsultEntity>> uploadEvaluationResult(@Field("victimId") String victimId,
+                                                                   @Field("psytestsId") String testiId,
+                                                                   @Field("testsLevel") String testLevel,
+                                                                   @Field("testionDate") String date,
+                                                                   @Field("testionTime") String time,
+                                                                   @Field("addressCode") String address);
     /***
      * 上传评测结果
      * @return
@@ -113,7 +114,8 @@ public interface UserService {
      */
     @FormUrlEncoded
     @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/psyQuery/feedback")
-    Observable<BaseResponse<Void>> uploadComment(@Field("victimTestId") String testId,
+    Observable<BaseResponse<Void>> uploadComment(@Field("victimId") String victimId,
+                                                 @Field("victimTestId") String testId,
                                                  @Field("doctorId") String doctorId,
                                                  @Field("satisficing") String satisficing);
 }

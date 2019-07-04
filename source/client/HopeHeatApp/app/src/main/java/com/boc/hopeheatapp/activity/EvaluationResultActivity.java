@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.boc.hopeheatapp.ActivityJumper;
 import com.boc.hopeheatapp.R;
+import com.boc.hopeheatapp.call.CallHelper;
 import com.boc.hopeheatapp.fragement.BaseFragment;
 import com.boc.hopeheatapp.fragement.HomeFragment;
 import com.boc.hopeheatapp.fragement.MyFragment;
@@ -110,7 +111,12 @@ public class EvaluationResultActivity extends TitleColorActivity {
         findViewById(R.id.psychology_evaluation).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ActivityJumper.startKnowledgeActivity(EvaluationResultActivity.this, KnowledgeActivity.TYPE_PSYCHOLOGY);
+                //ActivityJumper.startKnowledgeActivity(EvaluationResultActivity.this, KnowledgeActivity.TYPE_PSYCHOLOGY);
+                try {
+                    CallHelper.videoCall(getApplicationContext(), "18963792291", "患者");
+                } catch (Throwable t) {
+
+                }
             }
         });
     }

@@ -58,7 +58,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="420dp"
+        android:layout_width="match_parent"
         android:layout_height="180dp"
         android:orientation="vertical">
 
@@ -70,9 +70,8 @@
             android:drawableLeft="@drawable/chat"
             android:text="@string/consult_key"
             android:textColor="@color/gray_2C9AB0"
-            android:layout_gravity="right"
-            android:paddingLeft="20dp"
-            android:layout_marginBottom="70dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="30dp"
             android:gravity="left|center_vertical"
             android:textSize="17sp"/>
 
@@ -81,10 +80,9 @@
             android:layout_width="195dp"
             android:layout_height="45dp"
             android:background="@drawable/button_selector"
-            android:text="@string/knonledge_query"
+            android:text="@string/vedio_consult"
             android:textColor="@color/gray_2C9AB0"
             android:layout_gravity="center_horizontal"
-            android:layout_marginRight="30dp"
             android:textSize="17sp"/>
     </LinearLayout>
 </LinearLayout>

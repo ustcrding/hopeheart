@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.boc.hopeheatapp.ActivityJumper;
 import com.boc.hopeheatapp.R;
+import com.boc.hopeheatapp.model.ConsultEntity;
 import com.boc.hopeheatapp.model.DoctorEntity;
 import com.boc.hopeheatapp.model.EvaluationEntity;
 import com.boc.hopeheatapp.model.UserEntity;
@@ -51,6 +52,9 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
     private View mBtnBack;
     private String mTitle;
     private boolean overrideInNewActivity = true;
+    private String mStatus;
+    private String mVictimId;
+    private String mAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -248,35 +252,34 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
         public void onQuestionnaireFinished(String json) {
             final EvaluationEntity entity = JsonUtils.fromJson(json, EvaluationEntity.class);
             if (entity != null) {
-                String status = "H";
+                mStatus = "H";
                 if (entity.getScores() < 53) {
 
                 } else if (entity.getScores() < 63) {
-                    status = "U";
+                    mStatus = "U";
                 } else if (entity.getScores() < 73) {
-                    status = "B";
+                    mStatus = "B";
                 } else {
-                    status = "I";
+                    mStatus = "I";
                 }
 
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-                SimpleDateFormat sdf2 = new SimpleDateFormat("HHmmss");
-                Date date = new Date();
-                String address = "";
+                final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                final SimpleDateFormat sdf2 = new SimpleDateFormat("HHmmss");
+                final Date date = new Date();
 
-                String victimId = "";
                 UserEntity user = UserManager.getInstance().getUser();
                 if (user != null) {
-                    victimId = user.getAuthId();
+                    mVictimId = user.getUserId() + "";
+                    mAddress = "";
                     if (!TextUtils.isEmpty(user.getProvince())) {
-                        address += user.getProvince();
+                        mAddress += user.getProvince();
                     }
                     if (!TextUtils.isEmpty(user.getCity())) {
-                        address += user.getCity();
+                        mAddress += user.getCity();
                     }
                 }
-                UserLoader userService = new UserLoader();
-                userService.uploadEvaluationResult(victimId, "1", status, sdf.format(date), sdf2.format(date), address).subscribe(new Subscriber<Void>() {
+                final UserLoader userService = new UserLoader();
+                userService.uploadEvaluationResult(mVictimId, "1", mStatus, sdf.format(date), sdf2.format(date), mAddress).subscribe(new Subscriber<ConsultEntity>() {
                     @Override
                     public void onCompleted() {
 
@@ -288,30 +291,30 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
                     }
 
                     @Override
-                    public void onNext(Void aVoid) {
+                    public void onNext(ConsultEntity consultEntity) {
+                        userService.queryDoctor(mVictimId, consultEntity != null ? consultEntity.getVictimtestId() : "1", mStatus, sdf.format(date), sdf2.format(date), mAddress).subscribe(new Subscriber<DoctorEntity>() {
+                            @Override
+                            public void onCompleted() {
 
+                            }
+
+                            @Override
+                            public void onError(Throwable throwable) {
+
+                            }
+
+                            @Override
+                            public void onNext(DoctorEntity doctorEntity) {
+                                if (doctorEntity != null) {
+                                    BocSettings.getInstance().setSetting(BocSettings.DOCTOR_ID, doctorEntity.getDoctorId());
+                                }
+                                gotoResult(entity.getResult(), entity.getScores());
+                            }
+                        });
                     }
                 });
 
-                userService.queryDoctor(victimId, "1", status, sdf.format(date), sdf2.format(date), address).subscribe(new Subscriber<DoctorEntity>() {
-                    @Override
-                    public void onCompleted() {
 
-                    }
-
-                    @Override
-                    public void onError(Throwable throwable) {
-
-                    }
-
-                    @Override
-                    public void onNext(DoctorEntity doctorEntity) {
-                        if (doctorEntity != null) {
-                            BocSettings.getInstance().setSetting(BocSettings.DOCTOR_ID, doctorEntity.getDoctorId());
-                        }
-                        gotoResult(entity.getResult(), entity.getScores());
-                    }
-                });
             }
         }
     }

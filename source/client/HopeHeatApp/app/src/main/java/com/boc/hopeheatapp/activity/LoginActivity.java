@@ -107,12 +107,12 @@ public class LoginActivity extends TitleColorActivity {
             }
         });
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickedRegister();
-            }
-        });
+//        btnRegister.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onClickedRegister();
+//            }
+//        });
     }
 
     private void initData() {

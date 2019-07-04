@@ -151,7 +151,11 @@ public class ConsultActivity extends TitleColorActivity {
         tbAdapter.setFromUserClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CallHelper.videoCall(getApplicationContext(),"18963792291", "患者");
+                try {
+                    CallHelper.videoCall(getApplicationContext(), "18963792291", "患者");
+                } catch (Throwable t) {
+
+                }
             }
         });
     }

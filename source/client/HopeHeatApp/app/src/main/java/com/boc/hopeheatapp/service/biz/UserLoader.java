@@ -3,6 +3,7 @@ package com.boc.hopeheatapp.service.biz;
 import com.boc.hopeheatapp.http.BaseLoader;
 import com.boc.hopeheatapp.http.BaseResponse;
 import com.boc.hopeheatapp.http.UpdateServiceManager;
+import com.boc.hopeheatapp.model.ConsultEntity;
 import com.boc.hopeheatapp.model.DoctorEntity;
 import com.boc.hopeheatapp.model.UserEntity;
 import com.boc.hopeheatapp.service.api.UserService;
@@ -131,10 +132,10 @@ public class UserLoader extends BaseLoader {
      *
      * @return
      */
-    public Observable<Void> uploadEvaluationResult(String victimId, String testiId, String testLevel, String date, String time, String address) {
-        return observe(service.uploadEvaluationResult(victimId, testiId, testLevel, date, time, address)).map(new Func1<BaseResponse<Void>, Void>() {
+    public Observable<ConsultEntity> uploadEvaluationResult(String victimId, String testiId, String testLevel, String date, String time, String address) {
+        return observe(service.uploadEvaluationResult(victimId, testiId, testLevel, date, time, address)).map(new Func1<BaseResponse<ConsultEntity>, ConsultEntity>() {
             @Override
-            public Void call(BaseResponse<Void> baseResponse) {
+            public ConsultEntity call(BaseResponse<ConsultEntity> baseResponse) {
                 baseResponse.throwExceptionIfError();
                 return baseResponse.getData();
             }
@@ -161,8 +162,8 @@ public class UserLoader extends BaseLoader {
      *
      * @return
      */
-    public Observable<Void> uploadComment(String testId, String doctorId, String satisficing) {
-        return observe(service.uploadComment(testId, doctorId, satisficing)).map(new Func1<BaseResponse<Void>, Void>() {
+    public Observable<Void> uploadComment(String victimId, String testId, String doctorId, String satisficing) {
+        return observe(service.uploadComment(victimId, testId, doctorId, satisficing)).map(new Func1<BaseResponse<Void>, Void>() {
             @Override
             public Void call(BaseResponse<Void> baseResponse) {
                 baseResponse.throwExceptionIfError();
