@@ -2,6 +2,8 @@ package com.boc.service;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.boc.model.SysUser;
 import com.boc.model.Victiminfo;
 import com.jfinal.kit.Ret;
@@ -15,14 +17,7 @@ public class VictimService {
 			Victiminfo victimInfo = Victiminfo.dao.findFirst("select * from victiminfo where victim_id=?", id);
 			SysUser sysuser= SysUser.dao.findFirst("select * from sys_user where id=?", id);
 			
-			if (victimInfo != null) {
-				System.out.println(sysuser.toJson());
-				if(sysuser.getRoleId()==null){
-					sysuser.setId(Integer.valueOf(id)).setRoleId(id).setIdentityCode(certificateCode).setIdentityType(identityType).setAddress(address)
-					.setSex(sex).setProvince(province).setCity(city)
-					.update();	
-					System.out.println(sysuser.toString());
-				}
+			if (victimInfo != null) {	
 				// 更新
 				victimInfo.setVictimId(id).setVictimName(name).setVictimGender(sex).setVictimCertype(identityType)
 						.setVictimCertno(certificateCode).setVictimPhone(phone).setAddressCode(province + "|" + city)
@@ -34,6 +29,11 @@ public class VictimService {
 						.setVictimCertno(certificateCode).setVictimPhone(phone).setAddressCode(province + "|" + city)
 						.setAddressDetail(address).setRegisterDate(DateUtil.format(new Date(), "yyyy-MM-dd"))
 						.setAdded(demo).save();
+				if(StringUtils.isBlank(sysuser.getRoleId())){
+					sysuser.setId(Integer.valueOf(id)).setRoleId(id).setIdentityCode(certificateCode).setIdentityType(identityType).setAddress(address)
+					.setSex(sex).setProvince(province).setCity(city)
+					.update();	
+				}
 			}
 			return Ret.by("code", "0");
 		} catch (Exception e) {
