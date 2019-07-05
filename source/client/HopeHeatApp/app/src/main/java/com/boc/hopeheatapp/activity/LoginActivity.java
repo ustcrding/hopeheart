@@ -26,21 +26,6 @@ import rx.Subscriber;
 public class LoginActivity extends TitleColorActivity {
 
     /**
-     * title 左侧返回按钮
-     */
-    private View btnBack;
-
-    /**
-     * title正文
-     */
-    private TextView tvTitle;
-
-    /**
-     * title右侧按钮
-     */
-    private TextView btnTitleRight;
-
-    /**
      * 用户名
      */
     private EditText etUserName;
@@ -70,15 +55,8 @@ public class LoginActivity extends TitleColorActivity {
     }
 
     private void initTitle() {
-        btnBack = findViewById(R.id.top_back_container);
-        tvTitle = (TextView) findViewById(R.id.top_title_text);
-        btnTitleRight = (TextView) findViewById(R.id.tv_title_right);
-        btnRegister = (TextView) findViewById(R.id.btn_register);
-        tvTitle.setVisibility(View.VISIBLE);
-        tvTitle.setText(R.string.title_login);
 
-        btnBack.setVisibility(View.INVISIBLE);
-        btnTitleRight.setVisibility(View.INVISIBLE);
+        btnRegister = (TextView) findViewById(R.id.btn_register);
     }
 
     /**
@@ -93,13 +71,6 @@ public class LoginActivity extends TitleColorActivity {
     }
 
     private void addListener() {
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickedBack();
-            }
-        });
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
