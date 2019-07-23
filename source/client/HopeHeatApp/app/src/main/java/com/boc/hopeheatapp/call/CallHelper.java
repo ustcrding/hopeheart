@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.boc.hopeheatapp.util.log.Logger;
+import com.yuntongxun.ecsdk.ECVoIPCallManager;
+import com.yuntongxun.plugin.voip.Voip;
 
 /**
  * @author dwl
@@ -42,11 +44,19 @@ public class CallHelper {
     public static void videoCall(Context context, String phone, String username) {
         Logger.d(TAG, "videoCall | phone = " + phone + ", username = " + username);
 
-        Intent intent = new Intent();
-        intent.setAction(VOIP_VIDEO_CALL);  //应用在清淡文件中注册的action
-        intent.setPackage("com.yuntongxun.voipdemo");                  //应用程序的包名
-        intent.putExtra("phone", phone);
-        intent.putExtra("username", username);
-        context.startService(intent);
+//        Intent intent = new Intent();
+//        intent.setAction(VOIP_VIDEO_CALL);  //应用在清淡文件中注册的action
+//        intent.setPackage("com.yuntongxun.voipdemo");                  //应用程序的包名
+//        intent.putExtra("phone", phone);
+//        intent.putExtra("username", username);
+//        context.startService(intent);
+        Voip.startCallAction(
+                context,
+                ECVoIPCallManager.CallType.VIDEO,
+                username,
+                phone,
+                "手机号",
+                false
+        );
     }
 }

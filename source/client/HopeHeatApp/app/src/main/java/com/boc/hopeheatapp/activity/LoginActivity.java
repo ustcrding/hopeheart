@@ -1,7 +1,12 @@
 package com.boc.hopeheatapp.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,6 +19,14 @@ import com.boc.hopeheatapp.setting.BocSettings;
 import com.boc.hopeheatapp.user.UserManager;
 import com.boc.hopeheatapp.util.ToastUtils;
 import com.boc.hopeheatapp.util.string.StringUtil;
+import com.yuntongxun.ecsdk.ECDevice;
+import com.yuntongxun.ecsdk.SdkErrorCode;
+import com.yuntongxun.plugin.common.AppMgr;
+import com.yuntongxun.plugin.common.ClientUser;
+import com.yuntongxun.plugin.common.SDKCoreHelper;
+import com.yuntongxun.plugin.common.common.utils.ECPreferences;
+import com.yuntongxun.plugin.common.common.utils.LogUtil;
+import com.yuntongxun.plugin.common.common.utils.ToastUtil;
 
 import rx.Subscriber;
 
@@ -24,6 +37,7 @@ import rx.Subscriber;
  * @date 2018/2/23.
  */
 public class LoginActivity extends TitleColorActivity {
+    private static final String TAG = LoginActivity.class.getSimpleName();
 
     /**
      * 用户名
@@ -43,6 +57,33 @@ public class LoginActivity extends TitleColorActivity {
     // 注册按钮
     private TextView btnRegister;
 
+    private BroadcastReceiver mSDKNotifyReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (SDKCoreHelper.isLoginSuccess(intent)) {
+                String pushToken = ECPreferences.getSharedPreferences().getString("pushToken", null);
+                LogUtil.d(TAG, "SDK connect Success ,reportToken:" + pushToken);
+                if (!TextUtils.isEmpty(pushToken)) {
+                    ECDevice.reportHuaWeiToken(pushToken);
+                }
+//                Intent action = new Intent(LoginActivity.this, MainActivity.class);
+//                action.putExtra("userid", AppMgr.getUserId());
+//                startActivity(action);
+//                finish();
+
+//                String str1 = intent.toUri(Intent.URI_INTENT_SCHEME);
+//                String str2 = action.toUri(Intent.URI_INTENT_SCHEME);
+//                LogUtil.d(TAG, "uri1:" + str1 + ",uri2:" + str2);
+
+            } else {
+                int error = intent.getIntExtra("error", 0);
+                if (error == SdkErrorCode.CONNECTING) return;
+                LogUtil.e(TAG, "登入失败[" + error + "]");
+                ToastUtil.showMessage("登入失败 == " + error);
+            }
+        }
+    };
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +93,17 @@ public class LoginActivity extends TitleColorActivity {
         addListener();
 
         initData();
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(SDKCoreHelper.ACTION_SDK_CONNECT);
+        intentFilter.addAction(SDKCoreHelper.ACTION_LOGOUT);
+        registerReceiver(mSDKNotifyReceiver, intentFilter);
+        if (AppMgr.getClientUser() != null) {
+            LogUtil.d(TAG, "SDK auto connect...");
+            SDKCoreHelper.init(getApplicationContext());
+            //设置自为debug模式
+            LogUtil.setDebugMode(true);
+        }
     }
 
     private void initTitle() {
@@ -167,6 +219,14 @@ public class LoginActivity extends TitleColorActivity {
             }
         } else {
             ActivityJumper.startMainActivity(getApplicationContext());
+        }
+
+        if (userEntity != null) {
+            ClientUser.UserBuilder builder = new ClientUser.UserBuilder(userEntity.getPhone(), userEntity.getUsername() );
+            // 以下参数均为可选
+            SDKCoreHelper.login(builder.build());
+            //设置自为debug模式
+ //           LogUtil.setDebugMode(true);
         }
         finish();
     }

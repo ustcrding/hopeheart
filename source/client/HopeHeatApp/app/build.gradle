@@ -29,6 +29,12 @@ android {
         }
     }
 
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
     buildTypes {
         debug {
             //不混淆
@@ -61,6 +67,10 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:support-v4:23.+'
+
+    compile(name: 'Yuntx_Android_Common_Plugin_v1.4.0', ext: 'aar')
+    compile(name: 'Yuntx_Android_VoIP_Plugin_v1.4.0', ext: 'aar')
+
     testCompile 'junit:junit:4.12'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'//retrofit
     compile 'com.google.code.gson:gson:2.8.0'//Gson 库
