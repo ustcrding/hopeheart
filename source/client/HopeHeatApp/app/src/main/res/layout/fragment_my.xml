@@ -58,6 +58,31 @@
                             android:layout_marginLeft="10dp"
                             android:gravity="center_vertical"
                             android:src="@drawable/man" />
+
+                        <TextView
+                            android:id="@+id/iv_doctor"
+                            android:layout_width="45dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="15dp"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:textColor="@color/white"
+                            android:background="@drawable/doctor"
+                            android:text="@string/doctor_name_mark"
+                            android:visibility="gone"
+                            />
+
+                        <TextView
+                            android:id="@+id/iv_volunteer"
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="15dp"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:textColor="@color/white"
+                            android:background="@drawable/volunteer"
+                            android:text="@string/volunteer_name_mark"
+                            />
                     </LinearLayout>
 
                     <TextView

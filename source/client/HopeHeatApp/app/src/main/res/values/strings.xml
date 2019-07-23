@@ -248,4 +248,7 @@
     <string name="wonderful">非常满意</string>
     <string name="good">基本满意</string>
     <string name="yawp">不满意</string>
+
+    <string name="doctor_name_mark">医师</string>
+    <string name="volunteer_name_mark">志愿者</string>
 </resources>

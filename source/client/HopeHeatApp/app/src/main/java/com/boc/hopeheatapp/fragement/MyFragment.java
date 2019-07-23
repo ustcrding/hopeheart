@@ -47,6 +47,12 @@ public class MyFragment extends BaseFragment {
     @BindView(R.id.view_tutor_history)
     PreferenceItemView viewTutorHistory;
 
+    @BindView(R.id.iv_doctor)
+    TextView tvDoctor;
+
+    @BindView(R.id.iv_volunteer)
+    TextView tvVolunteer;
+
     public static MyFragment newInstance() {
         MyFragment fragment = new MyFragment();
         return fragment;
@@ -91,6 +97,7 @@ public class MyFragment extends BaseFragment {
             viewUserRegDate.setNameAndValue("登记日期", "2019-06-25");
             viewUserRegDate.setVisibility(View.GONE);
             viewTutorHistory.setIconAndName(-1, R.string.tutor_history);
+            tvDoctor.setVisibility(View.VISIBLE);
         }
     }
 
