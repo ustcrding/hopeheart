@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 
 import com.boc.hopeheatapp.R;
 import com.boc.hopeheatapp.fragement.BaseFragment;
+import com.boc.hopeheatapp.fragement.MarkupFragment;
 import com.boc.hopeheatapp.fragement.MsgFragment;
 import com.boc.hopeheatapp.fragement.MyFragment;
 import com.boc.hopeheatapp.util.log.Logger;
@@ -86,6 +87,7 @@ public class MainActivity extends TitleColorActivity {
      */
     private void buildFragment(Bundle savedInstanceState) {
         mFragmentList.add(buildMsgFragment(savedInstanceState));
+        mFragmentList.add(buildMarkupFragment(savedInstanceState));
         mFragmentList.add(buildMyFragment(savedInstanceState));
     }
 
@@ -102,6 +104,21 @@ public class MainActivity extends TitleColorActivity {
             home = MsgFragment.newInstance();
         }
         return home;
+    }
+
+    private BaseFragment buildMarkupFragment(Bundle savedInstanceState) {
+        MarkupFragment markupFragment = null;
+        if (savedInstanceState != null) {
+            markupFragment = (MarkupFragment) getSupportFragmentManager().findFragmentByTag(
+                    MarkupFragment.class.getSimpleName());
+            Logger.d(TAG, "buildMyFragment from savedInstanceState");
+        }
+
+        /*重建对象*/
+        if (markupFragment == null) {
+            markupFragment = MarkupFragment.newInstance();
+        }
+        return markupFragment;
     }
 
     private BaseFragment buildMyFragment(Bundle savedInstanceState) {

@@ -50,6 +50,23 @@
                 app:touchDrawable="@drawable/selector_bg" />
 
             <com.boc.hopeheatapp.widget.bottombar.BottomBarItem
+                android:id="@+id/main_tab_markup"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                app:iconNormal="@drawable/markup_icon"
+                app:iconSelected="@drawable/markup_icon2"
+                app:itemMarginTop="5dp"
+                app:itemText="在线标记"
+                app:itemTextSize="12sp"
+                app:openTouchBg="false"
+                app:textColorNormal="@color/bottom_bar_text_color_normal"
+                app:textColorSelected="@color/bottom_bar_text_color_selected"
+                app:touchDrawable="@drawable/selector_bg" />
+
+            <com.boc.hopeheatapp.widget.bottombar.BottomBarItem
                 android:id="@+id/main_tab_my"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

@@ -15,6 +15,9 @@ import com.boc.hopeheatapp.R;
 import com.boc.hopeheatapp.adapter.ChatRecyclerAdapter;
 import com.boc.hopeheatapp.call.CallHelper;
 import com.boc.hopeheatapp.model.ChatMessageBean;
+import com.boc.hopeheatapp.model.UserEntity;
+import com.boc.hopeheatapp.setting.BocSettings;
+import com.boc.hopeheatapp.user.UserManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -152,7 +155,8 @@ public class ConsultActivity extends TitleColorActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    CallHelper.videoCall(getApplicationContext(), "18963792291", "患者");
+                    UserEntity user = UserManager.getInstance().getUser();
+                    CallHelper.videoCall(getApplicationContext(), BocSettings.getInstance().getString(BocSettings.DOCTOR_PHONE), user != null ? user.getUsername() : "患者");
                 } catch (Throwable t) {
 
                 }

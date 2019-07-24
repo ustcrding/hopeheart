@@ -28,6 +28,7 @@ import com.boc.hopeheatapp.activity.TutorDetailActivity;
 import com.boc.hopeheatapp.activity.TutorHistoryActivity;
 import com.boc.hopeheatapp.activity.UpdateDialog;
 import com.boc.hopeheatapp.activity.UserInfoActivity;
+import com.boc.hopeheatapp.activity.VictimDetailActivity;
 import com.boc.hopeheatapp.activity.VocalIdentifyActivity;
 import com.boc.hopeheatapp.activity.VocalRegisterActivity;
 import com.boc.hopeheatapp.activity.VocalVerifyActivity;
@@ -580,5 +581,20 @@ public class ActivityJumper {
         context.startActivity(intent);
     }
 
+    /**
+     * 受灾群众详情页
+     *
+     * @param context
+     */
+    public static void startVictimDetailActivity(Context context, String victimId) {
+        if (context == null) {
+            return;
+        }
+
+        Intent intent = new Intent(context, VictimDetailActivity.class);
+        intent.putExtra(EXTRA_VICTIM_ID, victimId);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
 
 }

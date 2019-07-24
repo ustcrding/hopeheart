@@ -315,6 +315,7 @@ public class QuestionnaireActivity extends TitleColorActivity implements View.On
                                 }
                                 if (doctorEntity != null) {
                                     BocSettings.getInstance().setSetting(BocSettings.DOCTOR_ID, doctorEntity.getDoctorId());
+                                    BocSettings.getInstance().setSetting(BocSettings.DOCTOR_PHONE, doctorEntity.getDoctorPhone());
                                 }
                                 gotoResult(entity.getResult(), entity.getScores());
                             }

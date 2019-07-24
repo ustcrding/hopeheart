@@ -17,6 +17,9 @@ import com.boc.hopeheatapp.call.CallHelper;
 import com.boc.hopeheatapp.fragement.BaseFragment;
 import com.boc.hopeheatapp.fragement.HomeFragment;
 import com.boc.hopeheatapp.fragement.MyFragment;
+import com.boc.hopeheatapp.model.UserEntity;
+import com.boc.hopeheatapp.setting.BocSettings;
+import com.boc.hopeheatapp.user.UserManager;
 import com.boc.hopeheatapp.util.log.Logger;
 import com.boc.hopeheatapp.widget.bottombar.BottomBarLayout;
 
@@ -113,7 +116,8 @@ public class EvaluationResultActivity extends TitleColorActivity {
             public void onClick(View v) {
                 //ActivityJumper.startKnowledgeActivity(EvaluationResultActivity.this, KnowledgeActivity.TYPE_PSYCHOLOGY);
                 try {
-                    CallHelper.videoCall(getApplicationContext(), "18963792291", "患者");
+                    UserEntity user = UserManager.getInstance().getUser();
+                    CallHelper.videoCall(getApplicationContext(), BocSettings.getInstance().getString(BocSettings.DOCTOR_PHONE), user != null ? user.getUsername() : "患者");
                 } catch (Throwable t) {
 
                 }

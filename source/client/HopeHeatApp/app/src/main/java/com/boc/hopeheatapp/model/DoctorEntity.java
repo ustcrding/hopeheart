@@ -19,6 +19,10 @@ public class DoctorEntity {
     @SerializedName("doctorResume")
     private String doctorResume;
 
+    @Expose
+    @SerializedName("doctorPhone")
+    private String doctorPhone;
+
     public String getDoctorName() {
         return doctorName;
     }
@@ -41,5 +45,13 @@ public class DoctorEntity {
 
     public void setDoctorResume(String doctorResume) {
         this.doctorResume = doctorResume;
+    }
+
+    public String getDoctorPhone() {
+        return doctorPhone;
+    }
+
+    public void setDoctorPhone(String doctorPhone) {
+        this.doctorPhone = doctorPhone;
     }
 }

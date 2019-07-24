@@ -176,6 +176,8 @@
     <string name="consult_detail_title">咨询详情</string>
     <string name="tutor_detail_title">辅导详情</string>
 
+    <string name="victim_detail_title">详细信息</string>
+
     <string name="knowledge_detail">知识详情</string>
 
     <string name="rescue_knowledge">查询救援知识</string>
