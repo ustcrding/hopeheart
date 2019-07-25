@@ -82,6 +82,7 @@
                             android:textColor="@color/white"
                             android:background="@drawable/volunteer"
                             android:text="@string/volunteer_name_mark"
+                            android:visibility="gone"
                             />
                     </LinearLayout>
 

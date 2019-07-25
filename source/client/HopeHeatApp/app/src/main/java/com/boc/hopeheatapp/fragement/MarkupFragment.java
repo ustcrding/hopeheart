@@ -1,23 +1,32 @@
 package com.boc.hopeheatapp.fragement;
 
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.boc.hopeheatapp.ActivityJumper;
 import com.boc.hopeheatapp.R;
 import com.boc.hopeheatapp.adapter.MarkupListAdapter;
-import com.boc.hopeheatapp.adapter.MsgListAdapter;
-import com.boc.hopeheatapp.model.MessageEntity;
+import com.boc.hopeheatapp.model.AreaEntity;
+import com.boc.hopeheatapp.model.UserEntity;
+import com.boc.hopeheatapp.model.VictimBaseEntity;
 import com.boc.hopeheatapp.model.VictimEntity;
+import com.boc.hopeheatapp.parser.TextUtils;
+import com.boc.hopeheatapp.service.biz.VictimLoader;
+import com.boc.hopeheatapp.user.UserManager;
 import com.boc.hopeheatapp.widget.LoadMoreListView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import rx.Subscriber;
 
 /**
  * @author dwl
@@ -44,11 +53,27 @@ public class MarkupFragment extends BaseFragment {
     @BindView(R.id.tv_title_right)
     protected TextView tvMarkup;
 
+    @Nullable
+    @BindView(R.id.tv_area)
+    protected TextView tvArea;
+
+    @Nullable
+    @BindView(R.id.tv_type)
+    protected TextView tvType;
+
+    @Nullable
+    @BindView(R.id.tv_count)
+    protected TextView tvCount;
+
 
     @BindView(R.id.listview)
     protected LoadMoreListView mListView;
 
     private MarkupListAdapter adapter;
+
+    private int mStartNo;
+    private boolean mNeedRetry = true;
+    private boolean mIsEnd = false;
 
     public static MarkupFragment newInstance() {
         MarkupFragment fragment = new MarkupFragment();
@@ -91,14 +116,19 @@ public class MarkupFragment extends BaseFragment {
     }
 
     private void initData() {
-        requestData();
+        requestAreaData();
+        //requestData(true);
     }
 
     private void addListener() {
         mListView.setOnLoadMoreListener(new LoadMoreListView.OnLoadMoreListener() {
             @Override
             public void onloadMore() {
-
+                if (mIsEnd) {
+                    mListView.setLoadCompleted();
+                } else {
+                    requestData(false);
+                }
             }
         });
 
@@ -108,44 +138,159 @@ public class MarkupFragment extends BaseFragment {
                 onclickedItem((VictimEntity) adapter.getItem(position));
             }
         });
+
+        tvMarkup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<VictimEntity> victims = adapter.getItems();
+                if (victims != null && victims.size() > 0) {
+                    int count = 0;
+                    for (VictimEntity entity : victims) {
+                        if (entity.isChecked()) {
+                            ++count;
+                        }
+                    }
+
+                    if (count > 0) {
+                        openMenu(count);
+                    }
+                }
+            }
+        });
     }
 
     private void onclickedItem(VictimEntity item) {
         ActivityJumper.startVictimDetailActivity(getContext(), item.getVictimId());
     }
 
-    private void requestData() {
-        List<VictimEntity> list = new ArrayList<>();
-        VictimEntity messageEntity = new VictimEntity();
-        messageEntity.setVictimName("李某某");
-        messageEntity.setVictimAge(16);
-        messageEntity.setVictimGender("F");
+    private void requestAreaData() {
+        if (mNeedRetry) {
+            mNeedRetry = false;
+            UserEntity user = UserManager.getInstance().getUser();
+            if (user != null) {
+                String doctorId = UserEntity.TYPE_DOCTOR.equals(user.getRoleType()) ? user.getRoleId() : "";
+                String volunteerId = TextUtils.isEmpty(doctorId) ? user.getRoleId() : "";
+                VictimLoader victimLoader = new VictimLoader();
+                victimLoader.getAresInfo(doctorId, volunteerId).subscribe(new Subscriber<AreaEntity>() {
+                    @Override
+                    public void onCompleted() {
 
-        VictimEntity messageEntity2 = new VictimEntity();
-        messageEntity2.setVictimName("张某某");
-        messageEntity2.setVictimAge(9);
-        messageEntity2.setVictimGender("C");
+                    }
 
-        VictimEntity messageEntity3 = new VictimEntity();
-        messageEntity3.setVictimName("丁某某");
-        messageEntity3.setVictimAge(26);
-        messageEntity3.setVictimGender("F");
+                    @Override
+                    public void onError(Throwable throwable) {
+                        mNeedRetry = true;
+                    }
 
-        for (int i = 0 ; i < 10; ++i) {
-            VictimEntity entity = new VictimEntity();
-            entity.setVictimName("丁某某");
-            entity.setVictimAge(25);
-            entity.setVictimGender("M");
+                    @Override
+                    public void onNext(AreaEntity areaEntity) {
+                        if (areaEntity != null) {
+                            tvArea.setText(areaEntity.getAddressCode());
+                            if ("G".equals(areaEntity.getDisasterType())) {
+                                tvType.setText("地质灾害");
+                            } else if ("M".equals(areaEntity.getDisasterType())) {
+                                tvType.setText("气象灾害");
+                            } else if ("O".equals(areaEntity.getDisasterType())) {
+                                tvType.setText("海洋灾害");
+                            } else if ("E".equals(areaEntity.getDisasterType())) {
+                                tvType.setText("生态环境灾害");
+                            }
 
-            list.add(entity);
+                            requestData(true);
+                        }
+                    }
+                });
+            }
         }
+    }
 
-        list.add(messageEntity);
-        list.add(messageEntity2);
-        list.add(messageEntity3);
+    private void requestData(boolean force) {
+        if (force) {
+            mStartNo = 0;
+            adapter.clearItems();
+            mIsEnd = false;
+        }
+        UserEntity user = UserManager.getInstance().getUser();
+        if (user != null) {
+            mNeedRetry = false;
 
-        adapter.setItems(list);
+            VictimLoader victimLoader = new VictimLoader();
+            victimLoader.getCoachedLis(user.getRoleId(), tvArea.getText().toString(), mStartNo).subscribe(new Subscriber<VictimBaseEntity>() {
+                @Override
+                public void onCompleted() {
+                    mListView.setLoadCompleted();
+                }
+
+                @Override
+                public void onError(Throwable throwable) {
+                    if (mStartNo == 0) {
+                        mNeedRetry = true;
+                    }
+                }
+
+                @Override
+                public void onNext(VictimBaseEntity victimBaseEntity) {
+                    if (victimBaseEntity != null ) {
+                        List<VictimEntity> entities = victimBaseEntity.getVictims();
+                        if (entities != null && entities.size() > 0) {
+                            adapter.addItems(entities);
+                        }
+
+                        mStartNo += victimBaseEntity.getNumId();
+
+                        tvCount.setText(mStartNo + "人");
+
+                        mIsEnd = "Y".equals(victimBaseEntity.getEndFlag());
+                    }
+                }
+            });
+        }
+    }
+
+    private void openMenu(int num) {
+        View popView = LayoutInflater.from(getContext()).inflate(
+                R.layout.markup_popup_menu, null);
+        final PopupWindow popupWindow = new PopupWindow(popView,
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+        ((TextView)popView.findViewById(R.id.tv_markup_as)).setText(String.format(getResources().getString(R.string.victim_select_num), num));
+
+        popView.findViewById(R.id.online).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        popView.findViewById(R.id.offline).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        popView.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (popupWindow.isShowing()) {
+                    popupWindow.dismiss();
+                }
+            }
+        });
+
+        // 设置弹出动画
+        popupWindow.setBackgroundDrawable(new BitmapDrawable());
+        // 顯示在根佈局的底部
+        popupWindow.showAtLocation(getView(), Gravity.BOTTOM | Gravity.LEFT, 0,0);
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (mNeedRetry) {
+            requestAreaData();
+        }
+    }
 }

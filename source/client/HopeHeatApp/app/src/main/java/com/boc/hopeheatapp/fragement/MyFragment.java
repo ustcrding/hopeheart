@@ -92,12 +92,17 @@ public class MyFragment extends BaseFragment {
 
             viewUserRegDate.setValue(StringUtil.subString(userEntity.getRecordDate(), 10));
             viewTutorHistory.setVisibility(View.GONE);
-        } else {
+        } else if (StringUtil.equals(userEntity.getRoleType(), UserEntity.TYPE_DOCTOR)) {
             viewUserPhone.setNameAndValue("执业资格证号", "7183773828239");
             viewUserRegDate.setNameAndValue("登记日期", "2019-06-25");
             viewUserRegDate.setVisibility(View.GONE);
             viewTutorHistory.setIconAndName(-1, R.string.tutor_history);
             tvDoctor.setVisibility(View.VISIBLE);
+        } else if (StringUtil.equals(userEntity.getRoleType(), UserEntity.TYPE_VOLUNTEER)) {
+            viewUserPhone.setValue(userEntity.getPhone());
+            viewUserRegDate.setVisibility(View.GONE);
+            viewTutorHistory.setIconAndName(-1, R.string.tutor_history);
+            tvVolunteer.setVisibility(View.VISIBLE);
         }
     }
 

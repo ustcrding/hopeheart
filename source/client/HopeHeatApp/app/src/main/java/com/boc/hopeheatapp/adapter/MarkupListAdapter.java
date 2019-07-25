@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -37,7 +38,7 @@ public class MarkupListAdapter extends KBaseAdapter<VictimEntity> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        VictimEntity entity = itemList.get(position);
+        final VictimEntity entity = itemList.get(position);
         holder.tvName.setText(entity.getVictimName());
         if ("F".equals(entity.getVictimGender())) {
             holder.tvSex.setText(R.string.female);
@@ -45,6 +46,13 @@ public class MarkupListAdapter extends KBaseAdapter<VictimEntity> {
             holder.tvSex.setText(R.string.male);
         };
         holder.tvAge.setText(entity.getVictimAge() + "岁");
+
+        holder.cbSel.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                entity.setChecked(isChecked);
+            }
+        });
 
         return convertView;
     }

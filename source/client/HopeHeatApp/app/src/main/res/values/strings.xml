@@ -253,4 +253,6 @@
 
     <string name="doctor_name_mark">医师</string>
     <string name="volunteer_name_mark">志愿者</string>
+
+    <string name="victim_select_num">已选群众%d人，标记为：</string>
 </resources>

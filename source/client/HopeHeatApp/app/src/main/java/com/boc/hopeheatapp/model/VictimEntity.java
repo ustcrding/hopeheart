@@ -48,6 +48,8 @@ public class VictimEntity {
     @SerializedName("added")
     private int added;
 
+    private boolean isChecked;
+
     public String getVictimName() {
         return victimName;
     }
@@ -126,5 +128,13 @@ public class VictimEntity {
 
     public void setAdded(int added) {
         this.added = added;
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
     }
 }

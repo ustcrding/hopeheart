@@ -37,7 +37,7 @@ public interface VictimService {
 
 
     @FormUrlEncoded
-    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/coach/getCoachedLis")
+    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/coach/getAddr")
     Observable<BaseResponse<AreaEntity>> getAresInfo(@Field("doctorId") String doctorId,
                                                      @Field("volunteerId") String volunteerId);
 

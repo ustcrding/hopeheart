@@ -92,6 +92,7 @@ public class UserEntity {
     private String preserve;
 
     public static final String TYPE_DOCTOR = "1";
+    public static final String TYPE_VOLUNTEER = "2";
     // 1:受灾群众，0：医生
     @Expose
     @SerializedName("roleType")
