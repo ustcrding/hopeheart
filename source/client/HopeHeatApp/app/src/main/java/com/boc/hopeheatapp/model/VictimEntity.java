@@ -25,28 +25,28 @@ public class VictimEntity {
     private int victimAge;
 
     @Expose
-    @SerializedName("victimDate")
-    private int victimDate;
+    @SerializedName("testioinDate")
+    private String victimDate;
 
     @Expose
-    @SerializedName("victimCerType")
-    private int victimCerType;
+    @SerializedName("victimCertype")
+    private String victimCerType;
 
     @Expose
     @SerializedName("victimPhone")
-    private int victimPhone;
+    private String victimPhone;
 
     @Expose
     @SerializedName("addressCode")
-    private int addressCode;
+    private String addressCode;
 
     @Expose
     @SerializedName("addressDetail")
-    private int addressDetail;
+    private String addressDetail;
 
     @Expose
     @SerializedName("added")
-    private int added;
+    private String added;
 
     private boolean isChecked;
 
@@ -82,51 +82,51 @@ public class VictimEntity {
         this.victimAge = victimAge;
     }
 
-    public int getVictimDate() {
+    public String getVictimDate() {
         return victimDate;
     }
 
-    public void setVictimDate(int victimDate) {
+    public void setVictimDate(String victimDate) {
         this.victimDate = victimDate;
     }
 
-    public int getVictimCerType() {
+    public String getVictimCerType() {
         return victimCerType;
     }
 
-    public void setVictimCerType(int victimCerType) {
+    public void setVictimCerType(String victimCerType) {
         this.victimCerType = victimCerType;
     }
 
-    public int getVictimPhone() {
+    public String getVictimPhone() {
         return victimPhone;
     }
 
-    public void setVictimPhone(int victimPhone) {
+    public void setVictimPhone(String victimPhone) {
         this.victimPhone = victimPhone;
     }
 
-    public int getAddressCode() {
+    public String getAddressCode() {
         return addressCode;
     }
 
-    public void setAddressCode(int addressCode) {
+    public void setAddressCode(String addressCode) {
         this.addressCode = addressCode;
     }
 
-    public int getAddressDetail() {
+    public String getAddressDetail() {
         return addressDetail;
     }
 
-    public void setAddressDetail(int addressDetail) {
+    public void setAddressDetail(String addressDetail) {
         this.addressDetail = addressDetail;
     }
 
-    public int getAdded() {
+    public String getAdded() {
         return added;
     }
 
-    public void setAdded(int added) {
+    public void setAdded(String added) {
         this.added = added;
     }
 

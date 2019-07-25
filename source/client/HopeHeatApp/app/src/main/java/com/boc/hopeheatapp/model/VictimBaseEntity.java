@@ -10,19 +10,23 @@ import java.util.List;
  */
 public class VictimBaseEntity {
     @Expose
-    @SerializedName("numId")
+    @SerializedName("pageNumber")
     private int numId;
 
     @Expose
-    @SerializedName("totalPages")
+    @SerializedName("totalPage")
     private int totalPages;
 
     @Expose
-    @SerializedName("endFlag")
-    private String endFlag;
+    @SerializedName("lastPage")
+    private boolean endFlag;
 
     @Expose
-    @SerializedName("victim")
+    @SerializedName("totalRow")
+    private int totalRow;
+
+    @Expose
+    @SerializedName("list")
     private List<VictimEntity> victims;
 
     public int getNumId() {
@@ -41,11 +45,11 @@ public class VictimBaseEntity {
         this.totalPages = totalPages;
     }
 
-    public String getEndFlag() {
+    public boolean isEndFlag() {
         return endFlag;
     }
 
-    public void setEndFlag(String endFlag) {
+    public void setEndFlag(boolean endFlag) {
         this.endFlag = endFlag;
     }
 
@@ -55,5 +59,14 @@ public class VictimBaseEntity {
 
     public void setVictims(List<VictimEntity> victims) {
         this.victims = victims;
+    }
+
+
+    public int getTotalRow() {
+        return totalRow;
+    }
+
+    public void setTotalRow(int totalRow) {
+        this.totalRow = totalRow;
     }
 }

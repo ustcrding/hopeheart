@@ -8,15 +8,15 @@ import com.google.gson.annotations.SerializedName;
  */
 public class AreaEntity {
     @Expose
-    @SerializedName("addressCode")
+    @SerializedName("address_code")
     private String addressCode;
 
     @Expose
-    @SerializedName("disasterType")
+    @SerializedName("disaster_type")
     private String disasterType;
 
     @Expose
-    @SerializedName("cityState")
+    @SerializedName("city_state")
     private String cityState;
 
     public String getAddressCode() {

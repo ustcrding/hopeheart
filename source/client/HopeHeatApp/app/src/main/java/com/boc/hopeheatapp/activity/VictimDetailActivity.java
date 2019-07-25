@@ -115,7 +115,7 @@ public class VictimDetailActivity extends TitleColorActivity {
                     }
                     tvVictimAge.setText(entity.getVictimAge() + "岁");
                     tvDate.setText(entity.getVictimDate());
-                    tvAddress.setText(entity.getAddressCode());
+                    tvAddress.setText(entity.getAddressDetail());
                     tvRemark.setText(entity.getAdded());
                 }
             }

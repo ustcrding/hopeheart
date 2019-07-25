@@ -23,6 +23,7 @@ import com.boc.hopeheatapp.service.biz.VictimLoader;
 import com.boc.hopeheatapp.user.UserManager;
 import com.boc.hopeheatapp.widget.LoadMoreListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -215,7 +216,7 @@ public class MarkupFragment extends BaseFragment {
             mNeedRetry = false;
 
             VictimLoader victimLoader = new VictimLoader();
-            victimLoader.getCoachedLis(user.getRoleId(), tvArea.getText().toString(), mStartNo).subscribe(new Subscriber<VictimBaseEntity>() {
+            victimLoader.getCoachedLis(user.getRoleId(), tvArea.getText().toString(), mStartNo + 1).subscribe(new Subscriber<VictimBaseEntity>() {
                 @Override
                 public void onCompleted() {
                     mListView.setLoadCompleted();
@@ -240,10 +241,57 @@ public class MarkupFragment extends BaseFragment {
 
                         tvCount.setText(mStartNo + "人");
 
-                        mIsEnd = "Y".equals(victimBaseEntity.getEndFlag());
+                        mIsEnd = victimBaseEntity.isEndFlag();
                     }
                 }
             });
+        }
+    }
+
+    private void markup(boolean online) {
+        List<VictimEntity> victims = adapter.getItems();
+        if (victims != null && victims.size() > 0) {
+            int count = 0;
+            List<String> victimIds = new ArrayList<String>();
+            for (VictimEntity entity : victims) {
+                if (entity.isChecked()) {
+                    victimIds.add(entity.getVictimId());
+                }
+            }
+
+            if (victimIds.size() > 0) {
+                 UserEntity user = UserManager.getInstance().getUser();
+                 if (user != null) {
+                     VictimLoader victimLoader = new VictimLoader();
+
+                     String doctorId = UserEntity.TYPE_DOCTOR.equals(user.getRoleType()) ? user.getRoleId() : "";
+                     String volunteerId = TextUtils.isEmpty(doctorId) ? user.getRoleId() : "";
+
+                     StringBuilder sb = new StringBuilder();
+                     for (String str : victimIds) {
+                         sb.append(str);
+                         sb.append(",");
+                     }
+                     sb.deleteCharAt(sb.length() - 1);
+
+                     victimLoader.markCoached(doctorId, volunteerId, online ? "O" : "D", victimIds.size(), sb.toString()).subscribe(new Subscriber<Void>() {
+                         @Override
+                         public void onCompleted() {
+
+                         }
+
+                         @Override
+                         public void onError(Throwable throwable) {
+
+                         }
+
+                         @Override
+                         public void onNext(Void aVoid) {
+                             requestData(true);
+                         }
+                     });
+                 }
+            }
         }
     }
 
@@ -258,14 +306,22 @@ public class MarkupFragment extends BaseFragment {
         popView.findViewById(R.id.online).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                markup(true);
 
+                if (popupWindow.isShowing()) {
+                    popupWindow.dismiss();
+                }
             }
         });
 
         popView.findViewById(R.id.offline).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                markup(false);
 
+                if (popupWindow.isShowing()) {
+                    popupWindow.dismiss();
+                }
             }
         });
 

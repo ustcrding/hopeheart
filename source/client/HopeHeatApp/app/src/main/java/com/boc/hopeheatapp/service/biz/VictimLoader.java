@@ -43,8 +43,8 @@ public class VictimLoader extends BaseLoader {
         });
     };
 
-    public Observable<Void> markCoached(String doctorId, String markType, String num, List<String> ids) {
-        return observe(service.markCoached(doctorId, markType, num, ids)).map(new Func1<BaseResponse<Void>, Void>() {
+    public Observable<Void> markCoached(String doctorId, String volunteerId, String markType, int num, String ids) {
+        return observe(service.markCoached(doctorId, volunteerId, markType, num, ids)).map(new Func1<BaseResponse<Void>, Void>() {
             @Override
             public Void call(BaseResponse<Void> victimBaseEntityBaseResponse) {
                 victimBaseEntityBaseResponse.throwExceptionIfError();
