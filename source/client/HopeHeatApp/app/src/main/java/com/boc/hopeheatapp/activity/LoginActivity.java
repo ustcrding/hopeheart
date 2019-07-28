@@ -25,8 +25,11 @@ import com.yuntongxun.plugin.common.AppMgr;
 import com.yuntongxun.plugin.common.ClientUser;
 import com.yuntongxun.plugin.common.SDKCoreHelper;
 import com.yuntongxun.plugin.common.common.utils.ECPreferences;
+import com.yuntongxun.plugin.common.common.utils.EasyPermissionsEx;
 import com.yuntongxun.plugin.common.common.utils.LogUtil;
 import com.yuntongxun.plugin.common.common.utils.ToastUtil;
+
+import java.util.Random;
 
 import rx.Subscriber;
 
@@ -104,6 +107,8 @@ public class LoginActivity extends TitleColorActivity {
             //设置自为debug模式
             LogUtil.setDebugMode(true);
         }
+
+        initPermissions();
     }
 
     private void initTitle() {
@@ -223,11 +228,15 @@ public class LoginActivity extends TitleColorActivity {
         }
 
         if (userEntity != null) {
-            ClientUser.UserBuilder builder = new ClientUser.UserBuilder(userEntity.getPhone(), userEntity.getUsername() );
+            String phone = userEntity.getPhone();
+            if (TextUtils.isEmpty(phone)) {
+                phone = new Random().nextInt(1000000) + "";
+            }
+            ClientUser.UserBuilder builder = new ClientUser.UserBuilder(phone, userEntity.getUsername() );
             // 以下参数均为可选
             SDKCoreHelper.login(builder.build());
             //设置自为debug模式
- //           LogUtil.setDebugMode(true);
+            LogUtil.setDebugMode(true);
         }
         finish();
     }
@@ -247,5 +256,19 @@ public class LoginActivity extends TitleColorActivity {
      */
     public void onClickedRegister() {
         ActivityJumper.startRegisterActivity(this);
+    }
+
+    public static final String rationale = "需要访问存储设置、相机、麦克风、读取通讯录的权限";
+    public static final String[] needPermissionsInit = new String[]{android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            android.Manifest.permission.RECORD_AUDIO, android.Manifest.permission.READ_CONTACTS, android.Manifest.permission.READ_PHONE_STATE};
+    public static final int PERMISSIONS_REQUEST_INIT = 0x16;
+
+
+    private void initPermissions() {
+        if (EasyPermissionsEx.hasPermissions(this, needPermissionsInit)) {
+            LogUtil.d("btnClicked: hasPermissions");
+        } else {
+            EasyPermissionsEx.requestPermissions(LoginActivity.this, rationale, PERMISSIONS_REQUEST_INIT, needPermissionsInit);
+        }
     }
 }

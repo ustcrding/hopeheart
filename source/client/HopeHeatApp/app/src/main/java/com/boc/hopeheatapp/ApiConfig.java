@@ -52,7 +52,7 @@ public class ApiConfig {
     /**
      * BASE url
      */
-    public static final String HOPE_HEAT_BASE_URL = "http://172.20.10.3";
+    public static final String HOPE_HEAT_BASE_URL = "http://192.168.43.14";
 
     public static void setAppId(String appId) {
         ApiConfig.appId = appId;

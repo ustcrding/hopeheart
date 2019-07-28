@@ -395,6 +395,10 @@
                 <action android:name="com.boc.hopeheatapp.action.PERSON_VERSION" />
             </intent-filter>
         </receiver>
+
+        // ****************ECSDK核心服务类 End******************
+        // 应用处理程序逻辑服务
+        <service android:name=".service.YuntxNotifyReceiver$NotifyService" />
     </application>
 
 </manifest>
