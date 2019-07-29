@@ -1,0 +1,101 @@
+
+	<div class="layui-row layui-col-space1 task-row">
+		#@colStart('医师手机号',6)
+		<input type="text" class="layui-input" name="doctorInfo.doctorId" value="#(doctorInfo.doctor_id??'')"
+			   lay-verType='tips'lay-verify="required|" maxlength="30" placeHolder="必填"/>
+		#@colEnd()
+		#@colStart('备注信息',6)
+		<input type="text" class="layui-input" name="doctorInfo.reserved1" value="#(doctorInfo.reserved1??'')"
+			   lay-verType='tips'lay-verify="" maxlength="100" placeHolder="选填"/>
+
+		#@colEnd()
+	</div>
+	<div class="layui-row layui-col-space1 task-row">
+		#@colStart('医师姓名',6)
+		<input type="text" class="layui-input" name="doctorInfo.doctorName" value="#(doctorInfo.doctor_name??'')"
+			   lay-verType='tips'lay-verify="required|" maxlength="50" placeHolder="必填"/>
+
+		#@colEnd()
+
+		#@colStart('性别',6)
+		<input name="doctorInfo.doctorGender" type="radio" value="M" title="男"
+			   #if(doctorInfo.doctorGender??=='M'||doctorInfo==null)checked="checked"#end/>
+		<input name="doctorInfo.doctorGender" type="radio" value="F"  title="女"
+			   #if(doctorInfo.doctorGender??=='F')checked="checked"#end/>
+		#@colEnd()
+	</div>
+	<div class="layui-row layui-col-space1 task-row">
+		#@colStart('证件类型',6)
+			<select name="doctorInfo.doctorCertype"  class="layui-input" lay-search >
+			 <option value="01" #if(doctorInfo.doctor_certype??=="01") selected="selected" #end>身份证</option>
+			 <option value="02" #if(doctorInfo.doctor_certype??=="02") selected="selected" #end>军官证</option>
+			</select>
+		#@colEnd()
+
+		#@colStart('证件号码',6)
+		<input type="text" class="layui-input" name="doctorInfo.doctorCertno" value="#(doctorInfo.doctor_certno??'')"
+			   lay-verType='tips'lay-verify="required|" maxlength="30" placeHolder="必填"/>
+		#@colEnd()
+	</div>
+	
+	<div class="layui-row layui-col-space1 task-row">	
+		#@colStart('医师执业资格证号',6)
+		<input type="text" class="layui-input" name="doctorInfo.certificate" value="#(doctorInfo.certificate??'')"
+		lay-verType='tips'lay-verify="required|" maxlength="30" placeHolder="必填"/>
+		#@colEnd()
+		#@colStart('医师所在地区',6)
+		<input type="text" class="layui-input" name="doctorInfo.addressCode" value="#(doctorInfo.address_code??'')"
+			   lay-verType='tips'lay-verify="required|" maxlength="20" placeHolder="必填"/>
+		#@colEnd()
+	</div>
+
+	<div class="layui-row layui-col-space1 task-row">
+		#@colStart('医师所在单位',6)
+		<input type="text" class="layui-input" name="doctorInfo.affiliate" value="#(doctorInfo.affiliate??'')"
+			   lay-verType='tips'lay-verify="required|" maxlength="120" placeHolder="必填"/>
+		#@colEnd()
+
+		#@colStart('是否参与辅导',6)
+		<input name="doctorInfo.counseling" type="radio" value="Y" title="是"
+			   #if(doctorInfo.counseling??=='Y'||doctorInfo==null)checked="checked"#end/>
+		<input name="doctorInfo.counseling" type="radio" value="N"  title="否"
+			   #if(doctorInfo.counseling??=='N')checked="checked"#end/>
+		#@colEnd()
+	</div>
+	<div class="layui-row layui-col-spacel task-row">
+		#@colStart('掌握心理知识大类',12)
+		<select name="doctorInfo.psyledgeType"  value="#(doctorInfo.psyledge_type??'')" class="layui-input" lay-search >
+			<option value="">---请选择---</option>
+			<option value="01">身份证</option>
+			<option value="02">军官证</option>
+		</select>
+		#@colEnd()
+		#@colStart('掌握心理知识小类',12)
+		<select name="doctorInfo.psyledgeSubtype" lay-verify="required" class="layui-input" lay-search>
+			<option value=""></option>
+			<option value="0">北京</option>
+			<option value="1">上海</option>
+			<option value="2">广州</option>
+			<option value="3">深圳</option>
+			<option value="4">杭州</option>
+		</select>
+		#@colEnd()
+	</div>
+	<div class="layui-row layui-col-spacel task-row">
+		#@colStart('掌握心理测评知识大类',12)
+		<select name="doctorInfo.psytestsType"  value="#(doctorInfo.psytests_type??'')" class="layui-input" lay-search >
+			<option value="">---请选择---</option>
+			<option value="01">身份证</option>
+			<option value="02">军官证</option>
+		</select>
+		#@colEnd()
+		#@colStart('掌握心理测评知识小类',12)
+		<select name="doctorInfo.psytestsSubtype"  value="#(doctorInfo.psytests_subtype??'')" class="layui-input" lay-search >
+			<option value="">---请选择---</option>
+			<option value="01">身份证</option>
+			<option value="02">军官证</option>
+		</select>
+		#@colEnd()
+	</div>
+
+	#@submitButton()

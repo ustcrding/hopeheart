@@ -1,0 +1,308 @@
+#@layoutT("公共上传")
+#define main()
+</h1>
+<div class="form_box">
+	<fieldset class="layui-elem-field layui-field-title" style="margin-bottom: 10px;">
+  		<legend>文件上传&nbsp;<span id="fileNumber" style="font-size: 18px;color:#424041"></span></legend>
+	</fieldset> 
+ 	<div class="layui-progress layui-hide" lay-showpercent="true" lay-filter="upload" style="margin-bottom:10px">
+ 	 	<div class="layui-progress-bar" lay-percent="0%"></div>
+	</div>
+	<form class="layui-form" action="">
+	 <div class="layui-form-item">
+        <select id="docType" lay-verify="required" class="layui-input"  style="margin-bottom: 20px;" lay-search>
+            <option value="">请选择导入文件类型</option>
+            <option value="D">医师信息录入</option>
+            <option value="T">志愿者信息录入</option>
+			<option value="V">受灾者信息录入</option>
+        </select>
+	 </div >
+		<br/>
+	  <div class="layui-form-item">
+        <button type="button" class="layui-btn layui-btn-normal layui-btn-lg" style="margin-bottom: 20px;" id="fileList">上传文档</button>
+        <button type="button" class="layui-btn layui-btn-normal layui-btn-lg" style="margin-bottom: 20px;" id="fileListAction">一键录入</button>
+	  </div >
+	<!--<div class="layui-upload-list" style="overflow-y:auto">-->
+    <div class="layui-form-item">
+        <div class="layui-form-mid layui-word-aux" >可上传类型：.xls/.xlsx</div>
+    </div>
+        <div class="layui-form-item">
+			<!--<div class="layui-form-mid layui-word-aux" id="succinfo"></div>-->
+			<div class="layui-form-mid layui-word-aux" id="docid"></div>
+            </label>
+        </div>
+	<div class="layui-row  f-index-toolbar">
+		<div class="layui-col-xs12">
+			<table id="maingrid" lay-filter="maingrid"></table>
+		</div>
+	</div>
+	</form >
+</div>
+
+<script type="text/html" id="barDemo">
+	<a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+</script>
+#end
+
+#define js()
+<script type="text/javascript">
+layui.use(['upload','element'], function(){
+	  var $ = layui.jquery
+	  ,element = layui.element
+	  ,upload = layui.upload;
+	  var allowUploadFile='.jpg .png .ico .gif .jpeg .xls .xlsx .doc .html .pdf ';
+	  var allNum=0,fished=0;
+	  var start=false;
+	 //进度条触发事件
+	  var active = {
+	   loading: function(othis){
+	      //模拟loading
+	      var timer = setInterval(function(){  		    
+	        if(allNum!=0){
+			    var n=(fished/allNum*100).toFixed(0);
+			    element.progress('upload', n+'%');
+			    if(n==100){
+				    clearInterval(timer);
+				}
+		    }
+	      }, 100);
+	    }
+	//计算触发事件
+	  ,fileNum:function(othis){
+			var timer = setInterval(function(){
+				$('#fileNumber').html('('+fished+'/'+allNum+')');
+				if(fished==allNum&&allNum!=0){
+					 clearInterval(timer);
+					 start=false;
+				}
+			},200);
+		}
+	  };
+
+    //监听上传按钮
+	  $('#fileListAction').on('click', function(){
+          var doctype =$('#docType').val();
+          if(doctype==''){
+              alert("请选择导入文件类型");
+		  }else {
+              if (allNum > 0) {
+                  if(allNum==1){
+                      $('.layui-progress').removeClass('layui-hide');
+                      active['loading'].call(this, $(this));
+                  }
+              }else{
+                  alert("请选择上传文件");
+			  }
+          }
+	});
+
+	//多文件列表示例
+	var demoListView = $('#uploadList')
+	,uploadListIns = upload.render({
+	  elem: '#fileList'
+	  ,url: '#(path)/portal/upload/objectId=#(objectId??)'
+	  ,accept: 'file'
+	  ,multiple: true
+	  ,auto: false
+	  ,bindAction: '#fileListAction'
+      ,data: {
+            doctype: function(){
+                return $('#docType').val();
+            }
+        }
+      ,choose: function(obj) {
+            if (allNum == 0) {
+                var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+                //读取本地文件
+                obj.preview(function (index, file, result) {
+                    allNum++;
+                    if (fished > 0) {
+                        active['loading'].call(this, $(this));
+                    }
+                    var type = file.name.substring(file.name.lastIndexOf("."), file.name.length);
+                    var tr = $(['<tr id="upload-' + index + '">'
+                        , '<td>' + allNum + '</td>'
+                        , '<td>' + file.name + '</td>'
+                        , '<td>' + (file.size / 1014).toFixed(1) + 'kb</td>'
+                        , '<td>等待上传</td>'
+                        , '<td>'
+                        , '<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
+                        , '<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
+                        , '</td>'
+                        , '</tr>'].join(''));
+
+                    //单个重传
+                    tr.find('.demo-reload').on('click', function () {
+                        obj.upload(index, file);
+                    });
+
+                    //删除
+                    tr.find('.demo-delete').on('click', function () {
+                        allNum--;
+                        delete files[index]; //删除对应的文件
+                        tr.remove();
+                        uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                    });
+                    //查看
+
+
+                    demoListView.append(tr);
+
+                    //校验文件类型
+                    if (allowUploadFile.indexOf(type) == -1) {
+                        // var tr = demoListView.find('tr#upload-'+ index)
+                        // ,tds = tr.children();
+                        // tds.eq(3).html('<span style="color: #FF5722;">'+type+' 类型不允许上传</span>');
+                        alert(type + "类型不允许上传");
+                        delete files[index]; //删除文件队列不合法的文件
+                    }
+                });
+                //激活计数函数
+                if (!start) {
+                    if (allNum == 1) {
+                        active['fileNum'].call(this, $(this));
+                        start = true;
+                    }
+                }
+            }
+            else{
+                alert("只允许单文件上传");
+            }
+        }
+	  ,done: function(res, index, upload){
+            if (res.state== 'ok') { //上传成功
+                fished++;
+                delete this.files[index]; //删除文件队列已经上传成功的文件
+                //alert("123llll "+$('#docType').val());
+                // var tr = demoListView.find('tr#upload-'+ index)
+                // ,tds = tr.children();
+                // tds.eq(3).html('<span style="color: #5FB878;">上传成功</span>');
+                // tds.eq(4).html('<th lay-data="{fixed: \'right\', width:150, align:\'center\', toolbar: \'#barDemo\'}"></th>'); //设置查看按钮
+                //	return delete this.files[index]; //删除文件队列已经上传成功的文件
+//queryInfo($('#docType').val());
+                //$('#succinfo').text("上传成功");
+                $('#docid').text("文件录入编号："+res.docid);
+				if(res.doctype=='D'){
+                    queryDocInfo(res.docid);
+				}else if(res.doctype=='T'){
+                    queryVolunterInfo(res.docid)
+				}else{
+				    queryVictim(res.docid);
+				}
+            }else{
+                this.error(index, upload);
+			}
+
+	  }
+	  ,error: function(index, upload){
+	    // var tr = demoListView.find('tr#upload-'+ index)
+	    // ,tds = tr.children();
+	    // tds.eq(3).html('<span style="color: #FF5722;">上传失败</span>');
+	    // tds.eq(4).find('.demo-reload').removeClass('layui-hide'); //显示重传
+           alert("上传失败");
+	  }
+	});
+
+});
+function queryDocInfo(docid){
+    gridArgs.title='用户';
+    gridArgs.dataId='doctor_id';
+    gridArgs.gridDivId ='maingrid';
+    gridArgs.detailUrl='#(path)/portal/core/sysDocInfo/queryMemDetail/';
+    initGrid({id : 'maingrid'
+        ,elem : '#maingrid'
+        ,cellMinWidth: 80
+        ,cols : [ [
+            {title: '医师ID', field: 'doctor_id',width: '120' },
+            {title: '备注信息', field: 'reserved1',hide: true},
+            {title: '医师姓名', field: 'doctor_name',width: '120' },
+            {title: '性别', field: 'doctor_gender',templet:'#GenderStr',width:70},
+            {title: '证件类型', field: 'certype',templet:'#CerTypeStr'},
+            {title: '证件号码', field: 'doctor_certno',width: '180'},
+            {title: '医师执业资格证号', field: 'certificate',width: '180',hide: true},
+            {title: '医师所在地区', field: 'address_code' ,width: '200' },
+            {title: '医师所在单位', field: 'affiliate', width: '200' },
+            {title: '是否参与辅导', field: 'counseling',hide: true},
+            {title: '掌握心理知识大类', field: 'psyledge_type',hide: true},
+            {title: '掌握心理知识小类', field: 'psyledge_subtype',hide: true},
+            {title: '掌握心理测评知识大类', field: 'psytests_type',hide: true},
+            {title: '掌握心理测评知识小类', field: 'psytests_subtype',hide: true},
+            {title: '操作',fixed:'right',width : 120,align : 'left',toolbar : '#bar_maingrid_doc'} // 这里的toolbar值是模板元素的选择器
+        ] ]
+        ,url:"#(path)/portal/core/sysDocInfo/listByID/"+docid
+        ,searchForm : 'searchForm'
+    });
+
+}
+function queryVictim(docid){
+    gridArgs.title='用户';
+    gridArgs.dataId='victim_id';
+    gridArgs.detailUrl='#(path)/portal/core/sysDocInfo/queryMemDetail/';
+    gridArgs.gridDivId ='maingrid';
+    initGrid({id : 'maingrid'
+        ,elem : '#maingrid'
+        ,cellMinWidth: 80
+        ,cols : [ [
+            {title: '受灾群众ID', field: 'victim_id',width: '120' },
+            {title: '姓名', field: 'victim_name',hide: true},
+            {title: '性别', field: 'victim_gender',templet:'#GenderStr',width: '120' },
+            {title: '证件类型', field: 'certype',templet:'#CerTypeStr',width:70},
+            {title: '证件号码', field: 'victim_certno'},
+            {title: '联系方式', field: 'victim_phone',width: '180'},
+            {title: '所在地区', field: 'address_code',width: '180'},
+            {title: '详细地址', field: 'address_detail',width: '200' },
+            {title: '登记日期', field: 'register_date', width: '200' },
+            {title: '登记备注', field: 'added',hide: true},
+            {title: '操作',fixed:'right',width : 120,align : 'left',toolbar : '#bar_maingrid_vim'} // 这里的toolbar值是模板元素的选择器
+        ] ]
+        ,url:"#(path)/portal/core/sysDocInfo/listVimByID/"+docid
+        ,searchForm : 'searchForm'
+    });
+
+}
+function queryVolunterInfo(docid){
+    gridArgs.title='用户';
+    gridArgs.dataId='volunteer_id';
+    gridArgs.detailUrl='#(path)/portal/core/sysDocInfo/queryMemDetail/';
+    gridArgs.gridDivId ='maingrid';
+    initGrid({id : 'maingrid'
+        ,elem : '#maingrid'
+        ,cellMinWidth: 80
+        ,cols : [ [
+            {title: '志愿者ID', field: 'volunteer_id',width: '120' },
+            {title: '志愿者姓名', field: 'volunteer_name',width: '120'},
+            {title: '志愿者证件类型', field: 'certype',templet:'#CerTypeStr',width: '150' },
+            {title: '志愿者证件号码', field: 'volun_certno',width: '120'},
+            {title: '志愿者所在地区', field: 'volun_address',width: '200'},
+            {title: '志愿者所在单位', field: 'platform',width: '200'},
+            {title: '志愿者掌握心理知识大类', field: 'psyledge_type',width: '180',hide: true},
+            {title: '志愿者掌握心理知识小类', field: 'psyledge_subtype' ,hide: true},
+            {title: '志愿者掌握心理测评知识大类', field: 'psytests_type', width: '200' },
+            {title: '志愿者掌握心理知识小类', field: 'psytests_subtype',hide: true},
+            {title: '志愿辅导类型', field: 'voluntary_type',hide: true},
+            {title: '操作',fixed:'right',width : 120,align : 'left',toolbar : '#bar_maingrid_vol'} // 这里的toolbar值是模板元素的选择器
+        ] ]
+        ,url:"#(path)/portal/core/sysDocInfo/listVolByID/"+docid
+        ,searchForm : 'searchForm'
+    });
+}
+</script>
+
+<script type="text/html" id="bar_maingrid_doc">
+<a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+</script>
+<script type="text/html" id="bar_maingrid_vim">
+	<a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+</script>
+<script type="text/html" id="bar_maingrid_vol">
+	<a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+</script>
+<script type="text/html" id="GenderStr">
+	{{ d.doctor_gender == 'M'? '男' : '女' }}
+</script>
+<script type="text/html" id="CerTypeStr">
+	{{ d.certype == '01' ? '身份证' : '军官证' }}
+</script>
+
+#end
+

@@ -175,10 +175,10 @@ public class LoginActivity extends TitleColorActivity {
             return;
         }
 
-        //doLogin(username, pwd);
+        doLogin(username, pwd);
 //        ActivityJumper.startMainActivity(this);
 //        ActivityJumper.startWelcomeActivity(getApplicationContext(), false);
-        ActivityJumper.startEvaluationResultActivity(getApplicationContext(), "xxx", 65);
+//        ActivityJumper.startEvaluationResultActivity(getApplicationContext(), "xxx", 65);
 //        ActivityJumper.startConsultActivity(getApplicationContext());
     }
 

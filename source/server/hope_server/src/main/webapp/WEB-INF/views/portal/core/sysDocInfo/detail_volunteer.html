@@ -1,0 +1,116 @@
+#@layout()
+#define main()
+	<form  class="layui-form layui-form-pane f-form">
+
+		<div class="layui-row layui-col-space1 task-row">
+			#@colStart('志愿者编号',6)
+			<input type="text" class="layui-input" name="doctorInfo.volunteer_id" value="#(doctorInfo.volunteer_id??'')"
+				   lay-verType='tips'lay-verify=" " maxlength="30" disabled="true"/>
+			#@colEnd()
+			#@colStart('所在单位',6)
+			<input type="text" class="layui-input" name="doctorInfo.platform" value="#(doctorInfo.platform??'')"
+				   lay-verType='tips'lay-verify="" maxlength="100" disabled="true"/>
+
+			#@colEnd()
+		</div>
+		<div class="layui-row layui-col-space1 task-row">
+			#@colStart('志愿者姓名',6)
+			<input type="text" class="layui-input" name="doctorInfo.volunteer_name" value="#(doctorInfo.volunteer_name??'')"
+				   lay-verType='tips' maxlength="50" disabled="true"/>
+
+			#@colEnd()
+
+			#@colStart('所在地区',6)
+			<input type="text" class="layui-input" name="doctorInfo.volun_address" value="#(doctorInfo.volun_address??'')"
+				   lay-verType='tips'  maxlength="50" disabled="true"/>
+			#@colEnd()
+		</div>
+		<div class="layui-row layui-col-space1 task-row">
+			#@colStart('证件类型',6)
+			<select name="doctorInfo.volun_certtype"  class="layui-input" lay-search disabled="true">
+				<option value="01" #if(doctorInfo.volun_certtype??=="01") selected="selected" #end>身份证</option>
+				<option value="02" #if(doctorInfo.volun_certtype??=="02") selected="selected" #end>军官证</option>
+			</select>
+			#@colEnd()
+
+			#@colStart('证件号码',6)
+			<input type="text" class="layui-input" name="doctorInfo.volun_certno" value="#(doctorInfo.volun_certno??'')"
+				   lay-verType='tips'lay-verify="" maxlength="30" disabled="true"/>
+			#@colEnd()
+		</div>
+
+		<div class="layui-row layui-col-space1 task-row">
+			#@colStart('心理知识大类',6)
+			<select name="doctorInfo.psyledge_type" class="layui-input" lay-search disabled="true">
+				<option value="C" #if(doctorInfo.psyledge_type??=="C") selected="selected" #end>认知</option>
+				<option value="P" #if(doctorInfo.psyledge_type??=="P") selected="selected" #end>人格</option>
+				<option value="I" #if(doctorInfo.psyledge_type??=="I") selected="selected" #end>人际</option>
+				<option value="B" #if(doctorInfo.psyledge_type??=="B") selected="selected" #end>行为</option>
+				<option value="E" #if(doctorInfo.psyledge_type??=="E") selected="selected" #end>情绪</option>
+			</select>
+			#@colEnd()
+
+			#@colStart('心理知识小类',6)
+			<select name="doctorInfo.psyledge_subtype" class="layui-input" lay-search disabled="true">
+				<option value="C1" #if(doctorInfo.psyledge_subtype??=="C1") selected="selected" #end>注意</option>
+				<option value="C2" #if(doctorInfo.psyledge_subtype??=="C2") selected="selected" #end>感知觉</option>
+				<option value="C3" #if(doctorInfo.psyledge_subtype??=="C3") selected="selected" #end>记忆</option>
+				<option value="C4" #if(doctorInfo.psyledge_subtype??=="C4") selected="selected" #end>思维</option>
+				<option value="C5" #if(doctorInfo.psyledge_subtype??=="C5") selected="selected" #end>语言</option>
+				<option value="P1" #if(doctorInfo.psyledge_subtype??=="P1") selected="selected" #end>人格及其结构</option>
+				<option value="P2" #if(doctorInfo.psyledge_subtype??=="P2") selected="selected" #end>人格的形成</option>
+				<option value="P3" #if(doctorInfo.psyledge_subtype??=="P3") selected="selected" #end>人格理论</option>
+				<option value="P4" #if(doctorInfo.psyledge_subtype??=="P4") selected="selected" #end>人格测验</option>
+				<option value="I1" #if(doctorInfo.psyledge_subtype??=="I1") selected="selected" #end>人际沟通</option>
+				<option value="I2" #if(doctorInfo.psyledge_subtype??=="I2") selected="selected" #end>人际认知</option>
+				<option value="I3" #if(doctorInfo.psyledge_subtype??=="I3") selected="selected" #end>人际关系</option>
+				<option value="I4" #if(doctorInfo.psyledge_subtype??=="I4") selected="selected" #end>人际互动</option>
+				<option value="B1" #if(doctorInfo.psyledge_subtype??=="B1") selected="selected" #end>需要</option>
+				<option value="B2" #if(doctorInfo.psyledge_subtype??=="B2") selected="selected" #end>动机</option>
+				<option value="B3" #if(doctorInfo.psyledge_subtype??=="B3") selected="selected" #end>动机激发</option>
+				<option value="E1" #if(doctorInfo.psyledge_subtype??=="E1") selected="selected" #end>情绪与认知</option>
+				<option value="E2" #if(doctorInfo.psyledge_subtype??=="E2") selected="selected" #end>情绪与行为</option>
+				<option value="E3" #if(doctorInfo.psyledge_subtype??=="E3") selected="selected" #end>情绪调控</option>
+			</select>
+			#@colEnd()
+		</div>
+
+		<div class="layui-row layui-col-space1 task-row">
+			#@colStart('测评知识大类',6)
+			<select name="doctorInfo.psytests_type" class="layui-input" lay-search disabled="true">
+				<option value="SD" #if(doctorInfo.psytests_type??=="SD") selected="selected" #end>抑郁评测</option>
+			</select>
+			#@colEnd()
+
+			#@colStart('测评知识小类',6)
+			<select name="doctorInfo.psytests_type" class="layui-input" lay-search disabled="true">
+				<option value="SD" #if(doctorInfo.psytests_subtype??=="SD") selected="selected" #end>抑郁评测</option>
+			</select>
+			#@colEnd()
+		</div>
+		<div class="layui-row layui-col-spacel task-row">
+			#@colStart('辅导类型',6)
+			<select name="doctorInfo.voluntary_type" class="layui-input" lay-search disabled="true" >
+				<option value="O" #if(doctorInfo.voluntary_type??=="O") selected="selected" #end>线上</option>
+				<option value="D" #if(doctorInfo.voluntary_type??=="D") selected="selected" #end>线下</option>
+				<option value="A" #if(doctorInfo.voluntary_type??=="A") selected="selected" #end>线上线下</option>
+			</select>
+			#@colEnd()
+			#@colStart('备注信息',6)
+			<input type="text" class="layui-input" name="doctorInfo.added" value="#(doctorInfo.added??'')"
+				   lay-verType='tips'lay-verify="" maxlength="100" disabled="true"/>
+			#@colEnd()
+		</div>
+
+		<div class="layui-row layui-col-space1 task-row">
+			<div class="layui-input-block">
+				<div class="layui-btn-container" style="margin-top: 10px;text-align: center;">
+					<button id='closeWinBtn' type="button" 	 class='layui-btn  layui-btn-normal  layui-btn-radius' value="Close">
+						<i class="layui-icon">&#x1006;</i>	关闭
+					</button>
+				</div>
+			</div>
+		</div>
+
+	</form>
+#end

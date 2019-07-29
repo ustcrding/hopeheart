@@ -1,0 +1,17 @@
+  <div class="layui-row layui-col-space1 task-row">
+		#@colStart('掌握心理知识大类',12)
+		<select name="doctorInfo.psyledgeType"  value="#(doctorInfo.psyledge_type??'')" class="layui-input" lay-search >
+			<option value="">---请选择---</option>
+			<option value="01">身份证</option>
+			<option value="02">军官证</option>
+		</select>
+	</div>
+	<div class="layui-row layui-col-space1 task-row">
+		#@colStart('备注信息',12)
+		<input type="text" class="layui-input" name="doctorInfo.doctorName" value="#(doctorInfo.doctor_name??'')"
+			   lay-verType='tips'lay-verify="required|" maxlength="50" placeHolder="必填"/>
+		#@colEnd()
+	</div>
+	
+
+	#@submitButton()

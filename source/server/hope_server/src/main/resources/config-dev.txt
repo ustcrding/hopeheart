@@ -1,0 +1,17 @@
+#主要配置
+dbType=mysql
+jdbcUrl=jdbc:mysql://localhost/jfinal-layui?characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull
+user=root
+password=123
+devMode=true
+engineDevMode=true
+
+#业务配置
+projectName=希望智心后端管理系统
+baseUploadPath=WEB-INF/temp/upload
+baseDownloadPath=WEB-INF/temp/download
+copyright=中国银行软件中心合肥分中心
+
+
+
+

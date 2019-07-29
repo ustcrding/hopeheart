@@ -1,0 +1,73 @@
+
+	<div class="layui-row layui-col-space1 task-row">
+		#@colStart('受灾者编号',6)
+		<input type="text" class="layui-input" name="doctorInfo.doctorId" value="#(doctorInfo.victim_id??'')"
+			   lay-verType='tips' maxlength="30"  disabled="true"/>
+		#@colEnd()
+		#@colStart('登记日期',6)
+		<input type="text" class="layui-input" name="doctorInfo.victim_name" value="#(doctorInfo.register_date??'')"
+			   lay-verType='tips'lay-verify="" maxlength="100" disabled="true"/>
+
+		#@colEnd()
+	</div>
+	<div class="layui-row layui-col-space1 task-row">
+		#@colStart('受灾者姓名',6)
+		<input type="text" class="layui-input" name="doctorInfo.victim_name" value="#(doctorInfo.victim_name??'')"
+			   lay-verType='tips' maxlength="50" disabled="true"/>
+
+		#@colEnd()
+
+		#@colStart('性别',6)
+		<select name="doctorInfo.victim_gender"  class="layui-input" lay-search disabled="true">
+			<option value="M" #if(doctorInfo.victim_gender??=="M") selected="selected" #end>男</option>
+			<option value="F" #if(doctorInfo.victim_gender??=="F") selected="selected" #end>女</option>
+		</select>
+		#@colEnd()
+	</div>
+	<div class="layui-row layui-col-space1 task-row">
+		#@colStart('证件类型',6)
+			<select name="doctorInfo.victim_certype"  class="layui-input" lay-search disabled="true">
+			 <option value="01" #if(doctorInfo.victim_certype??=="01") selected="selected" #end>身份证</option>
+			 <option value="02" #if(doctorInfo.victim_certype??=="02") selected="selected" #end>军官证</option>
+			</select>
+		#@colEnd()
+
+		#@colStart('证件号码',6)
+		<input type="text" class="layui-input" name="doctorInfo.victim_certno" value="#(doctorInfo.victim_certno??'')"
+			   lay-verType='tips' maxlength="30" disabled="true"/>
+		#@colEnd()
+	</div>
+	
+	<div class="layui-row layui-col-space1 task-row">	
+		#@colStart('所在地区',6)
+		<input type="text" class="layui-input" name="doctorInfo.address_code" value="#(doctorInfo.address_code??'')"
+		lay-verType='tips'  maxlength="30" disabled="true"/>
+		#@colEnd()
+		
+		#@colStart('详细地址',6)
+		<input type="text" class="layui-input" name="doctorInfo.address_code" value="#(doctorInfo.address_code??'')"
+			   lay-verType='tips'  maxlength="20" disabled="true"/>
+		#@colEnd()
+	</div>
+
+	<div class="layui-row layui-col-space1 task-row">
+		#@colStart('联系电话',6)
+		<input type="text" class="layui-input" name="doctorInfo.victim_phone" value="#(doctorInfo.victim_phone??'')"
+			   lay-verType='tips'  maxlength="120" disabled="true"/>
+		#@colEnd()
+
+		#@colStart('备注信息',6)
+		<input type="text" class="layui-input" name="doctorInfo.added" value="#(doctorInfo.added??'')"
+			   lay-verType='tips'  maxlength="120" disabled="true"/>
+		#@colEnd()
+	</div>
+
+	<div class="layui-row layui-col-space1 task-row">
+		<div class="layui-input-block">
+			<div class="layui-btn-container" style="margin-top: 10px;text-align: center;">
+				<button id='closeWinBtn' type="button" 	 class='layui-btn  layui-btn-normal  layui-btn-radius' value="Close">
+					<i class="layui-icon">&#x1006;</i>	关闭
+				</button>
+			</div>
+		</div>
+	</div>

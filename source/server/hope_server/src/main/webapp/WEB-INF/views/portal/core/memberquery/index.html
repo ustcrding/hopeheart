@@ -1,0 +1,117 @@
+#@layoutT("信息审核")
+#define main()
+#@formStart()
+#@queryStart('文件编号')
+<input type="search" name="uploadNo" autocomplete="off" class="layui-input" placeholder="文件编号"/>
+#@queryEnd()
+#@queryStart('审核状态')
+<select name="authorState" class="layui-input" lay-search>
+    <option value="">---审核状态---</option>
+    <option value="Y">已审核</option>
+    <option value="N">未审核</option>
+</select>
+#@queryEnd()
+#@formEnd()
+
+<div class='layui-row f-index-toolbar'>
+    <div class='layui-col-xs12'>
+        <div class="layui-btn-group">
+            <button id='ajaxBtn_' class="layui-btn layui-btn-normal layui-btn-sm">
+                <i class="layui-icon">&#xe608;</i> 审核
+            </button>
+            <button id='refreshBtn_' class="layui-btn layui-btn-normal layui-btn-sm">
+                <i class="layui-icon">&#xe669;</i> 刷新
+            </button>
+        </div>
+    </div>
+</div>
+<div class="layui-row  f-index-toolbar">
+    <div class="layui-col-xs12">
+        <table id="maingrid" lay-filter="maingrid"></table>
+    </div>
+</div>
+
+<!-- 	每行的操作按钮 -->
+<script type="text/html" id="bar_maingrid">
+    <a class="layui-btn layui-btn-xs"  id="queryDetail"
+       lay-event="detail"
+    >查看</a>
+</script>
+#end
+
+#define js()
+<!-- 分页表格 -->
+<script>
+    gridArgs.title = '用户';
+    gridArgs.dataId = 'id';
+    gridArgs.deleteUrl = '#(path)/portal/core/sysDocInfo/delete';
+    gridArgs.updateUrl = '#(path)/portal/core/sysDocInfo/update/';
+    gridArgs.addUrl = '#(path)/portal/core/sysDocInfo/add';
+    gridArgs.ajaxUrl = '#(path)/portal/core/sysDocInfo/check';
+    gridArgs.queryDetailUrl = '#(path)/portal/core/memberquery/queryMemDetail';
+    gridArgs.gridDivId = 'maingrid';
+    initGrid({
+        id: 'maingrid'
+        , elem: '#maingrid'
+        , cellMinWidth: 80
+        , cols: [[
+            {title: '序号', type: 'numbers', width: '35'},
+            {title: '编号', field: 'roleid', width: '140'},
+            {title: '姓名', field: 'name', width: '110'},
+            {title: '证件类型', field: 'certtype', templet: '#doctorCerTypeStr', width: '100'},
+            {title: '证件号码', field: 'certno', width: '200'},
+            {title: '联系地址', field: 'address', width: '150'},
+            {title: '所在单位', field: 'platform', width: '200'},
+            {title: '类型', field: 'info_type', width: '100', templet: '#infoType'},
+            {title: '操作',fixed:'right',width :'70' ,align : 'left',toolbar : '#bar_maingrid'}// 这里的toolbar值是模板元素的选择器
+        ]]
+        , url: "#(path)/portal/core/memberquery/queryMemList"
+        , searchForm: 'searchForm'
+    });
+    // $(function(){
+    //     $("#checkBtn_").click(function(){
+    //         layer.alert(123);
+    //         var demo2=$("#maingrid").datagrid('getChecked');;
+    //
+    //         //var checkStatus =''
+    // 	layer.alert(demo2.toString());
+    //         var checkStatus = table.checkStatus(options.id);
+    //         if(checkStatus.data.length>0){
+    //
+    //         }else{
+    //             layer.alert('请选择行',{icon: 7});
+    // 	}
+    //
+    //     });
+    // });
+</script>
+<script type="text/html" id="counselingStr">
+    {{ d.counseling =='Y'? '是' : '否' }}
+</script>
+<script type="text/html" id="idJudge">
+    <input type="checkbox" name="" {{ d.counseling=='Y'?'disabled':''}}>
+
+</script>
+<script type="text/html" id="doctorGenderStr">
+    {{ d.doctor_gender == 'M' ? '男' : '女' }}
+</script>
+<script type="text/html" id="doctorCerTypeStr">
+    {{ d.certtype == '01' ? '身份证' : '军官证' }}
+</script>
+<script type="text/html" id="infoType">
+    {{ d.info_type == "V" ? "受灾群众":(d.info_type == "D" ? "医生":"志愿者") }}
+</script>
+<script type="text/javascript">
+    function check_() {
+        layer.confirm('确定退回代理商？', {
+            btn: ['确定', '取消']
+        }, function () {
+            layer.closeAll('dialog');  //加入这个信息点击确定 会关闭这个消息框
+            alert("退回成功");
+        }, function () {
+            layer.closeAll('dialog');  //加入这个信息点击确定 会关闭这个消息框
+            alert("退回失败");
+        });
+    }
+</script>
+#end

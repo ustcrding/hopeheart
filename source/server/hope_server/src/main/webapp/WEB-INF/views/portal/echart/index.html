@@ -1,0 +1,69 @@
+    <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>希望智心 数据采集</title>
+#@header()
+<script src="#(path)/static/libs/echarts/echarts.min.js"></script>
+<script src="#(path)/static/libs/echarts/ecstat/ecStat.min.js"></script><!-- 工具条js -->
+<script src="#(path)/static/libs/echarts/echarts.tool.js"></script>
+<style type="text/css">
+	 	#chart{
+	 		width:100%;height:550px;margin-top:30px;
+		}
+		.chart{
+	 		width:50%;height:250px;margin-top:30px;float: left;display: none;
+		}	
+	</style>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="bar" style="width: 50%;height:400px;float: left"></div>
+    <div id="line" style="width: 50%;height:400px;float: left"></div>
+    <div id="pie" style="width: 50%;height:400px;float: left"></div>
+    <div id="chart" style="width: 50%;height:400px;float: left"></div>
+    <div id="chart0" class="chart"></div>
+	<div id="chart1" class="chart"></div>
+	<div id="chart2" class="chart"></div>
+	<div id="chart3" class="chart"></div>
+    <script type="text/javascript">
+    var _path="#(path)";
+    //柱状图
+    //变量配置
+    var config=echart.config;
+    console.log(config)
+    config.title="希望智心 数据采集";
+    config.title_x="center";
+    config.subtitle="测试";
+    config.legend=['数量'];
+    config.legend_x="left";
+    //config.xName="类型";
+    config.xAxis=["采集","治愈","跟踪","回访","测试","主动治疗"];
+    //config.yName="数量";
+    config.seriesName="数量";
+    config.seriesData=[50, 20, 36, 10, 10, 20];
+    config.divId="bar";
+    echart.bar(config);
+    
+    //折线图
+    config.legend=['动态变化'];
+    config.seriesName="动态图";
+    config.seriesData=[10,30,50,60,70,100];
+    config.divId="line";
+    echart.line(config);
+    
+    //饼图
+    config.legend=["采集","治愈","跟踪","回访","测试","主动治疗"];
+    config.Name='数量';
+    config.seriesPieData=[{value:40,name:'采集'},{value:10,name:'治愈'},{value:20,name:'跟踪'},
+    	{value:10,name:'回访'},{value:10,name:'测试'},{value:10,name:'主动治疗'}];
+    config.divId="pie";
+    config.tooltipText="人";
+    echart.pie(config);
+    
+
+    //部门人数 统计
+    echart.getData("#(path)/portal/echart/queryData",null);
+    </script>
+</body>
+</html>
