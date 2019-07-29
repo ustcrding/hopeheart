@@ -2,6 +2,7 @@ package com.boc.hopeheatapp.service.api;
 
 import com.boc.hopeheatapp.ApiConfig;
 import com.boc.hopeheatapp.http.BaseResponse;
+import com.boc.hopeheatapp.model.AiAnswerEntity;
 import com.boc.hopeheatapp.model.ConsultEntity;
 import com.boc.hopeheatapp.model.DoctorEntity;
 import com.boc.hopeheatapp.model.UserEntity;
@@ -58,13 +59,13 @@ public interface UserService {
      * @return
      */
     @FormUrlEncoded
-    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/login")
+    @POST("/login")
     Observable<BaseResponse<UserEntity>> login(@Field("username") String username,
                                                @Field("password") String password);
 
 
     @FormUrlEncoded
-    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/victim/collect")
+    @POST("/victim/collect")
     Observable<BaseResponse<Void>> uploadUserInfo(@Field("id") String userId,
                                                         @Field("name") String userName,
                                                         @Field("sex") String sex,
@@ -81,7 +82,7 @@ public interface UserService {
      * @return
      */
     @FormUrlEncoded
-    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/verify")
+    @POST("/verify")
     Observable<BaseResponse<UserEntity>> userBind(@Field("userId") String id);
 
     /***
@@ -89,7 +90,7 @@ public interface UserService {
      * @return
      */
     @FormUrlEncoded
-    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/psytest/evaluation")
+    @POST("/psytest/evaluation")
     Observable<BaseResponse<ConsultEntity>> uploadEvaluationResult(@Field("victimId") String victimId,
                                                                    @Field("psytestsId") String testiId,
                                                                    @Field("testsLevel") String testLevel,
@@ -101,7 +102,7 @@ public interface UserService {
      * @return
      */
     @FormUrlEncoded
-    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/psytest/recommend/doctor")
+    @POST("/psytest/recommend/doctor")
     Observable<BaseResponse<DoctorEntity>> queryDoctor(@Field("victimId") String victimId,
                                                        @Field("psytestsId") String testiId,
                                                        @Field("victimtestId") String victimtestId,
@@ -114,9 +115,10 @@ public interface UserService {
      * @return
      */
     @FormUrlEncoded
-    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/psyQuery/feedback")
+    @POST("/psyQuery/feedback")
     Observable<BaseResponse<Void>> uploadComment(@Field("victimId") String victimId,
                                                  @Field("victimTestId") String testId,
                                                  @Field("doctorId") String doctorId,
                                                  @Field("satisficing") String satisficing);
+
 }

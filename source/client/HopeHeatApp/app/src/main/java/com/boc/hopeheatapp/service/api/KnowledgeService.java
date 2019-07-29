@@ -16,12 +16,12 @@ import rx.Observable;
 public interface KnowledgeService {
 
     @FormUrlEncoded
-    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/knowledge/rescue/query")
+    @POST("/knowledge/rescue/query")
     Observable<BaseResponse<RescueEntity>> queryRescueInfo(@Field("rescueType") String type,
                                                            @Field("rescueSubType") String subType);
 
     @FormUrlEncoded
-    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/knowledge/psy/query")
+    @POST("/knowledge/psy/query")
     Observable<BaseResponse<PsychologyEntity>> queryPsychologyInfo(@Field("psyledgeType") String type,
                                                                    @Field("psyledgeSubtype") String subType);
 }

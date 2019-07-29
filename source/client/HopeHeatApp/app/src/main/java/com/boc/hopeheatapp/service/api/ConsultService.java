@@ -1,6 +1,5 @@
 package com.boc.hopeheatapp.service.api;
 
-import com.boc.hopeheatapp.ApiConfig;
 import com.boc.hopeheatapp.http.BaseResponse;
 import com.boc.hopeheatapp.model.ConsultDetailEntity;
 import com.boc.hopeheatapp.model.ConsultHistoryEntity;
@@ -16,12 +15,12 @@ import rx.Observable;
 public interface ConsultService {
 
     @FormUrlEncoded
-    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/psyQuery/historyListQuery")
+    @POST( "/psyQuery/historyListQuery")
     Observable<BaseResponse<ConsultHistoryEntity>> queryConsultHistory(@Field("victimId") String id,
                                                                        @Field("startNo") String startNo);
 
     @FormUrlEncoded
-    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/psyQuery/historyDetailQuery")
+    @POST("/psyQuery/historyDetailQuery")
     Observable<BaseResponse<ConsultDetailEntity>> queryConsultDetail(@Field("victimId") String id,
                                                                      @Field("victimTestId") String testId);
 }

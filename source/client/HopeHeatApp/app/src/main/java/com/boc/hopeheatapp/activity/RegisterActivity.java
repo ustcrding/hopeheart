@@ -8,16 +8,12 @@ import android.widget.TextView;
 
 import com.boc.hopeheatapp.ActivityJumper;
 import com.boc.hopeheatapp.R;
-import com.boc.hopeheatapp.constant.ExtraAction;
-import com.boc.hopeheatapp.http.BaseResponse;
 import com.boc.hopeheatapp.model.UserEntity;
-import com.boc.hopeheatapp.model.event.EventResigterSuccess;
 import com.boc.hopeheatapp.service.biz.UserLoader;
 import com.boc.hopeheatapp.user.UserManager;
 import com.boc.hopeheatapp.util.ToastUtils;
 import com.boc.hopeheatapp.util.string.StringUtil;
 
-import de.greenrobot.event.EventBus;
 import rx.Subscriber;
 
 /**
@@ -162,14 +158,11 @@ public class RegisterActivity extends TitleColorActivity {
             return;
         }
 
-        // 发送注册成功事件，当声纹登录页面收到该事件后销毁页面
-        EventBus.getDefault().post(new EventResigterSuccess());
-
         ToastUtils.showShort(getApplication(), R.string.register_success);
         UserManager.getInstance().setUser(userEntity);
 
         // 打开home页面
-        ActivityJumper.startHomeActivity(getApplicationContext(), ExtraAction.ACTION_REGISTER_VOCAL);
+        ActivityJumper.startLoginActivity(getApplicationContext());
         finish();
     }
 }

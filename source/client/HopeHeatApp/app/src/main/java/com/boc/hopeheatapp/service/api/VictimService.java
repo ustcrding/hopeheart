@@ -19,17 +19,17 @@ import rx.Observable;
  */
 public interface VictimService {
     @FormUrlEncoded
-    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/coach/getCoachedList")
+    @POST("/coach/getCoachedList")
     Observable<BaseResponse<VictimBaseEntity>> getCoachedLis(@Field("doctorId") String id,
                                                         @Field("addressCode") String address,
                                                              @Field("startNo") int startNo);
 
     @FormUrlEncoded
-    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/coach/getCoachedDetail")
+    @POST("/coach/getCoachedDetail")
     Observable<BaseResponse<VictimEntity>> getCoachedDetail(@Field("victimId") String id);
 
     @FormUrlEncoded
-    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/coach/markCoached")
+    @POST("/coach/markCoached")
     Observable<BaseResponse<Void>> markCoached(@Field("doctorId") String doctorId,
                                                @Field("volunteerId") String volunteerId,
                                                @Field("markType") String markType,
@@ -38,7 +38,7 @@ public interface VictimService {
 
 
     @FormUrlEncoded
-    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/coach/getAddr")
+    @POST("/coach/getAddr")
     Observable<BaseResponse<AreaEntity>> getAresInfo(@Field("doctorId") String doctorId,
                                                      @Field("volunteerId") String volunteerId);
 

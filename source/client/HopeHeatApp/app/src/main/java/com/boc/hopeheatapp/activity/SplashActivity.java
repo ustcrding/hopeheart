@@ -77,12 +77,6 @@ public class SplashActivity extends TitleColorActivity {
     private void onGotoMain() {
         if (UserManager.getInstance().hasLogin()) {
             handleAutoLogin();
-        } else {
-            //1:N声纹登录
-            //ActivityJumper.startVocalIdentifyActivity(this);
-
-            //1:1声纹登录
-            ActivityJumper.startVocalVerifyActivity(this);
         }
         finish();
     }

@@ -1,5 +1,7 @@
 package com.boc.hopeheatapp.http;
 
+import android.text.TextUtils;
+
 import com.boc.hopeheatapp.ApiConfig;
 import com.boc.hopeheatapp.model.UserEntity;
 import com.boc.hopeheatapp.service.api.ApiFiled;
@@ -7,6 +9,10 @@ import com.boc.hopeheatapp.user.UserManager;
 import com.boc.hopeheatapp.util.log.Logger;
 import com.boc.hopeheatapp.util.string.StringUtil;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -57,13 +63,29 @@ public class UpdateServiceManager {
             builder.addInterceptor(logging);
         }
 
-
+        String baseUrl = ApiConfig.HOPE_HEAT_BASE_URL;
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(new File(android.os.Environment.getExternalStorageDirectory() + "/hopeheart.txt")));
+            String url = br.readLine();
+            if (!TextUtils.isEmpty(url) && (url.startsWith("http"))) {
+                baseUrl = url;
+            }
+        } catch (FileNotFoundException e) {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e1) {
+                }
+            }
+        } catch (IOException e) {
+        }
         // 创建Retrofit
         mRetrofit = new Retrofit.Builder()
                 .client(builder.build())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(ApiConfig.UPDATE)
+                .baseUrl(baseUrl)
                 .build();
     }
 

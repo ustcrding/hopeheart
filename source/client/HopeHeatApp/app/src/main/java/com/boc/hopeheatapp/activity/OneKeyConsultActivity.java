@@ -10,9 +10,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.boc.hopeheatapp.R;
-import com.boc.hopeheatapp.conversation.AnswerViewFactory;
-import com.boc.hopeheatapp.http.BaseResponse;
-import com.boc.hopeheatapp.model.AnswerEntity;
 import com.boc.hopeheatapp.model.MsgEntity;
 import com.boc.hopeheatapp.util.ToastUtils;
 import com.boc.hopeheatapp.util.string.StringUtil;
@@ -123,8 +120,8 @@ public class OneKeyConsultActivity extends TitleColorActivity {
     }
 
     private void addAnswer(String content) {
-        AnswerView answerView = AnswerViewFactory.makeAnswerView(this, content);
-        addConversationView(answerView);
+//        AnswerView answerView = AnswerViewFactory.makeAnswerView(this, content);
+//        addConversationView(answerView);
     }
 
     protected void addConversationView(AnswerView answerView) {

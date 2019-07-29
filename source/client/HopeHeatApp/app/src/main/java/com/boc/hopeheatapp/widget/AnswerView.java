@@ -3,8 +3,6 @@ package com.boc.hopeheatapp.widget;
 import android.content.Context;
 import android.widget.RelativeLayout;
 
-import com.boc.hopeheatapp.adapter.EvaluateInterface;
-import com.boc.hopeheatapp.adapter.LinkInterface;
 import com.boc.hopeheatapp.model.MsgEntity;
 
 /**
@@ -19,9 +17,6 @@ public abstract class AnswerView extends RelativeLayout {
 
     protected MsgEntity msgEntity;
 
-    protected EvaluateInterface evaluateInterface;
-
-    protected LinkInterface linkInterface;
 
     public AnswerView(Context context) {
         super(context);
@@ -68,21 +63,4 @@ public abstract class AnswerView extends RelativeLayout {
         updateUi();
     }
 
-    /**
-     * 设置满意度评价按钮
-     *
-     * @param evaluateInterface
-     */
-    public void setEvaluateInterface(EvaluateInterface evaluateInterface) {
-        this.evaluateInterface = evaluateInterface;
-    }
-
-    /**
-     * 设置多条答案点击回掉按钮
-     *
-     * @param linkInterface
-     */
-    public void setLinkInterface(LinkInterface linkInterface) {
-        this.linkInterface = linkInterface;
-    }
 }

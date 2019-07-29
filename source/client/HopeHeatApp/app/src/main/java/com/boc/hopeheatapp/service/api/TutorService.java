@@ -16,12 +16,12 @@ import rx.Observable;
  */
 public interface TutorService {
     @FormUrlEncoded
-    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/psyHis/list")
+    @POST("/psyHis/list")
     Observable<BaseResponse<TutorHistoryEntity>> queryTutorHistory(@Field("victimId") String id,
                                                                      @Field("startNo") String startNo);
 
     @FormUrlEncoded
-    @POST(ApiConfig.HOPE_HEAT_BASE_URL + "/psyHis/detail")
+    @POST("/psyHis/detail")
     Observable<BaseResponse<TutorDetailEntity>> queryTutorDetail(@Field("victimId") String id,
                                                                  @Field("victimTestId") String testId);
 }

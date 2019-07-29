@@ -14,13 +14,20 @@ import com.boc.hopeheatapp.ActivityJumper;
 import com.boc.hopeheatapp.R;
 import com.boc.hopeheatapp.adapter.ChatRecyclerAdapter;
 import com.boc.hopeheatapp.call.CallHelper;
+import com.boc.hopeheatapp.model.AiAnswerEntity;
 import com.boc.hopeheatapp.model.ChatMessageBean;
 import com.boc.hopeheatapp.model.UserEntity;
+import com.boc.hopeheatapp.service.api.UserService;
+import com.boc.hopeheatapp.service.biz.AiLoader;
+import com.boc.hopeheatapp.service.biz.UserLoader;
 import com.boc.hopeheatapp.setting.BocSettings;
 import com.boc.hopeheatapp.user.UserManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
+import rx.Subscriber;
 
 
 /**
@@ -85,14 +92,9 @@ public class ConsultActivity extends TitleColorActivity {
 
         ChatMessageBean send = new ChatMessageBean();
         send.setType(ChatRecyclerAdapter.FROM_USER_MSG);
-        send.setUserContent("您好您好");
+        send.setUserContent("您好，有什么可以帮您！");
         tblist.add(send);
 
-
-        ChatMessageBean receive = new ChatMessageBean();
-        receive.setType(ChatRecyclerAdapter.TO_USER_MSG);
-        receive.setUserContent("您好您好");
-        tblist.add(receive);
 
         tbAdapter.notifyDataSetChanged();
     }
@@ -120,6 +122,37 @@ public class ConsultActivity extends TitleColorActivity {
                     tblist.add(bean);
 
                     tbAdapter.notifyDataSetChanged();
+                    lv_chart.scrollToPosition(tblist.size()-1);
+
+                    AiLoader user = new AiLoader();
+                    user.queryAnswer(msg.toString(), new Random().nextInt(0xFFFFFFF) + "").subscribe(new Subscriber<AiAnswerEntity>() {
+                        @Override
+                        public void onCompleted() {
+
+                        }
+
+                        @Override
+                        public void onError(Throwable throwable) {
+
+                        }
+
+                        @Override
+                        public void onNext(AiAnswerEntity aiAnswerEntity) {
+                            if (aiAnswerEntity != null) {
+//                                if (aiAnswerEntity.isManuFlag()) {
+//
+//                                } else {
+                                    ChatMessageBean bean = new ChatMessageBean();
+                                    bean.setType(ChatRecyclerAdapter.FROM_USER_MSG);
+                                    bean.setUserContent(aiAnswerEntity.getAnswer());
+                                    tblist.add(bean);
+
+                                    tbAdapter.notifyDataSetChanged();
+                                    lv_chart.scrollToPosition(tblist.size()-1);
+//                                }
+                            }
+                        }
+                    });
                 }
             }
         });

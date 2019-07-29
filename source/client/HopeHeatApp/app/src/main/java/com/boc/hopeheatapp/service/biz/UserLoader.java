@@ -3,6 +3,7 @@ package com.boc.hopeheatapp.service.biz;
 import com.boc.hopeheatapp.http.BaseLoader;
 import com.boc.hopeheatapp.http.BaseResponse;
 import com.boc.hopeheatapp.http.UpdateServiceManager;
+import com.boc.hopeheatapp.model.AiAnswerEntity;
 import com.boc.hopeheatapp.model.ConsultEntity;
 import com.boc.hopeheatapp.model.DoctorEntity;
 import com.boc.hopeheatapp.model.UserEntity;

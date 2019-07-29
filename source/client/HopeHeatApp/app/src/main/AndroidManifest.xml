@@ -101,30 +101,10 @@
         </activity>
 
         <!--home activity-->
-        <activity
-            android:name="com.boc.hopeheatapp.activity.HomeActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:exported="true"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:theme="@style/CommonActivityTheme"
-            android:windowSoftInputMode="stateAlwaysHidden"></activity>
 
         <!-- 设置页面-->
-        <activity
-            android:name="com.boc.hopeheatapp.activity.SettingActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"
-            android:theme="@style/holo_light_Theme" />
 
         <!-- 自动更新-->
-        <activity
-            android:name="com.boc.hopeheatapp.activity.UpdateDialog"
-            android:configChanges="orientation|keyboardHidden"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
 
         <!-- 排班系统-->
         <activity
@@ -145,31 +125,10 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <!-- 单用户声纹识别-->
-        <activity
-            android:name="com.boc.hopeheatapp.activity.VocalVerifyActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/CommonActivityTheme"
-            android:windowSoftInputMode="stateAlwaysHidden"></activity>
 
         <!--分组用户声纹识别-->
-        <activity
-            android:name="com.boc.hopeheatapp.activity.VocalIdentifyActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/CommonActivityTheme"
-            android:windowSoftInputMode="stateAlwaysHidden"></activity>
 
         <!--声纹注册-->
-        <activity
-            android:name="com.boc.hopeheatapp.activity.VocalRegisterActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/CommonActivityTheme"
-            android:windowSoftInputMode="stateAlwaysHidden"></activity>
 
         <!--注册页面-->
         <activity
@@ -208,13 +167,6 @@
             android:windowSoftInputMode="stateAlwaysHidden"></activity>
 
         <!--二级频道页面-->
-        <activity
-            android:name="com.boc.hopeheatapp.activity.ChannelActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/CommonActivityTheme"
-            android:windowSoftInputMode="stateAlwaysHidden"></activity>
 
         <!--浏览器页面-->
         <activity
@@ -226,22 +178,8 @@
             android:windowSoftInputMode="stateAlwaysHidden"></activity>
 
         <!--频道列表页面-->
-        <activity
-            android:name="com.boc.hopeheatapp.activity.ChannelListActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/CommonActivityTheme"
-            android:windowSoftInputMode="stateAlwaysHidden"></activity>
 
         <!--心理问卷页面-->
-        <activity
-            android:name="com.boc.hopeheatapp.activity.PsychologicalTestActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/CommonActivityTheme"
-            android:windowSoftInputMode="stateAlwaysHidden"></activity>
 
         <!--问答结束页面-->
         <activity
